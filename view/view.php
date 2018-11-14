@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <!-- -->
 <html>
- oui oui oui 
 	<!--Hors de page-->
     <head>
     	<link rel="icon" href="Images/logoananas.ico" />
