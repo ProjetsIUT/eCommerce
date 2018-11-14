@@ -1,8 +1,11 @@
 <?php
 
- equire_once "Model.php";
+require_once (File::build_path(array('model','Model.php')));
 
 class ModelProduit extends Model {
+
+  protected static $primary = 'codeProduit';
+  protected static $object = 'Produit';
 
 	private $codeProduit;
 	private $nomProduit;
@@ -10,18 +13,29 @@ class ModelProduit extends Model {
 	private $descProduit;
 	private $stockProduit;
 
+  // Getter générique (pas expliqué en TD)
+  public function get($nom_attribut) {
+    if (property_exists($this, $nom_attribut))
+        return $this->$nom_attribut;
+    return false;
+  }
 
+  // Setter générique (pas expliqué en TD)
+  public function set($nom_attribut, $valeur) {
+    if (property_exists($this, $nom_attribut))
+        $this->$nom_attribut = $valeur;
+    return false;
+  }
 
-  public function __construct($code = NULL, $nom = NULL, $prix = NULL , $desc = NULL, $stock = NULL) {
-  if (!is_null($m) && !is_null($c) && !is_null($i)) {
+  public function __construct($data = array()) {
+  if (!empty($data)) {
     // If both $m, $c and $i are not NULL, 
     // then they must have been supplied
     // so fall back to constructor with 3 arguments
-    $this->codeProduit = $code;
-    $this->nomProduit = $nom;
-    $this->prixProduit = $prix;
-    $this->descProduit=$desc;
-    $this->stockProduit=$stock;
+    $this->nomProduit = $data["nomProduit"];
+    $this->prixProduit = $data["prixProduit"];
+    $this->descProduit=$data["descProduit"];
+    $this->stockProduit=$data["stockProduit"];
 
   }
 }

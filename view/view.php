@@ -6,8 +6,8 @@
     	<link rel="icon" href="Images/logoananas.ico" />
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="styles.css">
-		<title>PineApple</title>		<!--Titre affiché sur l'onglet-->
+		<link rel="stylesheet" type="text/css" <?php echo ('href="'.File::build_path(array('HTML', 'styles.css')).'"');?>>
+		<title><?php echo $pagetitle; ?></title>		<!--Titre affiché sur l'onglet-->
 
        
 
@@ -21,9 +21,9 @@
 				<div class=menu_burger>
 					<a> <img src="./Images/logoananas.png" alt="Ca fonctionne pas nulos" id="logobg"></a>
 					<div class="submenu_bg">
-						<div><a class=txt_sub href="index.html">Accueil</a></div>
+						<div><a class=txt_sub href="index.php">Accueil</a></div>
 						<br>
-						<div><a class=txt_sub href="pd5.html">Produits</a></div>
+						<div><a class=txt_sub href="index.php?action=readAll&controller=produit">Produits</a></div>
 						<br>
 						<div><a class=txt_sub href="contact.html">Contact</a></div>
 						<br>
@@ -76,7 +76,7 @@
 			<?php
 			// Si $controleur='voiture' et $view='list',
 			// alors $filepath="/chemin_du_site/view/voiture/list.php"
-			$filepath = File::build_path(array("view", $controller, "$view.php"));
+			$filepath = File::build_path(array("view", self::$object, "$view.php"));
 			require $filepath;
 			?>
     </body>
