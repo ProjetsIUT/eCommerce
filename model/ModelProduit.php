@@ -32,6 +32,7 @@ class ModelProduit extends Model {
     // If both $m, $c and $i are not NULL, 
     // then they must have been supplied
     // so fall back to constructor with 3 arguments
+    $this->codeProduit= $data["codeProduit"]; 
     $this->nomProduit = $data["nomProduit"];
     $this->prixProduit = $data["prixProduit"];
     $this->descProduit=$data["descProduit"];

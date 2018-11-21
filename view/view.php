@@ -6,7 +6,7 @@
     	<link rel="icon" href="Images/logoananas.ico" />
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" <?php echo ('href="'.File::build_path(array('HTML', 'styles.css')).'"');?>>
+		<link rel="stylesheet" type="text/css" href="HTML/styles.css">
 		<title><?php echo $pagetitle; ?></title>		<!--Titre affiché sur l'onglet-->
 
        
@@ -14,7 +14,7 @@
     </head>
     
 	<!--Corps de page (propre à chaque page)-->
-    <body>
+
 		<!--Pour l'en-tête de page-->
 		<header>
 			<nav> <!--Menu-->
@@ -39,10 +39,10 @@
 				</div>
 			
 				<div class=menu>
-					<a href="index.html"><img src="./Images/logoananas.png" alt="Ca fonctionne pas nulos" id="logo"></a>			
-					<div class=title_menu><a class=txt_menu href="pd5.html">Produits</a>
+					<a href="index.php"><img src="./Images/logoananas.png" alt="Ca fonctionne pas nulos" id="logo"></a>			
+					<div class=title_menu><a class=txt_menu href="index.php?action=readAll&controller=produit">Produits</a>
 						<div class="submenu">
-							<div><a class=txt_sub href="pd5.html">PD5 Phone</a></div>
+							<div><a class=txt_sub href="index.php?action=read&controller=produit">PD5 Phone</a></div>
 							<div><a class=txt_sub href="pinetabs.html">PineTabs</a></div>
 							<div><a class=txt_sub href="pinewatch.html">PineWatch</a></div>
 						</div>
@@ -73,12 +73,14 @@
 			</nav>
 		</header>
     <body>
+		<main>
 			<?php
 			// Si $controleur='voiture' et $view='list',
 			// alors $filepath="/chemin_du_site/view/voiture/list.php"
 			$filepath = File::build_path(array("view", self::$object, "$view.php"));
 			require $filepath;
 			?>
+			</main>
     </body>
 		<footer>
 			<section>

@@ -18,7 +18,7 @@ $controller_class = 'Controller' . ucfirst($controller);
 if(class_exists($controller_class)){
 	
 	if(!isset($_GET['action'])) {
-		$action = 'selectAll';
+		$action = 'readAll';
 	}
 	else {
 		$action = $_GET['action'];
