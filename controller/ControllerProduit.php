@@ -78,6 +78,7 @@ class ControllerProduit {
     }
 
     public static function create() {
+        $type = "Création";
         $view = 'update';
         $pagetitle = 'Ajout d\'un produit';
         require (File::build_path(array('view', 'view.php')));
@@ -109,6 +110,7 @@ class ControllerProduit {
     }
 
     public static function update() {
+        $type = "Modification";
         if (isset($_GET['codeProduit'])) {
                 $p = ModelProduit::select($_GET['codeProduit']);
                 $codeP = $p->get('codeProduit');
