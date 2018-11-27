@@ -130,45 +130,35 @@ class ControllerProduit {
     }
 
     public static function updated() {
-        if(isset($_GET['login']) && isset($_GET['nom']) && isset($_GET['prenom']) && isset($_GET['mdp'])) {
-            if ($_SESSION['login'] === $_GET['login'] || Session::is_admin()) {
-                if($_GET['mdp'] === $_GET['vmdp']) {
+        if(isset($_GET['codeProduit']) && isset($_GET['nomProduit']) && isset($_GET['prixProduit']) && isset($_GET['descProduit']) && isset($_GET['stockProduit'])) {
+            //if ($_SESSION['login'] === $_GET['login'] || Session::is_admin()) {
+                //if($_GET['mdp'] === $_GET['vmdp']) {
                     $view = 'updated';
-                    $pagetitle = 'Utilisateur modifié';
-                    $mdpsecu = Security::chiffrer($_GET['mdp']);
-                    $login = $_GET['login'];
-                    $_GET['admin'] = '';
-                    if ($_GET['admin'] == 0 || $_GET['admin'] == 1) {
-                        $vadmin = 1;
-                    }
-                    else if($_GET['admin'] == '' || $_GET['admin'] == NULL) {
-                        $vadmin = 0;
-                    }
+                    $pagetitle = 'Produit modifié';
                     $data = array(
-                        "login" => $_GET['login'],
-                        "nom" => $_GET['nom'],
-                        "prenom" => $_GET['prenom'],
-                        "mdp" => $mdpsecu,
-                        "admin" => $vadmin,
-                        "email" => $_GET['email'],
+                        "codeProduit" => $_GET['codeProduit'],
+                        "nomProduit" => $_GET['nomProduit'],
+                        "prixProduit" => $_GET['prixProduit'],
+                        "descProduit" => $_GET['descProduit'],
+                        "stockProduit" => $_GET['stockProduit'],
                     );
-                    $u = new ModelUtilisateur($_GET['login'], $_GET['nom'], $_GET['prenom'], $mdpsecu, $_GET['admin']);
-                    $u->update($data);
-                    $tab_u = ModelUtilisateur::selectAll();
+                    $p = new ModelProduit($_GET['codeProduit'], $_GET['nomProduit'], $_GET['prixProduit'], $_GET['descProduit'], $_GET['stockProduit']);
+                    $p->update($data);
+                    $tab_p = ModelProduit::selectAll();
                     require (File::build_path(array('view', 'view.php')));
-                } else {
-                    echo('Vos deux mots de passe ne sont pas identique !');
-                }
-            }
+                //} else {
+                    //echo('Vos deux mots de passe ne sont pas identique !');
+                //}
+            /*}
             else {
                 $view = 'connect';
                 $pagetitle = 'Connexion';
                 require (File::build_path(array('view', 'view.php')));
-            }
+            } */
 
         }
         else {
-            $controller = 'utilisateur';
+            $error_code = 'updated : un des champs est vide';
             $view = 'error';
             $pagetitle = 'Erreur';
             require (File::build_path(array('view', 'view.php')));
