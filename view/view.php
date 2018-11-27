@@ -6,7 +6,7 @@
     	<link rel="icon" href="Images/logoananas.ico" />
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="./HTML/styles.css">
+		<link rel="stylesheet" type="text/css" href="styles.css">
 		<title><?php echo $pagetitle; ?></title>		<!--Titre affiché sur l'onglet-->
 
        
