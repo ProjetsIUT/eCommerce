@@ -78,7 +78,7 @@ class ControllerProduit {
     }
 
     public static function create() {
-        $type = "Création";
+        $type = "Ajout";
         $view = 'update';
         $pagetitle = 'Ajout d\'un produit';
         require (File::build_path(array('view', 'view.php')));
@@ -89,7 +89,6 @@ class ControllerProduit {
                 $view = 'created';
                 $pagetitle = 'Produit ajouté';
                 $data = array(
-                    "codeProduit" => $_GET['codeProduit'],
                     "nomProduit" => $_GET['nomProduit'],
                     "prixProduit" => $_GET['prixProduit'],
                     "descProduit" => $_GET['descProduit'],

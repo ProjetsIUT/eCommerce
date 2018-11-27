@@ -1,6 +1,6 @@
 <form method="get" action="index.php">
   <fieldset>
-    <legend><?php echo $type?> d'utilisateur</legend>
+    <legend><?php echo $type?> de produit</legend>
     <p>
       
       <?php 
@@ -11,7 +11,6 @@
       if($_GET['action'] === 'create') {
         echo('
         <input type="hidden" name="action" value="created"/>
-        <input type="text" placeholder="Code du produit" name="codeProduit" id="codeProduit_id" required/>
         <input type="text" placeholder="Nom du produit" name="nomProduit" id="nomProduit_id" required/>
         <input type="text" placeholder="Prix du produit" name="prixProduit" id="prixProduit_id" required/>
         <textarea name="descProduit" id="descProduit_id" required> Description du produit </textarea>
@@ -20,6 +19,7 @@
       else if($_GET['action'] === 'update' /* && Session::is_admin() */) {
         echo('
         <input type="hidden" name="action" value="updated"/>
+        <input type="text" value="'.$codeP.'" name="codeProduit" id="codeProduit_id" readonly required/>
         <input type="text" value="'.$nomP.'" name="nomProduit" id="nomProduit_id" required/>
         <input type="text" value="'.$prixP.'" name="prixProduit" id="prixProduit_id" required/>
         <textarea name="descProduit" id="descProduit_id" required>'.$descP.'</textarea>
@@ -29,7 +29,7 @@
       ?>
     </p>
     <p>
-      <input type="submit" value="Ajouter ce nouveau produit !" />
+      <input type="submit" <?php echo 'value=" '.$type.' de ce nouveau produit !"'; ?> />
     </p>
   </fieldset> 
 </form>
