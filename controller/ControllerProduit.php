@@ -85,7 +85,7 @@ class ControllerProduit {
     }
     
     public static function created() {
-        if(isset($_GET['codeProduit']) && isset($_GET['nomProduit']) && isset($_GET['prixProduit']) && isset($_GET['descProduit']) && isset($_GET['stockProduit'])) {
+        if(isset($_GET['nomProduit']) && isset($_GET['prixProduit']) && isset($_GET['descProduit']) && isset($_GET['stockProduit'])) {
                 $view = 'created';
                 $pagetitle = 'Produit ajouté';
                 $data = array(
@@ -94,7 +94,7 @@ class ControllerProduit {
                     "descProduit" => $_GET['descProduit'],
                     "stockProduit" => $_GET['stockProduit'],
                 );
-                $p = new ModelProduit($_GET['codeProduit'], $_GET['nomProduit'], $_GET['prixProduit'], $_GET['descProduit'], $_GET['stockProduit']);
+                $p = new ModelProduit($data);
                 $p->save($data);
                 $tab_p = ModelProduit::selectAll();
                 require (File::build_path(array('view', 'view.php')));
@@ -143,7 +143,7 @@ class ControllerProduit {
                         "descProduit" => $_GET['descProduit'],
                         "stockProduit" => $_GET['stockProduit'],
                     );
-                    $p = new ModelProduit($_GET['codeProduit'], $_GET['nomProduit'], $_GET['prixProduit'], $_GET['descProduit'], $_GET['stockProduit']);
+                    $p = new ModelProduit($data);
                     $p->update($data);
                     $tab_p = ModelProduit::selectAll();
                     require (File::build_path(array('view', 'view.php')));

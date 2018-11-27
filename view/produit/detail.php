@@ -9,7 +9,7 @@
         <p> '.$valueStock.' </p>
         <form method="get">
         <p> <input type="hidden" name="panier" value="addToPanier"/>
-        <input type="submit" value="Achetez dès maintenant" style="display: block;margin-left: auto; margin-right: auto;"/>
+        <input type="submit" value="Ajouter à panier" style="display: block;margin-left: auto; margin-right: auto;"/>
         </p>
         </form>
         <p> <a href="index.php?controller=produit&action=delete&codeProduit='.rawurlencode($p->get('codeProduit')).'" style="color:black"> Cliquez ici pour supprimer ce produit ! </a> </p>

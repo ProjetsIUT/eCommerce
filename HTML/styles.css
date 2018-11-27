@@ -50,11 +50,11 @@ div.Produit img {
     width: 100%;
     height: auto;
 }
-
+/*
 div.Produit ~ div.idetail img{
     width: 25%;
     height: 25%;
-}
+} */
 
 
 #create > a > p{

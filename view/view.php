@@ -6,7 +6,7 @@
     	<link rel="icon" href="Images/logoananas.ico" />
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="HTML/styles.css">
+		<link rel="stylesheet" type="text/css" href="./HTML/styles.css">
 		<title><?php echo $pagetitle; ?></title>		<!--Titre affiché sur l'onglet-->
 
        
@@ -24,14 +24,14 @@
 						<div><a class=txt_sub href="index.php">Accueil</a></div>
 						<br>
 						<div><a class=txt_sub href="index.php?action=readAll&controller=produit">Produits</a></div>
-						 <?php
+						 <?php/*
                     		if(isset($_SESSION['login'])) {
                         		echo ('<a href="index.php?controller=utilisateur&action=deconnect"><li>Se déconnecter</li></a>');
                     		}
                     		else {
                         		echo ('<a href="index.php?action=connect&controller=utilisateur"><li>Se connecter</li></a>');
-                    		}
-                    	?>
+							} */
+						 ?> 
 						
 					</div>
 				</div>
