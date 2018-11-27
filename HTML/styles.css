@@ -51,7 +51,24 @@ div.Produit img {
     height: auto;
 }
 
+div.Produit ~ div.idetail img{
+    width: 25%;
+    height: 25%;
+}
+
+
+#create > a > p{
+	color:black;
+	text-align: center;
+}
+#create:hover > a > p {
+	color:red;
+	text-align: center;
+}
+
+
 div.desc {
+	font-family:verdana;
     padding: 15px;
     text-align: center;
 }

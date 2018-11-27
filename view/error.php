@@ -24,15 +24,6 @@
 						<div><a class=txt_sub href="index.php">Accueil</a></div>
 						<br>
 						<div><a class=txt_sub href="index.php?action=readAll&controller=produit">Produits</a></div>
-						 <?php
-                    		if(isset($_SESSION['login'])) {
-                        		echo ('<a href="index.php?controller=utilisateur&action=deconnect"><li>Se déconnecter</li></a>');
-                    		}
-                    		else {
-                        		echo ('<a href="index.php?action=connect&controller=utilisateur"><li>Se connecter</li></a>');
-                    		}
-                    	?>
-						
 					</div>
 				</div>
 			
@@ -48,8 +39,9 @@
 			<?php
 			// Si $controleur='voiture' et $view='list',
 			// alors $filepath="/chemin_du_site/view/voiture/list.php"
-			$filepath = File::build_path(array("view", self::$object, "$view.php"));
-			require $filepath;
+            echo '<p> Erreur de la fonction '.$error_code.' pour l\'objet '.self::$object.'
+                <br>Excusez-nous pour la gêne occasioné. <br>Vous allez être redirigez vers la page d\'accueil.</p>
+            <meta http-equiv="refresh" content="5; URL=index.php" />';
 			?>
 			</main>
     </body>
@@ -81,6 +73,3 @@
 		</footer>
  
 </html>
-
-
-
