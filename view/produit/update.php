@@ -29,7 +29,7 @@
       ?>
     </p>
     <p>
-      <input type="submit" <?php echo 'value=" '.$type.' de ce nouveau produit !"'; ?> />
+      <input type="submit" <?php echo 'value=" '.$type.' de ce produit !"'; ?> />
     </p>
   </fieldset> 
 </form>

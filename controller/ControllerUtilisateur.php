@@ -86,6 +86,7 @@ class ControllerUtilisateur {
     }
     
     public static function create() {
+        $type = 'Ajout';
         $view = 'update';
         $pagetitle = 'Ajout d\'un utilisateur';
         require (File::build_path(array('view', 'view.php')));
@@ -95,6 +96,63 @@ class ControllerUtilisateur {
         $view = 'connect';
         $pagetitle = 'Se connecter';
         require (File::build_path(array('view', 'view.php')));
+    }
+
+    public static function deconnect() {
+        session_unset(); 
+        session_destroy();
+        $view = 'deconnected';
+        $pagetitle = 'Déconnecté';
+        require (File::build_path(array('view', 'view.php')));
+    }
+
+    public static function update() {
+        $type = "Modification";
+        if (isset($_GET['codeUtilisateur'])) {
+            //if ($_SESSION['login'] === $_GET['login'] && !Session::is_admin()) {
+                $u = ModelUtilisateur::select($_GET['codeUtilisateur']);
+                $ucode = $u->get('codeUtilisateur');
+                $ulogin = $u->get('loginUtilisateur');
+                $uprenom = $u->get('prenomUtilisateur');
+                $unom = $u->get('nomUtilisateur');
+                $uadresseF = $u->get('adresseFacturationUtilisateur');
+                $uadresseL = $u->get('adresseLivraisonUtilisateur');
+                $umdp = $u->get('passUtilisateur');
+                $uidCB = $u->get('idCarteBleue');
+                $uemail = $u->get('emailUser');
+                $view = 'update';
+                $pagetitle = 'Utilisateur à modifier';
+                require (File::build_path(array('view', 'view.php')));
+            /*    
+            }
+            else if($_SESSION['login'] === $_GET['login'] || Session::is_admin()) {
+                $u = ModelUtilisateur::select($_GET['login']);
+                $nom = $u->get('nom');
+                $prenom = $u->get('prenom');
+                $mdp = $u->get('mdp');
+                if ($u->get('admin') == 1) {
+                    $admin = 0;
+                }
+                else if ($u->get('admin') == 0) {
+                    $admin = 1;
+                }
+                $controller = 'utilisateur';
+                $view = 'update';
+                $pagetitle = 'Utilisateur à modifier';
+                require (File::build_path(array('view', 'view.php')));
+            }
+            else {
+                $view = 'connect';
+                $pagetitle = 'Connexion';
+                require (File::build_path(array('view', 'view.php')));
+            } */
+        }
+        else {
+            $error_code = 'update : codeUtilisateur vide';
+            $view = 'error';
+            $pagetitle = 'Erreur';
+            require (File::build_path(array('view', 'view.php')));
+        }
     }
     /*
     public static function connected() {
@@ -128,14 +186,6 @@ class ControllerUtilisateur {
             $pagetitle = 'Erreur';
             require (File::build_path(array('view', 'view.php')));
         }
-    }
-
-    public static function deconnect() {
-        session_unset(); 
-        session_destroy();
-        $view = 'deconnected';
-        $pagetitle = 'Déconnecté';
-        require (File::build_path(array('view', 'view.php')));
     }
 
     public static function created() {
@@ -175,49 +225,6 @@ class ControllerUtilisateur {
             $pagetitle = 'Erreur';
             require (File::build_path(array('view', 'view.php')));
        }
-    }
-
-    public static function update() {
-        if (isset($_GET['login'])) {
-            if ($_SESSION['login'] === $_GET['login'] && !Session::is_admin()) {
-                $u = ModelUtilisateur::select($_GET['login']);
-                $nom = $u->get('nom');
-                $prenom = $u->get('prenom');
-                $mdp = $u->get('mdp');
-                $email = $u->get('email');
-                $controller = 'utilisateur';
-                $view = 'update';
-                $pagetitle = 'Utilisateur à modifier';
-                require (File::build_path(array('view', 'view.php')));
-            }
-            else if($_SESSION['login'] === $_GET['login'] || Session::is_admin()) {
-                $u = ModelUtilisateur::select($_GET['login']);
-                $nom = $u->get('nom');
-                $prenom = $u->get('prenom');
-                $mdp = $u->get('mdp');
-                if ($u->get('admin') == 1) {
-                    $admin = 0;
-                }
-                else if ($u->get('admin') == 0) {
-                    $admin = 1;
-                }
-                $controller = 'utilisateur';
-                $view = 'update';
-                $pagetitle = 'Utilisateur à modifier';
-                require (File::build_path(array('view', 'view.php')));
-            }
-            else {
-                $view = 'connect';
-                $pagetitle = 'Connexion';
-                require (File::build_path(array('view', 'view.php')));
-            }
-        }
-        else {
-            $controller = 'utilisateur';
-            $view = 'error';
-            $pagetitle = 'Erreur';
-            require (File::build_path(array('view', 'view.php')));
-        }
     }
 
     public static function updated() {
