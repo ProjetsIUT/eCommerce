@@ -1,5 +1,4 @@
 <?php
-
 // require_once de chaque controller
 $controller_default = 'produit';
 
