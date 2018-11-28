@@ -12,11 +12,11 @@ class Conf {
     'database' => 'bourdesj',
     // At IUT, it is your classical login
     // On your computer, you should have at least a 'root' account
-    'login' => 'root',
+    'login' => 'bourdesj',
     // At IUT, it is your database password 
     // (=PHPMyAdmin pwd, INE by defaut)
     // On your computer, you created the pwd during setup
-    'password' => 'julian'
+    'password' => 'Unicorn'
   );
 
   static private $debug = True;
