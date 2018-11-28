@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- -->
 <html>
 	<!--Hors de page-->
     <head>
@@ -78,8 +77,7 @@
 			</div>
 			<p>
 
-		</footer>
- 
+		</footer> 
 </html>
 
 
