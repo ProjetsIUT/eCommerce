@@ -18,7 +18,7 @@
         <input type="text" placeholder="Prenom" name="prenom" id="prenom_id" required/>
         <input type="email" placeholder="example@gmail.com" name="emaill" id="email_id" required/>');
       }
-      else if($_GET['action'] === 'update' && Session::is_admin()) {
+      else if($_GET['action'] === 'update' /*&& Session::is_admin()*/) {
         echo('
         <input type="hidden" name="action" value="updated"/>
         <input type="text" value="'.htmlspecialchars($_GET['login']).'"  name="login" id="login_id" readonly required/>
