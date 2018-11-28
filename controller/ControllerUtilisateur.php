@@ -84,21 +84,19 @@ class ControllerUtilisateur {
             require (File::build_path(array('view', 'view.php')));
         }
     }
-    /*
+    
     public static function create() {
-        $controller = 'utilisateur';
         $view = 'update';
-        $pagetitle = 'Creation d\'utilisateur';
+        $pagetitle = 'Ajout d\'un utilisateur';
         require (File::build_path(array('view', 'view.php')));
     }
 
     public static function connect() {
-        $controller = 'utilisateur';
         $view = 'connect';
         $pagetitle = 'Se connecter';
         require (File::build_path(array('view', 'view.php')));
     }
-
+    /*
     public static function connected() {
         $controller = 'utilisateur';
         $view = 'detail';
