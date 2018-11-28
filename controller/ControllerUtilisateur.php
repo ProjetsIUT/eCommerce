@@ -11,31 +11,48 @@ class ControllerUtilisateur {
         $pagetitle = 'Liste des utilisateurs';
         require (File::build_path(array('view', 'view.php')));
     }
-    /*
+    
     public static function read() {
         if(isset($_GET['codeUtilisateur'])) {
-            $u = ModelUtilisateur::select($_GET['login']);
+            $u = ModelUtilisateur::select($_GET['codeUtilisateur']);
 
             if($u) {
+                $ucodeUtilisateur = $u->get('codeUtilisateur');
+                $ulogin = $u->get('loginUtilisateur');
+                $uprenom = $u->get('prenomUtilisateur');
+                $unom = $u->get('nomUtilisateur');
+                $uadresseF = $u->get('adresseFacturationUtilisateur');
+                $uadresseL = $u->get('adresseLivraisonUtilisateur');
+                $uidCB = $u->get('idCodeBleue');
+                $uemail = $u->get('emailUser');
+                if ($uadresseF == NULL) {
+                    $uadresseF = 'non renseigné';
+                }
+                if ($uadresseL == NULL) {
+                    $uadresseL = 'non renseigné';
+                }
+                if ($uidCB == NULL) {
+                    $uidCB = 'non renseigné';
+                }
                 $view = 'detail';
-                $pagetitle = 'Details des utilisateurs';
+                $pagetitle = 'Informations sur l\'utilisateur';
                 require (File::build_path(array('view', 'view.php')));
             }
             else {
-                $controller = 'utilisateur';
+                $error_code = 'read : codeUtilisateur inexistant';
                 $view = 'error';
                 $pagetitle = 'Erreur';
                 require (File::build_path(array('view', 'view.php')));
             }
         }
         else {
-            $controller = 'utilisateur';
+            $error_code = 'read : codeUtilisateur vide';
             $view = 'error';
             $pagetitle = 'Erreur';
             require (File::build_path(array('view', 'view.php')));
         }
     }
-    
+    /*
     public static function delete() {
 
         if(isset($_GET['login'])) {

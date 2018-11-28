@@ -17,20 +17,23 @@
 
 		<!--Pour l'en-tête de page-->
 		<header>
-			<nav> <!--Menu-->
+		<nav> <!--Menu-->
 				<div class=menu_burger>
 					<a> <img src="./Images/logoananas.png" alt="Ca fonctionne pas nulos" id="logobg"></a>
 					<div class="submenu_bg">
 						<div><a class=txt_sub href="index.php">Accueil</a></div>
 						<br>
 						<div><a class=txt_sub href="index.php?action=readAll&controller=produit">Produits</a></div>
+						<div><a class=txt_sub href="index.php?action=readAll&controller=utilisateur">Utilisateur</a></div>
+						
 					</div>
 				</div>
 			
 
 				<div class=menu>
 					<a href="index.php"><img src="./Images/logoananas.png" alt="Ca fonctionne pas nulos" id="logo"></a>			
-					<div class=title_menu><a class=txt_menu href="index.php?action=readAll&controller=produit">Produits</a>
+					<div class=title_menu><a class=txt_menu href="index.php?action=readAll&controller=produit">Produits</a></div>
+					<div class=title_menu><a class=txt_menu href="index.php?action=readAll&controller=utilisateur">Utilisateur</a></div>
 				</div>
 			</nav>
 		</header>
