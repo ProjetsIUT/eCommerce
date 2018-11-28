@@ -52,40 +52,39 @@ class ControllerUtilisateur {
             require (File::build_path(array('view', 'view.php')));
         }
     }
-    /*
+    
     public static function delete() {
 
-        if(isset($_GET['login'])) {
-            if ($_SESSION['login'] === $_GET['login'] || Session::is_admin()) {
-                if(ModelUtilisateur::select($_GET['login'])) {
-                    $u = ModelUtilisateur::delete($_GET['login']);
-                    $controller = 'utilisateur';
+        if(isset($_GET['codeUtilisateur'])) {
+            //if ($_SESSION['login'] === $_GET['login'] || Session::is_admin()) {
+                if(ModelUtilisateur::select($_GET['codeUtilisateur'])) {
+                    $u = ModelUtilisateur::delete($_GET['codeUtilisateur']);
                     $view = 'deleted';
                     $pagetitle = 'Suppression d\'un utilisateur';
                     $tab_u = ModelUtilisateur::selectAll();
                     require (File::build_path(array('view', 'view.php')));
                 }
                 else {
-                    $controller = 'utilisateur';
+                    $error_code = 'delete : codeUtilisateur inexistant';
                     $view = 'error';
                     $pagetitle = 'Erreur';
                     require (File::build_path(array('view', 'view.php')));
                 }
-            }
+            /*} 
             else {
                 $view = 'connect';
                 $pagetitle = 'Connexion';
                 require (File::build_path(array('view', 'view.php')));
-            }
+            } */
         }
         else {
-            $controller = 'utilisateur';
+            $error_code = 'delete : codeUtilisateur vide';
             $view = 'error';
             $pagetitle = 'Erreur';
             require (File::build_path(array('view', 'view.php')));
         }
     }
-
+    /*
     public static function create() {
         $controller = 'utilisateur';
         $view = 'update';
