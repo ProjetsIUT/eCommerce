@@ -1,5 +1,5 @@
 <?php
-
+// require_once de chaque controller
 require_once (File::build_path(array('controller', 'ControllerProduit.php')));
 $controller_default = 'produit';
 
