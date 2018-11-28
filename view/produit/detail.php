@@ -1,7 +1,7 @@
 <?php
     echo '
     <div class=Produit>
-        <div class=idetail> <img src="'.File::build_path(array('Images', $img_nom)).'" style="width:15%;height=15%;display: block;margin-left: auto;margin-right: auto;"> 
+        <div class=idetail> <img src="./Images/'.$img_nom.'" style="width:15%;height=15%;display: block;margin-left: auto;margin-right: auto;"> 
         </div>
         <div class=desc>
         <p>  '.$p->get('descProduit').' </p>
