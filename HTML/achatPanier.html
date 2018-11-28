@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<!-- -->
+<html>
+	
+	<!--Hors de page-->
+    <head>
+		<link rel="icon" href="../Images/logoananas.ico" />
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<title>PineApple</title>
+		<!--Titre affiché sur l'onglet-->
+ 
+
+    </head>
+    
+	<!--Corps de page (propre à chaque page)-->
+    <body>
+		<!--Pour l'en-tête de page-->
+		<header>
+		<nav> <!--Menu-->
+				<div class=menu_burger>
+					<a> <img src="../Images/logoananas.png" alt="Ca fonctionne pas nulos" id="logobg"></a>
+					<div class="submenu_bg">
+						<div><a class=txt_sub href="index.html">Accueil</a></div>
+						<br>
+						<div><a class=txt_sub href="pd5.html">Produits</a></div>
+						<br>
+						<div><a class=txt_sub href="contact.html">Contact</a></div>
+						<br>
+						<div><a class=txt_sub href="equipe.html">Équipe</a></div>
+						<br>
+						<div><a class=txt_sub href="presse.html">Presse</a></div>
+						<br>
+						<div><a class=txt_sub href="nous_rejoindre.html">Nous rejoindre</a></div>
+						<br>
+						<div><a class=txt_sub href="faq.html">FAQ</a></div>
+						<br>
+					</div>
+				</div>
+			
+				<div class=menu>
+					<a href="index.html"><img src="../Images/logoananas.png" alt="Ca fonctionne pas nulos" id="logo"></a>			
+					<div class=title_menu><a class=txt_menu href="pd5.html">Produits</a>
+						<div class="submenu">
+							<div><a class=txt_sub href="pd5.html">PD5 Phone</a></div>
+							<div><a class=txt_sub href="pinetabs.html">PineTabs</a></div>
+							<div><a class=txt_sub href="pinewatch.html">PineWatch</a></div>
+						</div>
+				</div>
+				<div class=title_menu><a class=txt_menu href="contact.html">Contact</a>
+					<div class="submenu">
+						<div><a class=txt_sub href="contact.html">Formulaire</a></div>
+						<div><a class=txt_sub href="magasins.html">Trouver un magasin</a></div>
+					</div>
+				</div>
+				<div class=title_menu><a class=txt_menu href="equipe.html">Equipe</a>
+					<div class="submenu">
+						<div><a class=txt_sub  href="equipe.html">Présentation</a></div>
+						<div><a class=txt_sub href="nous_rejoindre.html">Nous rejoindre</a></div>
+					</div>
+				</div>
+				<div class=title_menu><a class=txt_menu href="presse.html">Presse</a>
+					<div class="submenu">
+						<div><a class=txt_sub  href="presse.html">Articles</a></div>
+						<div><a class=txt_sub href="temoignages.html">Témoignages</a></div>
+					</div>
+				</div>
+
+				<div class=title_menu><a class=txt_menu href="faq.html">FAQ</a></div>
+			
+				</div>
+			
+			</nav>
+		</header>
+		<main id=contact>
+		
+		
+			<!-- Le formulaire de contact -->
+			<form action="send.php" method="post">
+				<article>
+					<h5> Contacter les équipes PineApple </h5>
+					<cite>Pour toute question ou réclamation, vous pouvez contacter PineApple via ce formulaire. C'est avec plaisir que nous vous répondrons dans les plus brefs délais. </cite>
+					<br>
+					<br>
+				</article>
+				<p>
+					<h3><strong>Informations personnelles:</strong></h3>
+					<br>
+					<br>
+					<label>Nom:</label>
+					<!-- champ nom avec autofocus -->
+					<input required autofocus name="nom" type="text">
+					<!-- &nbsp : Pour faire un espace -->
+					<label>Prénom:</label>
+					<input required name="prenom" type="text">
+					<br>
+					<br>
+					<label>Adresse email:</label>
+					<input required name="emailUtilisateur" type="email">
+					<br>
+					<br>
+					<label>Adresse de livraison:</label>
+					<p style="font-size : 11px;">*Tapez l'adresse complète, code postale inclu.</p>
+					<input required name="adresseLivraisonCommande" type="text">
+					<br>
+					<br>
+					<label>Pays:</label>
+					
+					<select name="pays">
+		
+						<option disabled>Sélectionnez votre pays</option>
+						<option value="1">Angleterre</option>
+						<option value="2">Espagne</option>
+						<option value="3">Etats-Unis</option>
+						<option value="4">France</option>
+						<option value="5">Italie</option>
+						<option value="6">Japon</option>
+						<option value="7">Zimbabwe</option>
+						<option value="8">Autre...</option>
+		
+					</select>
+				</p>
+	
+				<br>
+				<br>
+		
+				<p>
+					<h3><strong>Paiement : </strong></h3>
+					<br>
+					<br>
+					<label>En combien de fois voulez-vous payer ?</label>
+					<label>Je souhaite payer en : </label>
+					<label for="Choix1">1 fois</label>
+					<input type="radio" id="Choix1" name="paimentFois" value="1">
+					<label for="Choix2">2 fois</label>
+					<input type="radio" id="Choix2" name="paimentFois" value="2">
+					<label for="Choix3">4 fois</label>
+					<input type="radio" id="Choix3" name="paimentFois" value="4">
+					<label for="Choix4">6 fois</label>
+					<input type="radio" id="Choix4" name="paimentFois" value="6">
+					<label for="Choix5">10 fois</label>
+					<input type="radio" id="Choix5" name="paimentFois" value="10">
+					<br>
+					<br>
+					<label>Numéro de carte bleue :</label>
+					<br>
+					<input required name="codeCarteBleue" type="int">
+					<br>
+					<br>
+					<label>Nom du titulaire :</label>
+					<br>
+					<input required name="nomTitulaire" type="texte">
+					<br>
+					<br>
+					<label>Cryptogramme :</label>
+					<br>
+					<input required name="cryptogramme" type="int">
+					<br>
+					<br>
+					<label>Date d'expiration :</label>
+					<br>
+					<input required name="dateExp" type="date">
+				</p>
+				<p>
+					<label><strong>Nos conditions d'achats : </strong></label>
+					<br>
+					<br>					
+					<input required id="check" type="checkbox">
+					<label for="check">J'ai bien lu et j'accepte les conditions générales, les conditions d'achats ainsi que les conditions de garantie PineApple</label>
+					<br>
+					<input name="valide" type="submit" value="Valider mon achat">
+					<br>
+					<br>		
+					<cite>
+						Le délai de réception de votre produit dépendra de la file d'attente accumulée jusqu'à lors. Merci de votre compréhension.
+				    </cite>
+				</p>
+
+
+
+			</form>
+
+
+
+	</main>
+	
+
+		
+		<!--Pour le pied de page-->
+		<footer>
+			<section>
+				<div class="TitreFoot">Consultez notre meilleur produit en ce moment en magasin !</div>
+				<h6><a href="pd5.html" id="FootPD5">PD5</a></h6>
+			</section>
+			<div class="FootBot">
+				<div class="FootBotC1">
+					<div>
+						<a> <img src="../Images/logoananas2.png" alt="J'vous aime ptn" id="FootAnanas"></a>
+					</div>
+					<div>
+						<h5><a href="contact.html">Nous contacter</a> pour 
+						<br> vous éclairer dès 
+						<br> maintenant sur nos 
+						<br> produits PineApple</h5>
+					</div>
+				</div>
+				<div class="FootBotC2">
+					<h1>Tout le monde en parle !</h1>
+					<h5>Découvrez les <a href="presse.html">articles</a> <br> et <a href="temoignages.html">témoignages</a><br> nous concernant</h5>
+				</div>
+			
+				<div class="FootBotC3">
+					<h1>A propos de PineApple</h1>
+					<h5>PineApple est une entreprise <br>spécialisée dans les nouvelles technologies. 
+					Quatre associés en sont les pilliers :<br> Yaël - Damien - Barthélémy - Alexandre
+					</h5>
+					<a href="http://jigsaw.w3.org/css-validator/check/referer">
+						<img style="border:0;width:88px;height:31px"
+						src="http://jigsaw.w3.org/css-validator/images/vcss-blue"
+						alt="CSS Valide !" />
+					</a>
+					
+				</div>
+			</div>
+		</footer>
+    </body>
+
+</html>
+
