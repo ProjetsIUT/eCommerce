@@ -23,7 +23,7 @@ class ControllerUtilisateur {
                 $unom = $u->get('nomUtilisateur');
                 $uadresseF = $u->get('adresseFacturationUtilisateur');
                 $uadresseL = $u->get('adresseLivraisonUtilisateur');
-                $uidCB = $u->get('idCodeBleue');
+                $uidCB = $u->get('idCarteBleue');
                 $uemail = $u->get('emailUser');
                 if ($uadresseF == NULL) {
                     $uadresseF = 'non renseigné';

@@ -8,10 +8,10 @@ class ModelUtilisateur extends Model{
     private $loginUtilisateur;
     private $nomUtilisateur;
     private $prenomUtilisateur;
-    private $adresseFacturationUtilsateur;
+    private $adresseFacturationUtilisateur;
     private $adresseLivraisonUtilisateur;
     private $passUtilisateur;
-    private $idCodeBleue;
+    private $idCarteBleue;
     private $emailUser;
 
     // Getter générique (pas expliqué en TD)
@@ -35,10 +35,10 @@ class ModelUtilisateur extends Model{
             $this->loginUtilisateur = $data['loginUtilisateur'];
             $this->nomUtilisateur = $data['nomUtilisateur'];
             $this->prenomUtilisateur = $data['prenomUtilisateur'];
-            $this->adresseFacturationUtilsateur = $data['adresseFacturationUtilisateur'];
+            $this->adresseFacturationUtilisateur = $data['adresseFacturationUtilisateur'];
             $this->adresseLivraisonUtilisateur = $data['adresseLivraisonUtilisateur'];
             $this->passUtilisateur = $data['passUtilisateur'];
-            $this->idCodeBleue = $data['idCodeBleue'];
+            $this->idCarteBleue = $data['idCarteBleue'];
             $this->emailUser = $data['emailUser'];
         }
     }
