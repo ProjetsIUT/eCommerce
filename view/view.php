@@ -24,14 +24,7 @@
 						<div><a class=txt_sub href="index.php">Accueil</a></div>
 						<br>
 						<div><a class=txt_sub href="index.php?action=readAll&controller=produit">Produits</a></div>
-						 <?php/*
-                    		if(isset($_SESSION['login'])) {
-                        		echo ('<a href="index.php?controller=utilisateur&action=deconnect"><li>Se déconnecter</li></a>');
-                    		}
-                    		else {
-                        		echo ('<a href="index.php?action=connect&controller=utilisateur"><li>Se connecter</li></a>');
-							} */
-						 ?> 
+						<div><a class=txt_sub href="index.php?action=readAll&controller=utilisateur">Utilisateur</a></div>
 						
 					</div>
 				</div>
@@ -39,7 +32,8 @@
 
 				<div class=menu>
 					<a href="index.php"><img src="./Images/logoananas.png" alt="Ca fonctionne pas nulos" id="logo"></a>			
-					<div class=title_menu><a class=txt_menu href="index.php?action=readAll&controller=produit">Produits</a>
+					<div class=title_menu><a class=txt_menu href="index.php?action=readAll&controller=produit">Produits</a></div>
+					<div class=title_menu><a class=txt_menu href="index.php?action=readAll&controller=utilisateur">Utilisateur</a></div>
 				</div>
 			</nav>
 		</header>
