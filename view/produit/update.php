@@ -1,6 +1,8 @@
-<form method="get" action="index.php">
-  <fieldset>
-    <legend><?php echo $type?> de produit</legend>
+
+
+<h1><?php echo $type?> de produit</h1>
+<form method="get" action="index.php" id="form_update_create">
+  
     <p>
       
       <?php 
@@ -11,25 +13,46 @@
       if($_GET['action'] === 'create') {
         echo('
         <input type="hidden" name="action" value="created"/>
+        <label>Nom du produit</label>
         <input type="text" placeholder="Nom du produit" name="nomProduit" id="nomProduit_id" required/>
-        <input type="text" placeholder="Prix du produit" name="prixProduit" id="prixProduit_id" required/>
+        <label>Prix</label>
+        <input type="number" placeholder="Prix du produit" name="prixProduit" id="prixProduit_id" required/>
+        <br>
+        <label>Description</label>
+        <br>
         <textarea name="descProduit" id="descProduit_id" required> Description du produit </textarea>
-        <input type="text" placeholder="Stock du produit" name="stockProduit" id="stockProduit_id" required/>');
+        <br>
+        <label>Quantité actuellement en stock</label>
+        <input type="number" placeholder="Stock du produit" name="stockProduit" id="stockProduit_id" required/>');
       }
       else if($_GET['action'] === 'update' /* && Session::is_admin() */) {
         echo('
         <input type="hidden" name="action" value="updated"/>
+        <label>Code produit</label>
         <input type="text" value="'.$codeP.'" name="codeProduit" id="codeProduit_id" readonly required/>
+
+        <label>Nom du produit</label>
         <input type="text" value="'.$nomP.'" name="nomProduit" id="nomProduit_id" required/>
-        <input type="text" value="'.$prixP.'" name="prixProduit" id="prixProduit_id" required/>
+        <br>
+        <label>Prix</label>
+        <input type="number" value="'.$prixP.'" name="prixProduit" id="prixProduit_id" required/>
+        <br>
+        <label>Description</label>
+        <br>
         <textarea name="descProduit" id="descProduit_id" required>'.$descP.'</textarea>
-        <input type="text" value="'.$stockP.'" name="stockProduit" id="stockProduit_id" required/>');
+        <br>
+        <label>Quantité actuellement en stock</label>
+        
+        <input type="number" value="'.$stockP.'" name="stockProduit" id="stockProduit_id" required/>');
       }
       
       ?>
     </p>
-    <p>
-      <input type="submit" <?php echo 'value=" '.$type.' de ce nouveau produit !"'; ?> />
-    </p>
-  </fieldset> 
+
+    <div id="boutons_form">
+      <input type="submit" value="Enregistrer" class="submit_btn">
+      <a class="bouton_red" href="./index.php?action=readAll&controller=produit" >Annuler</a>
+    
+    </div>
+
 </form>

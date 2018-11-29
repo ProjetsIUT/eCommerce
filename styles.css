@@ -561,17 +561,38 @@ article {
 
 }
 
-form {	/* Pour le formulaire de contact */
-	text-align:center;
+form {	
+
+	text-align:left;
 	background:rgba(255,255,255,0.7);
 	margin:0px 250px;	
 	padding:15px 15px;	
 	font-family:verdana;
-	/* color:white; */
+
+}
+
+.submit_btn{
+
+	padding:10px;
+	color:white;
+	border-radius: 5px;
+	background-color:#2F4F8A;;
+	transition-duration:0.5s;
+	border:0px;
+	cursor: pointer;
+	margin:0px;
+
+
+
+
+}
+
+.submit_btn:hover{
+	background-color:#2F50D5;
 }
 
 input {
-	margin: 0px 30px 0px 0px;
+	margin: 10px 30px 10px 0px;
 }
 
 textarea{ /*Grande zone de texte du formulaire */
@@ -697,7 +718,7 @@ text-align:center;
 
 
 .produit4 {
-	margin-top:30px;
+	margin-top:30px;/index.php?controller=produit&action=create
 	width:100%;
 	height:861px;
 	background-image:url("../Images/bg3.png");
@@ -718,7 +739,7 @@ text-align:center;
 
 #pinewatch2 {
 	color:white;
-	height:1150px;
+	height:1150px;/index.php?controller=produit&action=create
 	background-image:url("../Images/bg4.jpg");
 	padding-top:60px;
 	
@@ -861,6 +882,8 @@ footer>section {
 }
 
 
+
+
 @media(max-width:1200px){ /*Taille des images et des textes en fonction de la largeur de l'écran */
 	.FootBotC1>h1, .FootBotC2>h1, .FootBotC3>h1{
 		font-size:28px;
@@ -875,6 +898,20 @@ footer>section {
 		height:100%;
 	}
 	
+}
+
+#form_update_create{
+
+	margin:0px;
+	text-align: left;
+	background-color: #0000001a;
+	height: 330px;
+
+}
+
+#boutons_form{
+
+	float:right;
 }
 
 

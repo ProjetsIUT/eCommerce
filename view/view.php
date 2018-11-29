@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
 	<!--Hors de page-->
-    <head>
     	<link rel="icon" href="Images/logoananas.ico" />
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="styles.css">
+		<link rel="stylesheet" type="text/css" href="./styles.css">
 		<title><?php echo $pagetitle; ?></title>		<!--Titre affiché sur l'onglet-->
 
        
@@ -39,7 +38,10 @@
 				<div class=menu>
 					<a href="index.php"><img src="./Images/logoananas.png" alt="Ca fonctionne pas nulos" id="logo"></a>			
 					<div class=title_menu><a class=txt_menu href="index.php?action=readAll&controller=produit">Produits</a>
+
+
 				</div>
+					<a href="index.php"><img src="./Images/cart.png" alt="Ca fonctionne pas nulos" id="icon_cart"></a>		
 			</nav>
 		</header>
     <body>
