@@ -1,14 +1,18 @@
 ﻿/*styles.css*/
 
 body {
-background-color:white;
-margin:-21px 0px 0px 0px;
+	background-color:white;
+	margin:-21px 0px 0px 0px;
+	display: table;
+	width: 100%;
+	height: 100%
+
 }
 
 a {
-	font-family:verdana;
+	font-family:arial;
 	text-decoration:none;
-	color:white;
+	
 }
 
 address {
@@ -21,14 +25,14 @@ address {
 
 footer{ 
 	background-color:#1C1C1C;
-	width:100%;
-	height:50px;
-	bottom:0;
-	padding-top:50px;
+
 }
 
 main {
-	padding:70px 0px;
+
+	padding: 100px;
+
+
 }
 
 ul {
@@ -38,18 +42,37 @@ ul {
 	margin-bottom:60px;
 }
 
-div.Produit {
+.Produit {
+	font-family:arial;
     border: 1px solid #ccc;
+    margin:0px 10px;
+    transition-duration:0.5s;
 }
 
-div.Produit:hover {
+.Produit:hover {
     border: 1px solid #777;
+    margin: 0px 15px;
+    background-color: rgba(196, 204, 202, 0.5);
 }
 
-div.Produit img {
-    width: 100%;
-    height: auto;
+.Produit img {
+    width: 200px;
+    height: 270px;
 }
+
+.presentation{
+
+	margin: 0px 184px;
+   
+}
+
+#myForm{
+
+	float: right;
+	margin:0px;
+}
+
+
 /*
 div.Produit ~ div.idetail img{
     width: 25%;
@@ -68,7 +91,7 @@ div.Produit ~ div.idetail img{
 
 
 div.desc {
-	font-family:verdana;
+
     padding: 15px;
     text-align: center;
 }
@@ -78,9 +101,9 @@ div.desc {
 }
 
 .responsive {
+	margin-top:30px;
 	display: flex;
 	flex-direction: row;
-    padding: 0 6px;
 	
 }
 
@@ -138,8 +161,6 @@ div.desc {
 
 
 }
-
-
 
 
 .title_menu{ /*Titre des menus*/
@@ -318,9 +339,9 @@ h5{
 }
 
 h1{
-	font-family:police_titre;
+	font-family:arial;
 	font-size:48px;
-	margin:0px;
+	margin-bottom:10px;
 }
 
 h2 {
@@ -458,30 +479,120 @@ font-size:24px;
 
 .bouton {
 	padding:10px;
+	color:white;
 	border-radius: 5px;
 	background-color:#2F4F8A;;
+	transition-duration:0.5s;
 }
+
+.bouton_red {
+	padding:10px;
+	color:white;
+	border-radius: 5px;
+	background-color:#cc1515;;
+	transition-duration:0.5s;
+}
+
+
+
+.bouton_panier{
+
+	padding:12px 30px;
+	color:white;
+	border-radius: 5px;
+	background-color:#23af7b;
+	transition-duration:0.5s;
+	float: right;
+}
+
+
+.bouton_panier:hover{
+
+	background-color: #10d48b;
+
+
+}
+
 
 .bouton:hover{
 	background-color:#2F50D5;
 }
+
+.bouton_red:hover{
+	background-color:#920404;
+}
+
+.panel_admin{
+
+	width: 100%;
+	height: 60px;
+	padding-left: 15px;
+	text-align: center;
+
+}
+
+.panel_admin>a{
+
+	margin:-7px 10px;
+}
+
+#infos_prix_stock{
+
+	margin-top:25px;
+	text-align: right;
+}
+
+
+#prix_desc{
+
+font-size: 28px;
+
+}
+
+.div_center{
+
+	margin-top:50px;
+	text-align: center;
+}
+
 
 article {
 	padding: 0px 50px;
 
 }
 
-form {	/* Pour le formulaire de contact */
-	text-align:center;
+form {	
+
+	text-align:left;
 	background:rgba(255,255,255,0.7);
 	margin:0px 250px;	
 	padding:15px 15px;	
 	font-family:verdana;
-	/* color:white; */
+
+}
+
+.submit_btn{
+
+	padding:10px;
+	color:white;
+	border-radius: 5px;
+	background-color:#2F4F8A;;
+	transition-duration:0.5s;
+	border:0px;
+	cursor: pointer;
+	margin:0px;
+
+
+
+
+}
+
+.submit_btn:hover{
+	background-color:#2F50D5;
 }
 
 input {
-	margin: 0px 30px 0px 0px;
+	margin: 10px 30px 10px 0px;
 }
 
 textarea{ /*Grande zone de texte du formulaire */
@@ -496,7 +607,7 @@ textarea{ /*Grande zone de texte du formulaire */
 	}
 	
 	.bouton{
-		font-size:16px;
+			font-size:16px;
 	}
 	
 }
@@ -607,7 +718,7 @@ text-align:center;
 
 
 .produit4 {
-	margin-top:30px;
+	margin-top:30px;/index.php?controller=produit&action=create
 	width:100%;
 	height:861px;
 	background-image:url("../Images/bg3.png");
@@ -628,7 +739,7 @@ text-align:center;
 
 #pinewatch2 {
 	color:white;
-	height:1150px;
+	height:1150px;/index.php?controller=produit&action=create
 	background-image:url("../Images/bg4.jpg");
 	padding-top:60px;
 	
@@ -771,6 +882,8 @@ footer>section {
 }
 
 
+
+
 @media(max-width:1200px){ /*Taille des images et des textes en fonction de la largeur de l'écran */
 	.FootBotC1>h1, .FootBotC2>h1, .FootBotC3>h1{
 		font-size:28px;
@@ -785,6 +898,20 @@ footer>section {
 		height:100%;
 	}
 	
+}
+
+#form_update_create{
+
+	margin:0px;
+	text-align: left;
+	background-color: #0000001a;
+	height: 330px;
+
+}
+
+#boutons_form{
+
+	float:right;
 }
 
 
@@ -887,7 +1014,5 @@ ul.niveau1 {
 
 }
 
-	
 
-	
 

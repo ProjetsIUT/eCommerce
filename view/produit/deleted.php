@@ -1,6 +1,9 @@
-<?php 
-    echo '<p> Ce produit a bien été supprimé ! <br>
-    Vous allez être redirigez vers la page des produits.</p>
-            <meta http-equiv="refresh" content="5; URL=index.php?action=readAll&controller=produit" />';
-
-?>
+<div class="div_center">
+	<p>
+		Le produit a été supprimé
+		<br>
+		Vous allez être redirigé vers la page des produits.
+	</p>           
+	<img class="logopage" src="./Images/logoananas.png">
+	<meta http-equiv="refresh" content="3; URL=index.php?action=readAll&controller=produit" />
+</div>
