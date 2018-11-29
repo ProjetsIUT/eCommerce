@@ -41,7 +41,8 @@
 
 
 				</div>
-					<a href="index.php"><img src="./Images/cart.png" alt="Ca fonctionne pas nulos" id="icon_cart"></a>		
+					<a href="index.php"><img src="./Images/cart.png" alt="Ca fonctionne pas nulos" id="icon_cart"></a>	
+					<a href="index.php"><img src="./Images/user.png" alt="Ca fonctionne pas nulos" id="icon_cart"></a>	
 			</nav>
 		</header>
     <body>
