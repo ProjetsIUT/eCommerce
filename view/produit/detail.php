@@ -10,7 +10,20 @@
         <form id="myForm" method="get">
 
             <input type="hidden" name="panier" value="addToPanier"/>
-            <a class="bouton_panier" href="#" onclick="document.getElementById('myForm').submit()">Ajouter au panier</a>
+
+            <?php 
+
+            if($valueStock==='Produit en rupture de stock'){  
+
+                echo '<a class="bouton_panier_disabled" href="#">Ajouter au panier</a>';
+
+            } else{
+
+              echo '<a class="bouton_panier" href="#" onclick="document.getElementById(\'myForm\').submit()">Ajouter au panier</a>' ;
+            }
+
+            ?>
+
             <br>
 
             <p id="infos_prix_stock">

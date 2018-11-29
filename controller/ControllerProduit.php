@@ -23,6 +23,11 @@ class ControllerProduit {
                 else if ($p->get('stockProduit') == 1) {
                     $valueStock = 'Plus qu\'un seul produit en stock !';
                 }
+                else if ($p->get('stockProduit')==0){
+
+                    $valueStock = 'Produit en rupture de stock';
+                
+                }
                 else {
                     $valueStock = 'Plus que '.$p->get('stockProduit').' produits en stock !';
                 }

@@ -39,6 +39,7 @@
 					<a href="index.php"><img src="./Images/logoananas.png" alt="Ca fonctionne pas nulos" id="logo"></a>			
 					<div class=title_menu><a class=txt_menu href="index.php?action=readAll&controller=produit">Produits</a></div>
 					<div class=title_menu><a class=txt_menu href="index.php?action=readAll&controller=utilisateur">Utilisateur</a></div>
+					<div class=title_menu><a class=txt_menu href="index.php?action=readAll&controller=utilisateur">Panier</a></div>
 					<?php
 					if(isset($_SESSION['login'])) {
 						echo ('<div class=title_menu><a class=txt_menu href="index.php?controller=utilisateur&action=deconnect">Se déconnecter</a></div>');
@@ -48,8 +49,7 @@
 					}
 					?>
 				</div>
-					<a href="index.php"><img src="./Images/cart.png" alt="Ca fonctionne pas nulos" id="icon_cart"></a>	
-					<a href="index.php"><img src="./Images/user.png" alt="Ca fonctionne pas nulos" id="icon_cart"></a>	
+			$
 			</nav>
 		</header>
     <body>
