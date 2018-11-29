@@ -217,11 +217,15 @@ class ControllerUtilisateur {
                 $tab_u = ModelUtilisateur::selectAll();
                 require (File::build_path(array('view', 'view.php')));
             } else {
-                echo('Vos deux mots de passe ne sont pas identique !');
+                $pagetitle = 'Ajout d\'un utilisateur';
+                $verif = 'Vos deux mots de passe ne sont pas identique !';
+                $view = 'update';
+                $type = 'Ajout';
+                require (File::build_path(array('view', 'view.php')));
             }
         }
         else {
-            $errorr_code = 'created : l\'un des champs est vide';
+            $error_code = 'created : l\'un des champs est vide';
             $view = 'error';
             $pagetitle = 'Erreur';
             require (File::build_path(array('view', 'error.php')));
