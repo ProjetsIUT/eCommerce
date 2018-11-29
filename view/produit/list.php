@@ -17,7 +17,7 @@
         $img_nom = $p->get('nomProduit').'.png';
         $codeP = $p->get('codeProduit');
         echo '<div class=Produit> <a href="index.php?controller=produit&action=read&codeProduit='.rawurlencode($codeP).'">
-         <img src="'.File::build_path(array('Images', $img_nom)).'" > 
+         <img src="./Images/'.$img_nom.'" > 
         </a>
         <div class=desc>'.$p->get('nomProduit').' <br> <a>Seulement  ' . $p->get('prixProduit') . '€</a></div>
          </div>';

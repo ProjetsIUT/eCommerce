@@ -23,7 +23,7 @@
 
        <h1><?php echo $p->get('nomProduit') ?></h1> 
 
-       <?php echo '<img src="'.File::build_path(array('Images', $img_nom)).'"' ;?>
+       <?php echo '<img src="./Images/'.$img_nom.'"' ;?>
 
        <br>
         
