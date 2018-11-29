@@ -68,7 +68,7 @@ class ControllerUtilisateur {
                     $error_code = 'delete : codeUtilisateur inexistant';
                     $view = 'error';
                     $pagetitle = 'Erreur';
-                    require (File::build_path(array('view', 'view.php')));
+                    require (File::build_path(array('view', 'error.php')));
                 }
             /*} 
             else {
@@ -81,7 +81,7 @@ class ControllerUtilisateur {
             $error_code = 'delete : codeUtilisateur vide';
             $view = 'error';
             $pagetitle = 'Erreur';
-            require (File::build_path(array('view', 'view.php')));
+            require (File::build_path(array('view', 'error.php')));
         }
     }
     
@@ -151,7 +151,7 @@ class ControllerUtilisateur {
             $error_code = 'update : codeUtilisateur vide';
             $view = 'error';
             $pagetitle = 'Erreur';
-            require (File::build_path(array('view', 'view.php')));
+            require (File::build_path(array('view', 'error.php')));
         }
     }
     /*
@@ -187,22 +187,23 @@ class ControllerUtilisateur {
             require (File::build_path(array('view', 'view.php')));
         }
     }
-
+    */
+    
     public static function created() {
-        if(isset($_GET['login']) && isset($_GET['nom']) && isset($_GET['prenom']) && isset($_GET['mdp'])) {
-            //$controller = 'utilisateur';
+        if(isset($_GET['loginUtilisateur']) && isset($_GET['nomUtilisateur']) && isset($_GET['prenomUtilisateur']) && isset($_GET['adresseFacturationUtilisateur']) && isset($_GET['adresseLivraisonUtilisateur']) && isset($_GET['passUtilisateur']) && isset($_GET['emailUser'])) {
 
-            if($_GET['mdp'] === $_GET['vmdp']) {
+            if($_GET['passUtilisateur'] === $_GET['vpassUtilisateur']) {
                 $view = 'created';
-                $pagetitle = 'Utilisateur créé';
-                $mdpsecu = Security::chiffrer($_GET['mdp']);
+                $pagetitle = 'Utilisateur ajouté';
+                $mdpsecu = Security::chiffrer($_GET['passUtilisateur']);
 
-                $vemail = filter_var($_GET['emaill'] , FILTER_VALIDATE_EMAIL);
+                $vemail = filter_var($_GET['emailUser'] , FILTER_VALIDATE_EMAIL);
                 
                 if (!$vemail) {
+                    $error_code = 'created : email non validé';
                     $view = 'error';
-                    $pagetitle = 'Error';
-                    require (File::build_path(array('view', 'view.php')));
+                    $pagetitle = 'Erreur';
+                    require (File::build_path(array('view', 'error.php')));
                 } 
                 $data = array(
                     "login" => $_GET['login'],
@@ -220,10 +221,10 @@ class ControllerUtilisateur {
             }
         }
         else {
-            $controller = 'utilisateur';
+            $errorr_code = 'created : l\'un des champs est vide';
             $view = 'error';
             $pagetitle = 'Erreur';
-            require (File::build_path(array('view', 'view.php')));
+            require (File::build_path(array('view', 'error.php')));
        }
     }
 
@@ -273,5 +274,5 @@ class ControllerUtilisateur {
         }
     }
 
-    */
+    
 }
