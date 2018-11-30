@@ -2,6 +2,7 @@
 
 require_once (File::build_path(array('model','Model.php')));
 require_once (File::build_path(array('model','ModelProduit.php')));
+require_once (File::build_path(array('model','ModelAssociationCommande.php')));
 
 class ModelCommande extends Model{
 
@@ -58,6 +59,8 @@ class ModelCommande extends Model{
             $tab_obj = $rep->fetchAll();*/
 
             $tab_obj = ModelAssociationCommande::select($this->idCommande);
+
+            var_dump($tab_obj);
 
             $tab_a=array();
             $tab_p=array();
