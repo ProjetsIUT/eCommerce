@@ -45,22 +45,6 @@
         
         <input type="number" value="'.$stockP.'" name="stockProduit" id="stockProduit_id" required/>');
       }
-      else if ($_GET['action'] === 'created') {
-        echo('
-        <p> '.$verif.' </p>
-        <input type="hidden" name="action" value="created"/>
-        <label>Nom du produit</label>
-        <input type="text" placeholder="Nom du produit" name="nomProduit" id="nomProduit_id" required/>
-        <label>Prix</label>
-        <input type="number" placeholder="Prix du produit" name="prixProduit" id="prixProduit_id" required/>
-        <br>
-        <label>Description</label>
-        <br>
-        <textarea name="descProduit" id="descProduit_id" required> Description du produit </textarea>
-        <br>
-        <label>Quantité actuellement en stock</label>
-        <input type="number" placeholder="Stock du produit" name="stockProduit" id="stockProduit_id" required/>');
-      }
       
       ?>
     </p>
