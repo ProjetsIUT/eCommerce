@@ -1,2 +1,2 @@
-./config/Conf.php
-./.vscode
+/config/Conf.php
+/.vscode/*
