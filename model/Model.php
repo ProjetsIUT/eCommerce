@@ -129,21 +129,22 @@
             $primary_value = ":".$primary_key;
 
             $sql = "UPDATE $table_name SET $set WHERE $primary_key =$primary_value";
-            try {
+            //try {
               $req_prep = Model::$pdo->prepare($sql);
           
               $req_prep->execute($values);
-            }
+            /*}
             catch(PDOException $e) {
               if (Conf::getDebug()) {
+                  $error_code = 'Model : save, error';
                   $view = 'error';
                   $pagetitle = 'Erreur';
-                  require (File::build_path(array('view', 'view.php')));
+                  require (File::build_path(array('view', 'error.php')));
               } else {
                 echo ('Une erreur est survenue. Impossible de modifier la base de données ! <br> <a href="index.php"> Retour a la page d\'accueil </a>');
               }
               die();
-            } 
+            } */
         
           }
 
@@ -176,11 +177,11 @@
             $sql = "INSERT INTO $table_name ($attributs) VALUES ($variables)";
 
             // Préparation de la requête
-            try {
+            //try {
             $req_prep = Model::$pdo->prepare($sql); //permet de protéger la requete SQL
         
             $req_prep->execute($values);
-            }
+            /*}
               catch(PDOException $e) {
                 if (Conf::getDebug()) {
                     $view = 'error';
@@ -191,7 +192,7 @@
                   echo 'Une erreur est survenue dans la base de données ! <br> <a href="index.php"> Retour a la page d\'accueil </a>';
               }
               die();
-            }
+            } */
           }
 
     }

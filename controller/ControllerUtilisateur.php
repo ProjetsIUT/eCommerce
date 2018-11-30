@@ -197,31 +197,36 @@ class ControllerUtilisateur {
                 $pagetitle = 'Utilisateur ajouté';
                 $mdpsecu = Security::chiffrer($_GET['passUtilisateur']);
 
-                $vemail = filter_var($_GET['emailUser'] , FILTER_VALIDATE_EMAIL);
-                
+                //$vemail = filter_var($_GET['emailUser'] , FILTER_VALIDATE_EMAIL);
+                /*
                 if (!$vemail) {
                     $error_code = 'created : email non validé';
                     $view = 'error';
                     $pagetitle = 'Erreur';
                     require (File::build_path(array('view', 'error.php')));
-                } 
+                } */
                 $data = array(
-                    "login" => $_GET['login'],
-                    "nom" => $_GET['nom'],
-                    "prenom" => $_GET['prenom'],
-                    "mdp" => $mdpsecu,
-                    "email" => $_GET['emaill'],
+                    "loginUtilisateur" => $_GET['loginUtilisateur'],
+                    "nomUtilisateur" => $_GET['nomUtilisateur'],
+                    "prenomUtilisateur" => $_GET['prenomUtilisateur'],
+                    "adresseFacturationUtilisateur" => $_GET['adresseFacturationUtilisateur'],
+                    "adresseLivraisonUtilisateur" => $_GET['adresseLivraisonUtilisateur'],
+                    "passUtilisateur" => $mdpsecu,
+                    "emailUser" => $_GET['emailUser'],
                 );
-                $u = new ModelUtilisateur($_GET['login'], $_GET['nom'], $_GET['prenom'], $mdpsecu, $_GET['emaill']);
+                $u = new ModelUtilisateur($data);
                 $u->save($data);
-                $tab_u = ModelUtilisateur::selectAll();
                 require (File::build_path(array('view', 'view.php')));
             } else {
-                echo('Vos deux mots de passe ne sont pas identique !');
+                $type = 'Ajout';
+                $verif = 'Vos deux mots de passe ne sont pas identique !';
+                $view = 'update';
+                $pagetitle = 'Ajout d\'un utilisateur';
+                require (File::build_path(array('view', 'view.php')));
             }
         }
         else {
-            $errorr_code = 'created : l\'un des champs est vide';
+            $error_code = 'created : l\'un des champs est vide';
             $view = 'error';
             $pagetitle = 'Erreur';
             require (File::build_path(array('view', 'error.php')));
@@ -229,48 +234,55 @@ class ControllerUtilisateur {
     }
 
     public static function updated() {
-        if(isset($_GET['login']) && isset($_GET['nom']) && isset($_GET['prenom']) && isset($_GET['mdp'])) {
-            if ($_SESSION['login'] === $_GET['login'] || Session::is_admin()) {
-                if($_GET['mdp'] === $_GET['vmdp']) {
-                    $view = 'updated';
-                    $pagetitle = 'Utilisateur modifié';
-                    $mdpsecu = Security::chiffrer($_GET['mdp']);
-                    $login = $_GET['login'];
-                    $_GET['admin'] = '';
-                    if ($_GET['admin'] == 0 || $_GET['admin'] == 1) {
-                        $vadmin = 1;
-                    }
-                    else if($_GET['admin'] == '' || $_GET['admin'] == NULL) {
-                        $vadmin = 0;
-                    }
-                    $data = array(
-                        "login" => $_GET['login'],
-                        "nom" => $_GET['nom'],
-                        "prenom" => $_GET['prenom'],
-                        "mdp" => $mdpsecu,
-                        "admin" => $vadmin,
-                        "email" => $_GET['email'],
-                    );
-                    $u = new ModelUtilisateur($_GET['login'], $_GET['nom'], $_GET['prenom'], $mdpsecu, $_GET['admin']);
-                    $u->update($data);
-                    $tab_u = ModelUtilisateur::selectAll();
-                    require (File::build_path(array('view', 'view.php')));
-                } else {
-                    echo('Vos deux mots de passe ne sont pas identique !');
-                }
+        if(isset($_GET['loginUtilisateur']) && isset($_GET['nomUtilisateur']) && isset($_GET['prenomUtilisateur']) && isset($_GET['adresseFacturationUtilisateur']) && isset($_GET['adresseLivraisonUtilisateur']) && isset($_GET['passUtilisateur']) && isset($_GET['emailUser'])) {
+
+            if($_GET['passUtilisateur'] === $_GET['vpassUtilisateur']) {
+                $view = 'created';
+                $pagetitle = 'Utilisateur ajouté';
+                $mdpsecu = Security::chiffrer($_GET['passUtilisateur']);
+
+                //$vemail = filter_var($_GET['emailUser'] , FILTER_VALIDATE_EMAIL);
+                /*
+                if (!$vemail) {
+                    $error_code = 'created : email non validé';
+                    $view = 'error';
+                    $pagetitle = 'Erreur';
+                    require (File::build_path(array('view', 'error.php')));
+                } */
+                $data = array(
+                    "codeUtilisateur" => $_GET['codeUtilisateur'],
+                    "loginUtilisateur" => $_GET['loginUtilisateur'],
+                    "nomUtilisateur" => $_GET['nomUtilisateur'],
+                    "prenomUtilisateur" => $_GET['prenomUtilisateur'],
+                    "adresseFacturationUtilisateur" => $_GET['adresseFacturationUtilisateur'],
+                    "adresseLivraisonUtilisateur" => $_GET['adresseLivraisonUtilisateur'],
+                    "passUtilisateur" => $mdpsecu,
+                    "emailUser" => $_GET['emailUser'],
+                );
+                $u = new ModelUtilisateur($data);
+                $u->update($data);
+                require (File::build_path(array('view', 'view.php')));
+            } else {
+                $type = 'Ajout';
+                $verif = 'Vos deux mots de passe ne sont pas identique !';
+                $view = 'update';
+                $pagetitle = 'Ajout d\'un utilisateur';
+                require (File::build_path(array('view', 'view.php')));
             }
+        
+            /*
             else {
                 $view = 'connect';
                 $pagetitle = 'Connexion';
                 require (File::build_path(array('view', 'view.php')));
-            }
+            } */
 
         }
         else {
-            $controller = 'utilisateur';
+            $error_code = 'updated : l\'un des champs est vide';
             $view = 'error';
             $pagetitle = 'Erreur';
-            require (File::build_path(array('view', 'view.php')));
+            require (File::build_path(array('view', 'error.php')));
         }
     }
 
