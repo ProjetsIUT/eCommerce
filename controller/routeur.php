@@ -2,6 +2,7 @@
 
 require_once (File::build_path(array('controller', 'ControllerProduit.php')));
 require_once (File::build_path(array('controller', 'ControllerUtilisateur.php')));
+require_once (File::build_path(array('controller', 'ControllerCommande.php')));
 $controller_default = 'produit';
 
 if(isset($_COOKIE['preference'])) {
