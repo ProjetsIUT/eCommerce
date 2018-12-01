@@ -41,7 +41,7 @@
 					<div class=title_menu><a class=txt_menu href="index.php?action=readAll&controller=utilisateur">Utilisateur</a></div>
 					<div class=title_menu><a class=txt_menu href="index.php?action=readAll&controller=utilisateur">Panier</a></div>
 					<?php
-					if(isset($_SESSION['login'])) {
+					if(isset($_SESSION['loginUtilisateur'])) {
 						echo ('<div class=title_menu><a class=txt_menu href="index.php?controller=utilisateur&action=deconnect">Se déconnecter</a></div>');
 					}
 					else {

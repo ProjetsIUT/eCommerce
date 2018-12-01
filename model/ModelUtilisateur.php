@@ -2,9 +2,8 @@
 require_once (File::build_path(array('model','Model.php')));
 
 class ModelUtilisateur extends Model{
-    protected static $primary='codeUtilisateur';
+    protected static $primary='loginUtilisateur';
     protected static $object = 'utilisateur';
-    private $codeUtilisateur;
     private $loginUtilisateur;
     private $nomUtilisateur;
     private $prenomUtilisateur;
@@ -43,10 +42,9 @@ class ModelUtilisateur extends Model{
         }
     }
     
-    public static function checkPassword($codeUtilisateur, $mot_de_passe_chiffre) {
-        $u = static::select($codeUtilisateur);
+    public static function checkPassword($loginUtilisateur, $mot_de_passe_chiffre) {
+        $u = static::select($loginUtilisateur);
         if ($mot_de_passe_chiffre === $u->get('passUtilisateur')) {
-            
             return true;
         }
         
