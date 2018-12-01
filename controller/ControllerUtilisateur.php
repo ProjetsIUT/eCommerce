@@ -13,11 +13,10 @@ class ControllerUtilisateur {
     }
     
     public static function read() {
-        if(isset($_GET['codeUtilisateur'])) {
-            $u = ModelUtilisateur::select($_GET['codeUtilisateur']);
+        if(isset($_GET['loginUtilisateur'])) {
+            $u = ModelUtilisateur::select($_GET['loginUtilisateur']);
 
             if($u) {
-                $ucodeUtilisateur = $u->get('codeUtilisateur');
                 $ulogin = $u->get('loginUtilisateur');
                 $uprenom = $u->get('prenomUtilisateur');
                 $unom = $u->get('nomUtilisateur');
@@ -39,14 +38,14 @@ class ControllerUtilisateur {
                 require (File::build_path(array('view', 'view.php')));
             }
             else {
-                $error_code = 'read : codeUtilisateur inexistant';
+                $error_code = 'read : loginUtilisateur inexistant';
                 $view = 'error';
                 $pagetitle = 'Erreur';
                 require (File::build_path(array('view', 'view.php')));
             }
         }
         else {
-            $error_code = 'read : codeUtilisateur vide';
+            $error_code = 'read : loginUtilisateur vide';
             $view = 'error';
             $pagetitle = 'Erreur';
             require (File::build_path(array('view', 'view.php')));
@@ -55,17 +54,17 @@ class ControllerUtilisateur {
     
     public static function delete() {
 
-        if(isset($_GET['codeUtilisateur'])) {
+        if(isset($_GET['loginUtilisateur'])) {
             //if ($_SESSION['login'] === $_GET['login'] || Session::is_admin()) {
-                if(ModelUtilisateur::select($_GET['codeUtilisateur'])) {
-                    $u = ModelUtilisateur::delete($_GET['codeUtilisateur']);
+                if(ModelUtilisateur::select($_GET['loginUtilisateur'])) {
+                    $u = ModelUtilisateur::delete($_GET['loginUtilisateur']);
                     $view = 'deleted';
                     $pagetitle = 'Suppression d\'un utilisateur';
                     $tab_u = ModelUtilisateur::selectAll();
                     require (File::build_path(array('view', 'view.php')));
                 }
                 else {
-                    $error_code = 'delete : codeUtilisateur inexistant';
+                    $error_code = 'delete : loginUtilisateur inexistant';
                     $view = 'error';
                     $pagetitle = 'Erreur';
                     require (File::build_path(array('view', 'error.php')));
@@ -78,7 +77,7 @@ class ControllerUtilisateur {
             } */
         }
         else {
-            $error_code = 'delete : codeUtilisateur vide';
+            $error_code = 'delete : loginUtilisateur vide';
             $view = 'error';
             $pagetitle = 'Erreur';
             require (File::build_path(array('view', 'error.php')));
@@ -108,10 +107,9 @@ class ControllerUtilisateur {
 
     public static function update() {
         $type = "Modification";
-        if (isset($_GET['codeUtilisateur'])) {
+        if (isset($_GET['loginUtilisateur'])) {
             //if ($_SESSION['login'] === $_GET['login'] && !Session::is_admin()) {
-                $u = ModelUtilisateur::select($_GET['codeUtilisateur']);
-                $ucode = $u->get('codeUtilisateur');
+                $u = ModelUtilisateur::select($_GET['loginUtilisateur']);
                 $ulogin = $u->get('loginUtilisateur');
                 $uprenom = $u->get('prenomUtilisateur');
                 $unom = $u->get('nomUtilisateur');
@@ -154,40 +152,55 @@ class ControllerUtilisateur {
             require (File::build_path(array('view', 'error.php')));
         }
     }
-    /*
+    
     public static function connected() {
-        $controller = 'utilisateur';
-        $view = 'detail';
-        $pagetitle = 'Connecté';
-        if(isset($_GET['login']) && $_GET['mdp']) {
-            $mdpsecu = Security::chiffrer($_GET['mdp']);
-            $verif = ModelUtilisateur::checkPassword($_GET['login'], $mdpsecu);
+        if(isset($_GET['loginUtilisateur']) && $_GET['passUtilisateur']) {
+            $mdpsecu = Security::chiffrer($_GET['passUtilisateur']);
+            $verif = ModelUtilisateur::checkPassword($_GET['loginUtilisateur'], $mdpsecu);
             if($verif) {
-                $u = ModelUtilisateur::select($_GET['login']);
-                $_SESSION['login'] = $_GET['login'];
-                if($u->get('admin') == 1) {
+                $u = ModelUtilisateur::select($_GET['loginUtilisateur']);
+                $_SESSION['loginUtilisateur'] = $_GET['loginUtilisateur'];
+                /*if($u->get('admin') == 1) {
                     $_SESSION['admin'] = true;
                 }
                 else {
                     $_SESSION['admin'] = false;
+                } */
+                $view = 'detail';
+                $pagetitle = 'Connecté';
+                $ulogin = $u->get('loginUtilisateur');
+                $uprenom = $u->get('prenomUtilisateur');
+                $unom = $u->get('nomUtilisateur');
+                $uadresseF = $u->get('adresseFacturationUtilisateur');
+                $uadresseL = $u->get('adresseLivraisonUtilisateur');
+                $umdp = $u->get('passUtilisateur');
+                $uidCB = $u->get('idCarteBleue');
+                $uemail = $u->get('emailUser');
+                if ($uadresseF == NULL) {
+                    $uadresseF = 'non renseigné';
+                }
+                if ($uadresseL == NULL) {
+                    $uadresseL = 'non renseigné';
+                }
+                if ($uidCB == NULL) {
+                    $uidCB = 'non renseigné';
                 }
                 require (File::build_path(array('view', 'view.php')));
             }
             else {
-                $controller = 'utilisateur';
-                $view = 'error';
-                $pagetitle = 'Erreur';
+                $verif = 'Votre mot de passe ou votre nom d\'utilisateur est incorrect';
+                $view = 'connect';
+                $pagetitle = 'Se connecter';
                 require (File::build_path(array('view', 'view.php')));
             }
         }
         else {
-            $controller = 'utilisateur';
             $view = 'error';
             $pagetitle = 'Erreur';
-            require (File::build_path(array('view', 'view.php')));
+            require (File::build_path(array('view', 'error.php')));
         }
     }
-    */
+    
     
     public static function created() {
         if(isset($_GET['loginUtilisateur']) && isset($_GET['nomUtilisateur']) && isset($_GET['prenomUtilisateur']) && isset($_GET['adresseFacturationUtilisateur']) && isset($_GET['adresseLivraisonUtilisateur']) && isset($_GET['passUtilisateur']) && isset($_GET['emailUser'])) {
@@ -250,7 +263,6 @@ class ControllerUtilisateur {
                     require (File::build_path(array('view', 'error.php')));
                 } */
                 $data = array(
-                    "codeUtilisateur" => $_GET['codeUtilisateur'],
                     "loginUtilisateur" => $_GET['loginUtilisateur'],
                     "nomUtilisateur" => $_GET['nomUtilisateur'],
                     "prenomUtilisateur" => $_GET['prenomUtilisateur'],
