@@ -15,47 +15,54 @@ class ControllerUtilisateur {
     public static function read() {
         if(isset($_GET['loginUtilisateur'])) {
             $u = ModelUtilisateur::select($_GET['loginUtilisateur']);
-
+            $ulogin = $u->get('loginUtilisateur');
             if($u) {
-                $ulogin = $u->get('loginUtilisateur');
-                $uprenom = $u->get('prenomUtilisateur');
-                $unom = $u->get('nomUtilisateur');
-                $uadresseF = $u->get('adresseFacturationUtilisateur');
-                $uadresseL = $u->get('adresseLivraisonUtilisateur');
-                $uidCB = $u->get('idCarteBleue');
-                $uemail = $u->get('emailUser');
-                if ($uadresseF == NULL) {
-                    $uadresseF = 'non renseigné';
+                if (Session::is_user($_GET['loginUtilisateur']) || Session::is_admin()) {
+                    $uprenom = $u->get('prenomUtilisateur');
+                    $unom = $u->get('nomUtilisateur');
+                    $uadresseF = $u->get('adresseFacturationUtilisateur');
+                    $uadresseL = $u->get('adresseLivraisonUtilisateur');
+                    $uidCB = $u->get('idCarteBleue');
+                    $uemail = $u->get('emailUser');
+                    if ($uadresseF == NULL) {
+                        $uadresseF = 'non renseigné';
+                    }
+                    if ($uadresseL == NULL) {
+                        $uadresseL = 'non renseigné';
+                    }
+                    if ($uidCB == NULL) {
+                        $uidCB = 'non renseigné';
+                    }
+                    $view = 'detail';
+                    $pagetitle = 'Informations sur l\'utilisateur';
+                    require (File::build_path(array('view', 'view.php')));
                 }
-                if ($uadresseL == NULL) {
-                    $uadresseL = 'non renseigné';
+                else {
+                    $error_code = 'read : Vous ne pouvez pas avoir accès à des informations confidentiels sur d\'autre client';
+                    $view = 'error';
+                    $pagetitle = 'Erreur';
+                    require (File::build_path(array('view', 'error.php')));
                 }
-                if ($uidCB == NULL) {
-                    $uidCB = 'non renseigné';
-                }
-                $view = 'detail';
-                $pagetitle = 'Informations sur l\'utilisateur';
-                require (File::build_path(array('view', 'view.php')));
             }
             else {
                 $error_code = 'read : loginUtilisateur inexistant';
                 $view = 'error';
                 $pagetitle = 'Erreur';
-                require (File::build_path(array('view', 'view.php')));
+                require (File::build_path(array('view', 'error.php')));
             }
         }
         else {
             $error_code = 'read : loginUtilisateur vide';
             $view = 'error';
             $pagetitle = 'Erreur';
-            require (File::build_path(array('view', 'view.php')));
+            require (File::build_path(array('view', 'error.php')));
         }
     }
     
     public static function delete() {
 
         if(isset($_GET['loginUtilisateur'])) {
-            //if ($_SESSION['login'] === $_GET['login'] || Session::is_admin()) {
+            if (Session::is_user() || Session::is_admin()) {
                 if(ModelUtilisateur::select($_GET['loginUtilisateur'])) {
                     $u = ModelUtilisateur::delete($_GET['loginUtilisateur']);
                     $view = 'deleted';
@@ -69,12 +76,12 @@ class ControllerUtilisateur {
                     $pagetitle = 'Erreur';
                     require (File::build_path(array('view', 'error.php')));
                 }
-            /*} 
+            } 
             else {
                 $view = 'connect';
                 $pagetitle = 'Connexion';
                 require (File::build_path(array('view', 'view.php')));
-            } */
+            } 
         }
         else {
             $error_code = 'delete : loginUtilisateur vide';
@@ -146,7 +153,7 @@ class ControllerUtilisateur {
             } */
         }
         else {
-            $error_code = 'update : codeUtilisateur vide';
+            $error_code = 'update : loginUtilisateur vide';
             $view = 'error';
             $pagetitle = 'Erreur';
             require (File::build_path(array('view', 'error.php')));
@@ -160,12 +167,12 @@ class ControllerUtilisateur {
             if($verif) {
                 $u = ModelUtilisateur::select($_GET['loginUtilisateur']);
                 $_SESSION['loginUtilisateur'] = $_GET['loginUtilisateur'];
-                /*if($u->get('admin') == 1) {
+                if($u->get('typeUser') == 1) {
                     $_SESSION['admin'] = true;
                 }
                 else {
                     $_SESSION['admin'] = false;
-                } */
+                }
                 $view = 'detail';
                 $pagetitle = 'Connecté';
                 $ulogin = $u->get('loginUtilisateur');
@@ -195,6 +202,7 @@ class ControllerUtilisateur {
             }
         }
         else {
+            $error_code = 'connected : loginUtilisateur vide';
             $view = 'error';
             $pagetitle = 'Erreur';
             require (File::build_path(array('view', 'error.php')));

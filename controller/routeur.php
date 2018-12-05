@@ -33,6 +33,7 @@ if(class_exists($controller_class)){
 			$controller_class::$action();
 		}
 		else {
+			$object = 'produit';
 			$error_code = 'routeur : action inexistante !';
 			$view = 'error';
 			$pagetitle = 'Erreur';
@@ -42,6 +43,7 @@ if(class_exists($controller_class)){
 
 }
 else {
+	$object = 'produit';
 	$error_code = 'routeur : class inexistante !';
 	$view = 'error';
 	$pagetitle = 'Erreur';

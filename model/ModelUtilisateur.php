@@ -12,6 +12,7 @@ class ModelUtilisateur extends Model{
     private $passUtilisateur;
     private $idCarteBleue;
     private $emailUser;
+    private $typeUser;
 
     // Getter générique (pas expliqué en TD)
     public function get($nom_attribut) {
@@ -39,10 +40,12 @@ class ModelUtilisateur extends Model{
             $this->passUtilisateur = $data['passUtilisateur'];
             //$this->idCarteBleue = $data['idCarteBleue'];
             $this->emailUser = $data['emailUser'];
+            $this->typeUser = $data['typeUser'];
         }
     }
     
-    public static function checkPassword($loginUtilisateur, $mot_de_passe_chiffre) {
+    //vérifie si le mot de passe crypté passé est le meme que celui dans la base de données pour le login donné
+    public static function checkPassword($loginUtilisateur, $mot_de_passe_chiffre) { 
         $u = static::select($loginUtilisateur);
         if ($mot_de_passe_chiffre === $u->get('passUtilisateur')) {
             return true;
