@@ -14,7 +14,7 @@
 
 
 	<h1> Détail de votre commande</h1>
-	<a class="bouton" style="float:right;" href=<?php echo '"./index.php?action=readAll&controller=commande&codeUser=' . $_GET["codeCommande"] .'"' ?>>Retour à l'historique</a>
+	<a class="bouton" style="float:right;" href="./index.php?action=readAll&controller=commande">Retour à l'historique</a>
 
 	<a>ID commande : <?php echo $idCommande ?></a>
 	<br>

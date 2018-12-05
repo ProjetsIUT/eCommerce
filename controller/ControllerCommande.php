@@ -12,7 +12,7 @@ class ControllerCommande {
 
     
 
-        $codeUser=$_GET['codeUser'];
+        $loginUser=$_GET['codeUser'];
 
         $tab= ModelCommande::selectAll();
 
@@ -22,7 +22,7 @@ class ControllerCommande {
        foreach ($tab as $commande) {
 
 
-       		if($commande->get('codeUtilisateur')===$codeUser){
+       		if($commande->get('loginUtilisateur')===$loginUser){
 
        			array_push($tab_c, $commande);
 
