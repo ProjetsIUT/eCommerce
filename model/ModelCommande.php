@@ -10,7 +10,7 @@ class ModelCommande extends Model{
 
 	private $idCommande;
 	private $dateCommande;
-	private $codeUtilisateur;
+	private $loginUtilisateur;
 	private $prixTotalCommande;
 	private $adresseLivraisonCommande;
 	private $paiementFois;
@@ -38,7 +38,7 @@ class ModelCommande extends Model{
 	  if (!empty($data)) {
 	    
 	    $this->idCommande= $data["idCommande"];
-	    $this->codeUtilisateur = $data["codeUtilisateur"];
+	    $this->loginUtilisateur = $data["loginUtilisateur"];
 	    $this->prixTotalCommande=$data["prixTotalCommande"];
 	    $this->adresseLivraisonCommande=$data["adresseLivraisonCommande"];
 	    $this->paiementFois=$data["paiementFois"];
