@@ -9,11 +9,13 @@ class Conf {
     // A l'IUT, vous avez une BDD nommee comme votre login
     // Sur votre machine, vous devrez creer une BDD
     'database' => 'bourdesj',
-    // A l'IUT, c'est votre login
-    // Sur votre machine, vous avez surement un compte 'root'
+
+    // At IUT, it is your classical login
+    // On your computer, you should have at least a 'root' account
     'login' => 'bourdesj',
-    // A l'IUT, c'est votre mdp (INE par defaut)
-    // Sur votre machine personelle, vous avez creez ce mdp a l'installation
+    // At IUT, it is your database password 
+    // (=PHPMyAdmin pwd, INE by defaut)
+    // On your computer, you created the pwd during setup
     'password' => 'Unicorn'
   );
    
