@@ -2,6 +2,7 @@
 
 require_once (File::build_path(array('model','Model.php')));
 require_once (File::build_path(array('model','ModelProduit.php')));
+require_once (File::build_path(array('model','ModelAssociationCommande.php')));
 
 class ModelCommande extends Model{
 
@@ -10,7 +11,7 @@ class ModelCommande extends Model{
 
 	private $idCommande;
 	private $dateCommande;
-	private $codeUtilisateur;
+	private $loginUtilisateur;
 	private $prixTotalCommande;
 	private $adresseLivraisonCommande;
 	private $paiementFois;
@@ -38,7 +39,7 @@ class ModelCommande extends Model{
 	  if (!empty($data)) {
 	    
 	    $this->idCommande= $data["idCommande"];
-	    $this->codeUtilisateur = $data["codeUtilisateur"];
+	    $this->loginUtilisateur = $data["loginUtilisateur"];
 	    $this->prixTotalCommande=$data["prixTotalCommande"];
 	    $this->adresseLivraisonCommande=$data["adresseLivraisonCommande"];
 	    $this->paiementFois=$data["paiementFois"];
@@ -58,6 +59,8 @@ class ModelCommande extends Model{
             $tab_obj = $rep->fetchAll();*/
 
             $tab_obj = ModelAssociationCommande::select($this->idCommande);
+
+            var_dump($tab_obj);
 
             $tab_a=array();
             $tab_p=array();

@@ -1,6 +1,8 @@
 <?php
-// require_once de chaque controller
+
 require_once (File::build_path(array('controller', 'ControllerProduit.php')));
+require_once (File::build_path(array('controller', 'ControllerUtilisateur.php')));
+require_once (File::build_path(array('controller', 'ControllerCommande.php')));
 $controller_default = 'produit';
 
 if(isset($_COOKIE['preference'])) {
@@ -32,17 +34,19 @@ if(class_exists($controller_class)){
 			$controller_class::$action();
 		}
 		else {
+			$error_code = 'routeur : action inexistante !';
 			$view = 'error';
 			$pagetitle = 'Erreur';
-			require (File::build_path(array('view', 'view.php')));
+			require (File::build_path(array('view', 'error.php')));
 		}
 	}
 
 }
 else {
+	$error_code = 'routeur : class inexistante !';
 	$view = 'error';
 	$pagetitle = 'Erreur';
-	require (File::build_path(array('view', 'view.php')));
+	require (File::build_path(array('view', 'error.php')));
 }
 
 ?>

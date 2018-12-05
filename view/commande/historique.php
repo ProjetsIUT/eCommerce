@@ -17,6 +17,8 @@
 
 				<a>Montant total: ' . $c->get('prixTotalCommande') . '</a>
 
+				<a class="bouton" href="./index.php?action=read&controller=commande&codeCommande='.$c->get('idCommande'). '">Détails</a>
+
 
 			</div>
 
