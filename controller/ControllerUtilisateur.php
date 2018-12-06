@@ -208,8 +208,14 @@ class ControllerUtilisateur {
             require (File::build_path(array('view', 'error.php')));
         }
     }
-    
-    
+
+    public static function errorAction() {
+		$error_code = 'routeur : action inexistante !';
+		$view = 'error';
+		$pagetitle = 'Erreur';
+		require (File::build_path(array('view', 'error.php')));
+    }
+      
     public static function created() {
         if(isset($_GET['loginUtilisateur']) && isset($_GET['nomUtilisateur']) && isset($_GET['prenomUtilisateur']) && isset($_GET['adresseFacturationUtilisateur']) && isset($_GET['adresseLivraisonUtilisateur']) && isset($_GET['passUtilisateur']) && isset($_GET['emailUser'])) {
 
