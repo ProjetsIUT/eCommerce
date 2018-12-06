@@ -284,6 +284,7 @@ class ControllerUtilisateur {
                     "adresseLivraisonUtilisateur" => $_GET['adresseLivraisonUtilisateur'],
                     "passUtilisateur" => $mdpsecu,
                     "emailUser" => $_GET['emailUser'],
+                    "typeUser" => $_GET['typeUser'],
                 );
                 $u = new ModelUtilisateur($data);
                 $u->update($data);
