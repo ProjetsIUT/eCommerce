@@ -192,12 +192,14 @@ class ControllerProduit {
         }
     }
 
-    public static function ajoutPanier(){
+/*    public static function ajoutPanier(){
 
         $tab = unserialize($_COOKIE["produits_panier"]);
+        $tab_produit = array() 
 
-        $test = "ok";
-        array_push($tab,$test);
+        $code = $_GET['codeProduit'];
+
+        array_push($tab,$code);
 
         setcookie("produits_panier",serialize($tab),time()+3600); //on dépose le cookie pour les produits du panier
 
@@ -207,6 +209,99 @@ class ControllerProduit {
         require (File::build_path(array('view', 'view.php')));
 
         
+    }*/
+
+    public static function ajoutPanier(){
+
+        $tab = unserialize($_COOKIE["produits_panier"]);
+        $tab_new = array();
+        $tab_produit = array();
+        $code = $_GET['codeProduit'];
+        $found=false;
+
+        if(!empty($tab)){
+
+    
+            foreach ($tab as $tab_p) {
+
+
+                if($code===$tab_p[0]){
+
+                    array_push($tab_produit,$code);
+                    array_push($tab_produit,$tab_p[1]+1);
+
+                    array_push($tab_new, $tab_produit);
+                    $found=true;
+                    
+                   
+
+                }else{
+
+                    array_push($tab_new,$tab_p);
+                }
+
+        
+                
+            }
+
+                if(!$found){
+
+                 array_push($tab_produit,$code);
+                 array_push($tab_produit,1);
+
+                 array_push($tab, $tab_produit);
+                 setcookie("produits_panier",serialize($tab),time()+30);
+                 self::readAll();
+
+
+                }else{
+
+
+                  setcookie("produits_panier",serialize($tab_new),time()+30);
+                  self::readAll();
+
+
+                }
+
+        }
+
+
+            array_push($tab_produit,$code);
+            array_push($tab_produit,1);
+
+            array_push($tab, $tab_produit);
+
+            setcookie("produits_panier",serialize($tab),time()+30); //on dépose le cookie pour les produits du panier
+
+            self::readAll();
+
+
+ 
+    }
+
+
+    public static function retirerPanier(){
+
+        $tab = unserialize($_COOKIE["produits_panier"]);
+
+        $code = $_GET['codeProduit'];
+
+        $new_tab=array();
+        
+        foreach ($tab as $tab_p) {
+            
+            if($tab_p[0]!=$code){
+
+                array_push($new_tab, $tab_p);
+
+            }
+        }
+
+        setcookie("produits_panier",serialize($new_tab),time()+30); //on dépose le cookie pour les produits du panier
+
+        header('Location: ./index.php?controller=utilisateur&action=show_panier');
+        exit();
+    
     }
 }
 

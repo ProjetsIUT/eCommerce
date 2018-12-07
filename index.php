@@ -4,8 +4,11 @@ session_start();
 
 if (!isset($_COOKIE["produits_panier"])){
 
+
 	$tab = array();
-	setcookie("produits_panier",serialize($tab),time()+100); //on dépose le cookie pour les produits du panier
+//	$t = array("22",1);
+//	array_push($tab, $t);
+	setcookie("produits_panier",serialize($tab),time()+30); //on dépose le cookie pour les produits du panier
 
 
 }

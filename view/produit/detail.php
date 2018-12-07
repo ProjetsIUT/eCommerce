@@ -15,10 +15,13 @@ if(Session::is_admin()) {
 
 <div class=presentation>
 
-        <form id="myForm" method="get">
+        <form id="myForm" method="get" action="./index.php?controller=produit&action=ajoutPanier&">
 
-            <input type="hidden" name="panier" value="addToPanier" action="./index.php?controller=produit&action=ajoutPanier"/>
-            <input type="hidden" name="codeProduit" value= <?php echo '"' . $p->get("codeProduit") . '"' ?>>
+         
+            <input type="hidden" name="codeProduit" value= <?php echo '"' . htmlspecialchars($p->get("codeProduit")) . '"' ?>>
+            <input type="hidden" name="controller" value="produit">
+            <input type="hidden" name="action" value="ajoutPanier">
+
 
 
             <?php 
