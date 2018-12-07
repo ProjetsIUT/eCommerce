@@ -8,7 +8,7 @@
     <?php
 
         $tab_p = unserialize($_COOKIE["produits_panier"]);
-        var_dump($tab_p);
+        //var_dump($tab_p);
 
         foreach($tab_p as $p) {
 

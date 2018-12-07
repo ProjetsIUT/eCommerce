@@ -19,7 +19,9 @@
         <input type="password" placeholder="Mot de passe" name="passUtilisateur" id="passUtilisateur_id" required/>
         <input type="password" placeholder="Confirmer le mot de passe" name="vpassUtilisateur" id="vpassUtilisateur_id" required/>
         <input type="email" placeholder="example@gmail.com" name="emailUser" id="emailUser_id" />');
-        if(Session::is_admin()) {}
+        if(Session::is_admin()) {
+          echo '';
+        }
       }
       else if($_GET['action'] === 'update') {
         echo('

@@ -13,7 +13,7 @@ if(Session::is_admin()){
 <?php
         $tab = unserialize($_COOKIE["produits_panier"]);
 
-        var_dump($tab);
+        //var_dump($tab);
 
         $test = "ok";
         array_push($tab,$test);
@@ -22,7 +22,7 @@ if(Session::is_admin()){
 
         $tab = unserialize($_COOKIE["produits_panier"]);
 
-        var_dump($tab);
+        //var_dump($tab);
 
 
 

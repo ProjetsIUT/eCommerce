@@ -16,9 +16,9 @@
 	<h1> Détail de votre commande</h1>
 	<a class="bouton" style="float:right;" href="./index.php?action=readAll&controller=commande">Retour à l'historique</a>
 
-	<a>ID commande : <?php echo $idCommande ?></a>
+	<a>ID commande : <?php echo htmlspecialchars($idCommande) ?></a>
 	<br>
-	<a>Commande livrée au : <?php echo $adresseLivraisonCommande ?></a>
+	<a>Commande livrée au : <?php echo htmlspecialchars($adresseLivraisonCommande) ?></a>
 	<br>
 	<h3>Articles commandés:</h3>
 	
@@ -36,15 +36,15 @@
 	        echo '
 
 	        <div class=Produit> 
-	        	<a> <img src="./Images/'.$img_nom.'" > </a>
+	        	<a> <img src="./Images/'.htmlspecialchars($img_nom).'" > </a>
 
 	        	<div class=desc>'
 
-	        	 .$p->get('nomProduit').' 
+	        	 .htmlspecialchars($p->get('nomProduit')).' 
 	        	 <br> 
-	        	 <a>Prix unitaire: ' . $p->get('prixProduit') . '€</a> 
+	        	 <a>Prix unitaire: ' . htmlspecialchars($p->get('prixProduit')) . '€</a> 
 	        	 <br>
-	        	 <a>Quantité: ' . $tab_qté[$i] .'
+	        	 <a>Quantité: ' . htmlspecialchars($tab_qté[$i]) .'
 
 	        	</div>
 	        
@@ -60,7 +60,7 @@
 
 	</div>
 
-	<h3>TOTAL: <?php echo $prixTotalCommande ?> €</h3>
+	<h3>TOTAL: <?php echo htmlspecialchars($prixTotalCommande) ?> €</h3>
 
 </div>
 
