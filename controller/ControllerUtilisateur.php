@@ -62,7 +62,7 @@ class ControllerUtilisateur {
     public static function delete() {
 
         if(isset($_GET['loginUtilisateur'])) {
-            if (Session::is_user() || Session::is_admin()) {
+            if (Session::is_user($_GET['loginUtilisateur']) || Session::is_admin()) {
                 if(ModelUtilisateur::select($_GET['loginUtilisateur'])) {
                     $u = ModelUtilisateur::delete($_GET['loginUtilisateur']);
                     $view = 'deleted';
@@ -78,9 +78,10 @@ class ControllerUtilisateur {
                 }
             } 
             else {
-                $view = 'connect';
-                $pagetitle = 'Connexion';
-                require (File::build_path(array('view', 'view.php')));
+                $error_code = 'delete : Vous ne pouvez pas effectuer cette action';
+                $view = 'error';
+                $pagetitle = 'Erreur';
+                require (File::build_path(array('view', 'error.php')));
             } 
         }
         else {

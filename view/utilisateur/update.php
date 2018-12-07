@@ -1,6 +1,6 @@
 <form method="get" action="index.php">
   <fieldset>
-    <legend><?php echo $type?> d'un utilisateur</legend>
+    <legend><?php echo htmlspecialchars($type)?> d'un utilisateur</legend>
     <p>
       
       <?php 
@@ -19,6 +19,7 @@
         <input type="password" placeholder="Mot de passe" name="passUtilisateur" id="passUtilisateur_id" required/>
         <input type="password" placeholder="Confirmer le mot de passe" name="vpassUtilisateur" id="vpassUtilisateur_id" required/>
         <input type="email" placeholder="example@gmail.com" name="emailUser" id="emailUser_id" />');
+        if(Session::is_admin()) {}
       }
       else if($_GET['action'] === 'update') {
         echo('
@@ -63,7 +64,7 @@
       ?>
     </p>
     <p>
-      <input type="submit" <?php echo 'value=" '.$type.' d\'utilisateur !"'; ?> />
+      <input type="submit" <?php echo 'value=" '.htmlspecialchars($type).' d\'utilisateur !"'; ?> />
     </p>
   </fieldset> 
 </form>
