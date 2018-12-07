@@ -11,8 +11,7 @@ if(Session::is_admin()){
 <h1> Tous nos produits </h1>
 
 <?php
-        $tab = unser
-        ialize($_COOKIE["produits_panier"]);
+        $tab = unserialize($_COOKIE["produits_panier"]);
 
         var_dump($tab);
 
