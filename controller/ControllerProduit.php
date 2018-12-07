@@ -52,9 +52,23 @@ class ControllerProduit {
         }
     }
 
+    public static function errorAction() {
+		$error_code = 'routeur : action inexistante !';
+		$view = 'error';
+		$pagetitle = 'Erreur';
+		require (File::build_path(array('view', 'error.php')));
+    }
+
+    public static function errorClass() {
+        $error_code = 'routeur : class demandé inexistante !';
+	    $view = 'error';
+	    $pagetitle = 'Erreur';
+	    require (File::build_path(array('view', 'error.php')));
+    }
+
     public static function delete() {
         if(isset($_GET['codeProduit'])) {
-            //if ($_SESSION['login'] === $_GET['login'] || Session::is_admin()) {
+            if (Session::is_admin()) {
                 if(ModelProduit::select($_GET['codeProduit'])) {
                     $p = ModelProduit::delete($_GET['codeProduit']);
                     $view = 'deleted';
@@ -68,12 +82,13 @@ class ControllerProduit {
                     $pagetitle = 'Erreur';
                     require (File::build_path(array('view', 'view.php')));
                 }
-            /*}
+            }
             else {
-                $view = 'connect';
-                $pagetitle = 'Connexion';
+                $error_code = 'delete : Ce droit est exclusivement réservé aux administrateurs';
+                $view = 'error';
+                $pagetitle = 'Erreur';
                 require (File::build_path(array('view', 'view.php')));
-            } */
+            } 
         }
         else {
             $error_code = 'delete : codeProduit vide';
@@ -92,6 +107,7 @@ class ControllerProduit {
     
     public static function created() {
         if(isset($_GET['nomProduit']) && isset($_GET['prixProduit']) && isset($_GET['descProduit']) && isset($_GET['stockProduit'])) {
+            if(Session::is_admin()) {    
                 $view = 'created';
                 $pagetitle = 'Produit ajouté';
                 $data = array(
@@ -104,7 +120,13 @@ class ControllerProduit {
                 $p->save($data);
                 $tab_p = ModelProduit::selectAll();
                 require (File::build_path(array('view', 'view.php')));
-
+            }
+            else {
+                $error_code = 'created : Ce droit est exclusivement réservé aux administrateurs';
+                $view = 'error';
+                $pagetitle = 'Erreur';
+                require (File::build_path(array('view', 'view.php')));
+            }
         }
         else {
             $error_code = 'created : un des champs est vide';
@@ -117,15 +139,15 @@ class ControllerProduit {
     public static function update() {
         $type = "Modification";
         if (isset($_GET['codeProduit'])) {
-                $p = ModelProduit::select($_GET['codeProduit']);
-                $codeP = $p->get('codeProduit');
-                $nomP = $p->get('nomProduit');
-                $prixP = $p->get('prixProduit');
-                $descP = $p->get('descProduit');
-                $stockP = $p->get('stockProduit');
-                $view = 'update';
-                $pagetitle = 'Produit à modifier';
-                require (File::build_path(array('view', 'view.php')));
+            $p = ModelProduit::select($_GET['codeProduit']);
+            $codeP = $p->get('codeProduit');
+            $nomP = $p->get('nomProduit');
+            $prixP = $p->get('prixProduit');
+            $descP = $p->get('descProduit');
+            $stockP = $p->get('stockProduit');
+            $view = 'update';
+            $pagetitle = 'Produit à modifier';
+            require (File::build_path(array('view', 'view.php')));
             
         }
         else {
@@ -138,8 +160,7 @@ class ControllerProduit {
 
     public static function updated() {
         if(isset($_GET['codeProduit']) && isset($_GET['nomProduit']) && isset($_GET['prixProduit']) && isset($_GET['descProduit']) && isset($_GET['stockProduit'])) {
-            //if ($_SESSION['login'] === $_GET['login'] || Session::is_admin()) {
-                //if($_GET['mdp'] === $_GET['vmdp']) {
+            if(Session::is_admin()) {
                     $view = 'updated';
                     $pagetitle = 'Produit modifié';
                     $data = array(
@@ -153,15 +174,13 @@ class ControllerProduit {
                     $p->update($data);
                     $tab_p = ModelProduit::selectAll();
                     require (File::build_path(array('view', 'view.php')));
-                //} else {
-                    //echo('Vos deux mots de passe ne sont pas identique !');
-                //}
-            /*}
+            }
             else {
-                $view = 'connect';
-                $pagetitle = 'Connexion';
+                $error_code = 'updated : Ce droit est exclusivement réservé aux administrateurs';
+                $view = 'error';
+                $pagetitle = 'Erreur';
                 require (File::build_path(array('view', 'view.php')));
-            } */
+            } 
 
         }
         else {

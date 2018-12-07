@@ -1,9 +1,17 @@
-<div class="panel_admin">
-        <br>
-        <a class="bouton_red" href=<?php echo ' "index.php?controller=produit&action=delete&codeProduit= ' . rawurlencode($p->get('codeProduit')). '"' ;?>> Supprimer ce produit</a>
-        <a class="bouton" href=<?php echo ' "index.php?controller=produit&action=update&codeProduit='.rawurlencode($p->get('codeProduit')). '"' ;?>>Modifier ce produit</a>
-</div>
 
+<?php
+
+if(Session::is_admin()) {
+    echo '<div class="panel_admin">
+    <br>
+    
+    <a class="bouton_red" href="index.php?controller=produit&action=delete&codeProduit= ' . rawurlencode($p->get('codeProduit')). '"> Supprimer ce produit</a>
+    <a class="bouton" href= "index.php?controller=produit&action=update&codeProduit='.rawurlencode($p->get('codeProduit')). '">Modifier ce produit</a>
+    
+    </div>';
+}
+
+?>
 
 <div class=presentation>
 
@@ -29,20 +37,20 @@
             <br>
 
             <p id="infos_prix_stock">
-                <a id="prix_desc">Seulement <?php echo $p->get('prixProduit'); ?> €</a>
+                <a id="prix_desc">Seulement <?php echo htmlspecialchars($p->get('prixProduit')); ?> €</a>
                 <br>
                 <a><?php echo $valueStock; ?> </a>
             <p>
 
        </form>
 
-       <h1><?php echo $p->get('nomProduit') ?></h1> 
+       <h1><?php echo htmlspecialchars($p->get('nomProduit')) ?></h1> 
 
        <?php echo '<img src="./Images/'.$img_nom.'"' ;?>
 
        <br>
         
-       <p><?php echo $p->get('descProduit') ?></p>
+       <p><?php echo htmlspecialchars($p->get('descProduit')) ?></p>
 
 
 </div>

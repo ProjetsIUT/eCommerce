@@ -8,9 +8,9 @@
       <?php 
 
       $controller = static::$object;
-      echo('<input type="hidden" name="controller" value="'.$controller.'"/>');
+      echo('<input type="hidden" name="controller" value="'.htmlspecialchars($controller).'"/>');
 
-      if($_GET['action'] === 'create') {
+      if($_GET['action'] === 'create' && Session::is_admin()) {
         echo('
         <input type="hidden" name="action" value="created"/>
         <label>Nom du produit</label>
@@ -25,25 +25,29 @@
         <label>Quantité actuellement en stock</label>
         <input type="number" placeholder="Stock du produit" name="stockProduit" id="stockProduit_id" required/>');
       }
-      else if($_GET['action'] === 'update' /* && Session::is_admin() */) {
+      else if($_GET['action'] === 'update' && Session::is_admin()) {
         echo('
         <input type="hidden" name="action" value="updated"/>
         <label>Code produit</label>
-        <input type="text" value="'.$codeP.'" name="codeProduit" id="codeProduit_id" readonly required/>
+        <input type="text" value="'.htmlspecialchars($codeP).'" name="codeProduit" id="codeProduit_id" readonly required/>
 
         <label>Nom du produit</label>
-        <input type="text" value="'.$nomP.'" name="nomProduit" id="nomProduit_id" required/>
+        <input type="text" value="'.htmlspecialchars($nomP).'" name="nomProduit" id="nomProduit_id" required/>
         <br>
         <label>Prix</label>
-        <input type="number" value="'.$prixP.'" name="prixProduit" id="prixProduit_id" required/>
+        <input type="number" value="'.htmlspecialchars($prixP).'" name="prixProduit" id="prixProduit_id" required/>
         <br>
         <label>Description</label>
         <br>
-        <textarea name="descProduit" id="descProduit_id" required>'.$descP.'</textarea>
+        <textarea name="descProduit" id="descProduit_id" required>'.htmlspecialchars($descP).'</textarea>
         <br>
         <label>Quantité actuellement en stock</label>
         
-        <input type="number" value="'.$stockP.'" name="stockProduit" id="stockProduit_id" required/>');
+        <input type="number" value="'.htmlspecialchars($stockP).'" name="stockProduit" id="stockProduit_id" required/>');
+      }
+      else {
+        echo('<p> Oups vous n\'avez le droit d\'être sur cette page si et seulement si vous êtes un administrateur </p>
+        <meta http-equiv="refresh" content="3; URL=index.php?action=readAll&controller=produit" />');
       }
       
       ?>
