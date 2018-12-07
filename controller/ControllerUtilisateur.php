@@ -34,6 +34,15 @@ class ControllerUtilisateur {
                     $uadresseL = $u->get('adresseLivraisonUtilisateur');
                     $uidCB = $u->get('idCarteBleue');
                     $uemail = $u->get('emailUser');
+                    if (Session::is_admin()) {
+                        $utype = $u->get('typeUser');
+                        if($utype == 1) {
+                            $utype = 'Oui';
+                        }
+                        else {
+                            $utype = 'Non';
+                        }
+                    }
                     if ($uadresseF == NULL) {
                         $uadresseF = 'non renseigné';
                     }
@@ -175,38 +184,46 @@ class ControllerUtilisateur {
         if(isset($_GET['loginUtilisateur']) && $_GET['passUtilisateur']) {
             $mdpsecu = Security::chiffrer($_GET['passUtilisateur']);
             $verif = ModelUtilisateur::checkPassword($_GET['loginUtilisateur'], $mdpsecu);
-            if($verif) {
-                $u = ModelUtilisateur::select($_GET['loginUtilisateur']);
-                $_SESSION['loginUtilisateur'] = $_GET['loginUtilisateur'];
-                if($u->get('typeUser') == 1) {
-                    $_SESSION['admin'] = true;
+            $u = ModelUtilisateur::select($_GET['loginUtilisateur']);
+            if($u) {
+                if($verif) {
+                    $_SESSION['loginUtilisateur'] = $_GET['loginUtilisateur'];
+                    if($u->get('typeUser') == 1) {
+                        $_SESSION['admin'] = true;
+                    }
+                    else {
+                        $_SESSION['admin'] = false;
+                    }
+                    $view = 'detail';
+                    $pagetitle = 'Connecté';
+                    $ulogin = $u->get('loginUtilisateur');
+                    $uprenom = $u->get('prenomUtilisateur');
+                    $unom = $u->get('nomUtilisateur');
+                    $uadresseF = $u->get('adresseFacturationUtilisateur');
+                    $uadresseL = $u->get('adresseLivraisonUtilisateur');
+                    $umdp = $u->get('passUtilisateur');
+                    $uidCB = $u->get('idCarteBleue');
+                    $uemail = $u->get('emailUser');
+                    if ($uadresseF == NULL) {
+                        $uadresseF = 'non renseigné';
+                    }
+                    if ($uadresseL == NULL) {
+                        $uadresseL = 'non renseigné';
+                    }
+                    if ($uidCB == NULL) {
+                        $uidCB = 'non renseigné';
+                    }
+                    require (File::build_path(array('view', 'view.php')));
                 }
                 else {
-                    $_SESSION['admin'] = false;
+                    $verif = 'Votre mot de passe ou votre nom d\'utilisateur est incorrect';
+                    $view = 'connect';
+                    $pagetitle = 'Se connecter';
+                    require (File::build_path(array('view', 'view.php')));
                 }
-                $view = 'detail';
-                $pagetitle = 'Connecté';
-                $ulogin = $u->get('loginUtilisateur');
-                $uprenom = $u->get('prenomUtilisateur');
-                $unom = $u->get('nomUtilisateur');
-                $uadresseF = $u->get('adresseFacturationUtilisateur');
-                $uadresseL = $u->get('adresseLivraisonUtilisateur');
-                $umdp = $u->get('passUtilisateur');
-                $uidCB = $u->get('idCarteBleue');
-                $uemail = $u->get('emailUser');
-                if ($uadresseF == NULL) {
-                    $uadresseF = 'non renseigné';
-                }
-                if ($uadresseL == NULL) {
-                    $uadresseL = 'non renseigné';
-                }
-                if ($uidCB == NULL) {
-                    $uidCB = 'non renseigné';
-                }
-                require (File::build_path(array('view', 'view.php')));
             }
             else {
-                $verif = 'Votre mot de passe ou votre nom d\'utilisateur est incorrect';
+                $verif = 'Votre nom d\'utilisateur est inexistant';
                 $view = 'connect';
                 $pagetitle = 'Se connecter';
                 require (File::build_path(array('view', 'view.php')));

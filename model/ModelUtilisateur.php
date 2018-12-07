@@ -47,10 +47,14 @@ class ModelUtilisateur extends Model{
     //vérifie si le mot de passe crypté passé est le meme que celui dans la base de données pour le login donné
     public static function checkPassword($loginUtilisateur, $mot_de_passe_chiffre) { 
         $u = static::select($loginUtilisateur);
-        if ($mot_de_passe_chiffre === $u->get('passUtilisateur')) {
-            return true;
+        if($u) {
+            if ($mot_de_passe_chiffre === $u->get('passUtilisateur')) {
+                return true;
+            }
         }
-        
+        else {
+            return false;
+        }
         return false;
     } 
 
