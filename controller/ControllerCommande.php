@@ -12,7 +12,7 @@ class ControllerCommande {
 
     
 
-        $loginUser=$_GET['codeUser'];
+        $loginUser= $_SESSION['loginUtilisateur'];
 
         $tab= ModelCommande::selectAll();
 

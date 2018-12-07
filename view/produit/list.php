@@ -7,6 +7,25 @@
 
 <h1> Tous nos produits </h1>
 
+<?php
+        $tab = unser
+        ialize($_COOKIE["produits_panier"]);
+
+        var_dump($tab);
+
+        $test = "ok";
+        array_push($tab,$test);
+
+        setcookie("produits_panier",serialize($tab),time()+3600); //on dépose le cookie pour les produits du panier
+
+        $tab = unserialize($_COOKIE["produits_panier"]);
+
+        var_dump($tab);
+
+
+
+?>
+
 <div class=responsive>
 
 

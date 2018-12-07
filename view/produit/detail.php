@@ -9,7 +9,9 @@
 
         <form id="myForm" method="get">
 
-            <input type="hidden" name="panier" value="addToPanier"/>
+            <input type="hidden" name="panier" value="addToPanier" action="./index.php?controller=produit&action=ajoutPanier"/>
+            <input type="hidden" name="codeProduit" value= <?php echo '"' . $p->get("codeProduit") . '"' ?>>
+
 
             <?php 
 
@@ -19,7 +21,7 @@
 
             } else{
 
-              echo '<a class="bouton_panier" href="#" onclick="document.getElementById(\'myForm\').submit()">Ajouter au panier</a>' ;
+                echo '<a class="bouton_panier" onclick="document.getElementById(\'myForm\').submit()">Ajouter au panier</a>' ;
             }
 
             ?>

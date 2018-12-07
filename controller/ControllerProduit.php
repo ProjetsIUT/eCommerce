@@ -12,6 +12,7 @@ class ControllerProduit {
         require (File::build_path(array('view', 'view.php')));
     }
 
+
     public static function read() {
         if(isset($_GET['codeProduit'])) {
             $p = ModelProduit::select($_GET['codeProduit']);
@@ -164,11 +165,29 @@ class ControllerProduit {
 
         }
         else {
+            
             $error_code = 'updated : un des champs est vide';
             $view = 'error';
             $pagetitle = 'Erreur';
             require (File::build_path(array('view', 'view.php')));
         }
+    }
+
+    public static function ajoutPanier(){
+
+        $tab = unserialize($_COOKIE["produits_panier"]);
+
+        $test = "ok";
+        array_push($tab,$test);
+
+        setcookie("produits_panier",serialize($tab),time()+3600); //on dépose le cookie pour les produits du panier
+
+        $tab_p = ModelProduit::selectAll();
+        $view = 'list';
+        $pagetitle = 'Nos produits';
+        require (File::build_path(array('view', 'view.php')));
+
+        
     }
 }
 
