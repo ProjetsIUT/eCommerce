@@ -22,7 +22,8 @@
 						<div><a class=txt_sub href="index.php">Accueil</a></div>
 						<br>
 						<div><a class=txt_sub href="index.php?action=readAll&controller=produit">Produits</a></div>
-						<div><a class=txt_sub href="index.php?action=readAll&controller=utilisateur">Utilisateurs</a></div>
+						<div><a class=txt_sub href="index.php?action=show_panier&controller=utilisateur">Panier</a></div>
+						<div><a class=txt_sub href="index.php?action=readAll&controller=commande">Historique des commandes</a></div>
 						<?php
 						if(Session::is_admin()) {
 							echo '<div><a class=txt_sub href="index.php?action=readAll&controller=utilisateur">Utilisateurs</a></div>';
