@@ -194,7 +194,7 @@ class ControllerUtilisateur {
                     "loginUtilisateur" => $_GET['loginUtilisateur'],
                     "nonce" => NULL,
                 );
-                $u->update($data);
+                ModelUtilisateur::update($data);
                 $pagetitle = 'Validé';
                 $view = 'validate';
                 require (File::build_path(array('view', 'view.php')));
