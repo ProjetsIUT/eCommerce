@@ -94,6 +94,9 @@ class ControllerUtilisateur {
                     $view = 'deleted';
                     $pagetitle = 'Suppression d\'un utilisateur';
                     $tab_u = ModelUtilisateur::selectAll();
+                    if(Session::is_user($_GET['loginUtilisateur'])) {
+                        self::deconnect();
+                    }
                     require (File::build_path(array('view', 'view.php')));
                 }
                 else {
