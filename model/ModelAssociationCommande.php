@@ -42,5 +42,6 @@ class ModelAssociationCommande extends Model{
 	  }
   }
 
-
 }
+
+?>
