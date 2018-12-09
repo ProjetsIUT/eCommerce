@@ -16,7 +16,7 @@ if(Session::is_admin()){
         //var_dump($tab);
 
         $test = "ok";
-        array_push($tab,$test);
+        //array_push($tab,$test);
 
         setcookie("produits_panier",serialize($tab),time()+3600); //on dépose le cookie pour les produits du panier
 

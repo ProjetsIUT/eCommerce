@@ -190,11 +190,33 @@ class ControllerUtilisateur {
         $nr = $_GET['nonce'];
         if ($u) {
             if ($nr === $u->get('nonce')) {
-                $u->update(array("nonce" => NULL));
+                $data = array(
+                    "loginUtilisateur" => $_GET['loginUtilisateur'],
+                    "nonce" => NULL,
+                );
+                $u->update($data);
                 $pagetitle = 'Validé';
                 $view = 'validate';
                 require (File::build_path(array('view', 'view.php')));
             }
+            else if($u->get('nonce') == NULL){
+                $error_code = 'validate : Votre compte a déja été validé';
+                $view = 'error';
+                $pagetitle = 'Erreur';
+                require (File::build_path(array('view', 'error.php')));
+            }
+            else {
+                $error_code = 'validate : Nous ne pouvons accéder à votre requête';
+                $view = 'error';
+                $pagetitle = 'Erreur';
+                require (File::build_path(array('view', 'error.php')));
+            }
+        }
+        else {
+            $error_code = 'validate : loginUtilisateur inexistant';
+            $view = 'error';
+            $pagetitle = 'Erreur';
+            require (File::build_path(array('view', 'error.php')));
         }
     }
     
@@ -283,7 +305,7 @@ class ControllerUtilisateur {
                         "nonce" => $nonc,
                     );
                     $u = new ModelUtilisateur($data);
-                    if ($u->save($data)) {
+                    $u->save($data);
                         $destinataire = $_GET['emailUser'];
                         $sujet = 'Activer votre compte';
                         $entete = 'From serviceclient@pineapple.com';
@@ -292,18 +314,12 @@ class ControllerUtilisateur {
                         Pour activer votre compte, veuillez cliquez sur le lien-ci dessous ou 
                         copier/coller dans votre navigateur internet
 
-                        http://http://webinfo.iutmontp.univ-montp2.fr/~bourdesj/eCommerce/index.php?controller=utilisateur&action=validate&loginUtilisateur='.rawurlencode($_GET['loginUtilisateur']).'&nonce='.rawurlencode($nonc).'
+                        http://webinfo.iutmontp.univ-montp2.fr/~bourdesj/eCommerce/index.php?controller=utilisateur&action=validate&loginUtilisateur='.rawurlencode($_GET['loginUtilisateur']).'&nonce='.rawurlencode($nonc).'
 
 
                         Ceci est un mail automatique, Merci de ne pas y répondre';
                         mail($destinataire, $sujet, $mail, $entete);
                         require (File::build_path(array('view', 'view.php')));
-                    } else {
-                        $error_code = 'created : l\'utilisateur existe déja';
-                        $view = 'error';
-                        $pagetitle = 'Erreur';
-                        require (File::build_path(array('view', 'error.php')));                    
-                    }
                 } else {
                     $type = 'Ajout';
                     $verif = 'Votre email n\'est pas valide !';
