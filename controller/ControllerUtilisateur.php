@@ -39,7 +39,7 @@ class ControllerUtilisateur {
                         if($utype == 1) {
                             $utype = 'Oui';
                         }
-                        else {
+                        else if ($utype == 0 || $utype == NULL){
                             $utype = 'Non';
                         }
                     }
@@ -127,15 +127,14 @@ class ControllerUtilisateur {
     public static function deconnect() {
         session_unset(); 
         session_destroy();
-        $view = 'deconnected';
-        $pagetitle = 'Déconnecté';
-        require (File::build_path(array('view', 'view.php')));
+        $redirection = 'index.php';
+        header('Location: '.$redirection);
     }
 
     public static function update() {
         $type = "Modification";
         if (isset($_GET['loginUtilisateur'])) {
-            //if ($_SESSION['login'] === $_GET['login'] && !Session::is_admin()) {
+            if (Session::is_user($_GET['loginUtilisateur']) && !Session::is_admin()) {
                 $u = ModelUtilisateur::select($_GET['loginUtilisateur']);
                 $ulogin = $u->get('loginUtilisateur');
                 $uprenom = $u->get('prenomUtilisateur');
@@ -146,31 +145,30 @@ class ControllerUtilisateur {
                 $uidCB = $u->get('idCarteBleue');
                 $uemail = $u->get('emailUser');
                 $view = 'update';
-                $pagetitle = 'Utilisateur à modifier';
+                $pagetitle = 'Mon compte';
                 require (File::build_path(array('view', 'view.php')));
-            /*    
+            
             }
-            else if($_SESSION['login'] === $_GET['login'] || Session::is_admin()) {
-                $u = ModelUtilisateur::select($_GET['login']);
-                $nom = $u->get('nom');
-                $prenom = $u->get('prenom');
-                $mdp = $u->get('mdp');
-                if ($u->get('admin') == 1) {
-                    $admin = 0;
-                }
-                else if ($u->get('admin') == 0) {
-                    $admin = 1;
-                }
-                $controller = 'utilisateur';
+            else if(Session::is_admin()) {
+                $u = ModelUtilisateur::select($_GET['loginUtilisateur']);
+                $ulogin = $u->get('loginUtilisateur');
+                $uprenom = $u->get('prenomUtilisateur');
+                $unom = $u->get('nomUtilisateur');
+                $uadresseF = $u->get('adresseFacturationUtilisateur');
+                $uadresseL = $u->get('adresseLivraisonUtilisateur');
+                $umdp = $u->get('passUtilisateur');
+                $uidCB = $u->get('idCarteBleue');
+                $uemail = $u->get('emailUser');
+                $utype = $u->get('typeUser');
                 $view = 'update';
-                $pagetitle = 'Utilisateur à modifier';
+                $pagetitle = 'Utilisateur '.$ulogin;
                 require (File::build_path(array('view', 'view.php')));
             }
             else {
                 $view = 'connect';
                 $pagetitle = 'Connexion';
                 require (File::build_path(array('view', 'view.php')));
-            } */
+            } 
         }
         else {
             $error_code = 'update : loginUtilisateur vide';
@@ -191,29 +189,11 @@ class ControllerUtilisateur {
                     if($u->get('typeUser') == 1) {
                         $_SESSION['admin'] = true;
                     }
-                    else {
+                    else if($u->get('typeUser') == 0){
                         $_SESSION['admin'] = false;
                     }
-                    $view = 'detail';
-                    $pagetitle = 'Connecté';
-                    $ulogin = $u->get('loginUtilisateur');
-                    $uprenom = $u->get('prenomUtilisateur');
-                    $unom = $u->get('nomUtilisateur');
-                    $uadresseF = $u->get('adresseFacturationUtilisateur');
-                    $uadresseL = $u->get('adresseLivraisonUtilisateur');
-                    $umdp = $u->get('passUtilisateur');
-                    $uidCB = $u->get('idCarteBleue');
-                    $uemail = $u->get('emailUser');
-                    if ($uadresseF == NULL) {
-                        $uadresseF = 'non renseigné';
-                    }
-                    if ($uadresseL == NULL) {
-                        $uadresseL = 'non renseigné';
-                    }
-                    if ($uidCB == NULL) {
-                        $uidCB = 'non renseigné';
-                    }
-                    require (File::build_path(array('view', 'view.php')));
+                    $redirection = 'index.php?controller=utilisateur&action=read&loginUtilisateur='.$_GET['loginUtilisateur'].'';
+                    header('Location: '.$redirection);
                 }
                 else {
                     $verif = 'Votre mot de passe ou votre nom d\'utilisateur est incorrect';
@@ -324,13 +304,6 @@ class ControllerUtilisateur {
                 $pagetitle = 'Ajout d\'un utilisateur';
                 require (File::build_path(array('view', 'view.php')));
             }
-        
-            /*
-            else {
-                $view = 'connect';
-                $pagetitle = 'Connexion';
-                require (File::build_path(array('view', 'view.php')));
-            } */
 
         }
         else {

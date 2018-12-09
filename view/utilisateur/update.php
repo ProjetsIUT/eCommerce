@@ -20,7 +20,11 @@
         <input type="password" placeholder="Confirmer le mot de passe" name="vpassUtilisateur" id="vpassUtilisateur_id" required/>
         <input type="email" placeholder="example@gmail.com" name="emailUser" id="emailUser_id" />');
         if(Session::is_admin()) {
-          echo '';
+          echo '<label for="typeUser_id">Administrateur</label>
+          <select name="typeUser" id="typeUsers_id" size="1" required>
+              <option value="1"> Oui
+              <option value="0"> Non 
+          </select>';
         }
       }
       else if($_GET['action'] === 'update') {
@@ -34,6 +38,20 @@
         <input type="password" placeholder="Mot de passe" name="passUtilisateur" id="passUtilisateur_id" required/>
         <input type="password" placeholder="Confirmer le mot de passe" name="vpassUtilisateur" id="vpassUtilisateur_id" required/>
         <input type="email" value="'.htmlspecialchars($uemail).'" name="emailUser" id="emailUser_id" />');
+        if(Session::is_admin()) {
+          if($utype == 1) {
+            $dec = '<option value="1"> Oui
+            <option value="0"> Non'; 
+          }
+          else {
+            $dec = '<option value="0"> Non
+            <option value="1"> Oui';
+          }
+          echo '<label for="typeUser_id">Administrateur</label>
+          <select name="typeUser" id="typeUsers_id" size="1" required>
+              '.$dec.'
+          </select>';
+        }
       }
       else if($_GET['action'] === 'created') {
         echo('
@@ -47,6 +65,20 @@
         <input type="password" placeholder="Mot de passe" name="passUtilisateur" id="passUtilisateur_id" required/>
         <input type="password" placeholder="Confirmer le mot de passe" name="vpassUtilisateur" id="vpassUtilisateur_id" required/>
         <input type="email" value="'.htmlspecialchars($_GET['emailUser']).'" name="emailUser" id="emailUser_id" />');
+        if(Session::is_admin()) {
+          if($_GET['typeUser'] == 1) {
+            $dec = '<option value="1"> Oui
+            <option value="0"> Non'; 
+          }
+          else {
+            $dec = '<option value="0"> Non
+            <option value="1"> Oui';
+          }
+          echo '<label for="typeUser_id">Administrateur</label>
+          <select name="typeUser" id="typeUsers_id" size="1" required>
+              '.$dec.'
+          </select>';
+        }
       }
       else if ($_GET['action'] === 'updated') {
         echo('
@@ -60,6 +92,20 @@
         <input type="password" placeholder="Mot de passe" name="passUtilisateur" id="passUtilisateur_id" required/>
         <input type="password" placeholder="Confirmer le mot de passe" name="vpassUtilisateur" id="vpassUtilisateur_id" required/>
         <input type="email" value="'.htmlspecialchars($_GET['emailUser']).'" name="emailUser" id="emailUser_id" />');
+        if(Session::is_admin()) {
+          if($_GET['typeUser'] == 1) {
+            $dec = '<option value="1"> Oui
+            <option value="0"> Non'; 
+          }
+          else {
+            $dec = '<option value="0"> Non
+            <option value="1"> Oui';
+          }
+          echo '<label for="typeUser_id">Administrateur</label>
+          <select name="typeUser" id="typeUsers_id" size="1" required>
+              '.$dec.'
+          </select>';
+        }
       }
       
       
