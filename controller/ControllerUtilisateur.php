@@ -6,10 +6,17 @@ class ControllerUtilisateur {
     protected static $object = 'utilisateur';
     
     public static function readAll() {
-        $tab_u = ModelUtilisateur::selectAll();
-        $view = 'list';
-        $pagetitle = 'Liste des utilisateurs';
-        require (File::build_path(array('view', 'view.php')));
+        if(Session::is_admin()) {
+            $tab_u = ModelUtilisateur::selectAll();
+            $view = 'list';
+            $pagetitle = 'Liste des utilisateurs';
+            require (File::build_path(array('view', 'view.php')));
+        } else {
+            $error_code = 'readAll : Vous ne pouvez pas avoir accès à des informations confidentiels sur d\'autre client';
+            $view = 'error';
+            $pagetitle = 'Erreur';
+            require (File::build_path(array('view', 'error.php')));
+        }
     }
 
     public static function show_panier(){
@@ -177,6 +184,19 @@ class ControllerUtilisateur {
             require (File::build_path(array('view', 'error.php')));
         }
     }
+
+    public static function validate() {
+        $u = ModelUtilisateur::select($_GET['loginUtilisateur']);
+        $nr = $_GET['nonce'];
+        if ($u) {
+            if ($nr === $u->get('nonce')) {
+                $u->update(array("nonce" => NULL));
+                $pagetitle = 'Validé';
+                $view = 'validate';
+                require (File::build_path(array('view', 'view.php')));
+            }
+        }
+    }
     
     public static function connected() {
         if(isset($_GET['loginUtilisateur']) && $_GET['passUtilisateur']) {
@@ -185,15 +205,23 @@ class ControllerUtilisateur {
             $u = ModelUtilisateur::select($_GET['loginUtilisateur']);
             if($u) {
                 if($verif) {
-                    $_SESSION['loginUtilisateur'] = $_GET['loginUtilisateur'];
-                    if($u->get('typeUser') == 1) {
-                        $_SESSION['admin'] = true;
+                    if($u->get('nonce') == NULL) {
+                            $_SESSION['loginUtilisateur'] = $_GET['loginUtilisateur'];
+                        if($u->get('typeUser') == 1) {
+                            $_SESSION['admin'] = true;
+                        }
+                        else if($u->get('typeUser') == 0){
+                            $_SESSION['admin'] = false;
+                        }
+                        $redirection = 'index.php?controller=utilisateur&action=read&loginUtilisateur='.$_GET['loginUtilisateur'].'';
+                        header('Location: '.$redirection);
                     }
-                    else if($u->get('typeUser') == 0){
-                        $_SESSION['admin'] = false;
+                    else {
+                        $verif = 'Vous n\'avez pas validé votre adresse email !';
+                        $view = 'connect';
+                        $pagetitle = 'Se connecter';
+                        require (File::build_path(array('view', 'view.php')));
                     }
-                    $redirection = 'index.php?controller=utilisateur&action=read&loginUtilisateur='.$_GET['loginUtilisateur'].'';
-                    header('Location: '.$redirection);
                 }
                 else {
                     $verif = 'Votre mot de passe ou votre nom d\'utilisateur est incorrect';
@@ -232,26 +260,58 @@ class ControllerUtilisateur {
                 $pagetitle = 'Utilisateur ajouté';
                 $mdpsecu = Security::chiffrer($_GET['passUtilisateur']);
 
-                //$vemail = filter_var($_GET['emailUser'] , FILTER_VALIDATE_EMAIL);
-                /*
-                if (!$vemail) {
-                    $error_code = 'created : email non validé';
-                    $view = 'error';
-                    $pagetitle = 'Erreur';
-                    require (File::build_path(array('view', 'error.php')));
-                } */
-                $data = array(
-                    "loginUtilisateur" => $_GET['loginUtilisateur'],
-                    "nomUtilisateur" => $_GET['nomUtilisateur'],
-                    "prenomUtilisateur" => $_GET['prenomUtilisateur'],
-                    "adresseFacturationUtilisateur" => $_GET['adresseFacturationUtilisateur'],
-                    "adresseLivraisonUtilisateur" => $_GET['adresseLivraisonUtilisateur'],
-                    "passUtilisateur" => $mdpsecu,
-                    "emailUser" => $_GET['emailUser'],
-                );
-                $u = new ModelUtilisateur($data);
-                $u->save($data);
-                require (File::build_path(array('view', 'view.php')));
+                $vemail = filter_var($_GET['emailUser'] , FILTER_VALIDATE_EMAIL);
+                
+                if(Session::is_admin() && isset($_GET['typeUser'])) {
+                    $valuet = $_GET['typeUser'];
+                }
+                else {
+                    $valuet = NULL;
+                } 
+
+                if ($vemail) {
+                    $nonc = Security::generateRandomHex();
+                    $data = array(
+                        "loginUtilisateur" => $_GET['loginUtilisateur'],
+                        "nomUtilisateur" => $_GET['nomUtilisateur'],
+                        "prenomUtilisateur" => $_GET['prenomUtilisateur'],
+                        "adresseFacturationUtilisateur" => $_GET['adresseFacturationUtilisateur'],
+                        "adresseLivraisonUtilisateur" => $_GET['adresseLivraisonUtilisateur'],
+                        "passUtilisateur" => $mdpsecu,
+                        "emailUser" => $_GET['emailUser'],
+                        "typeUser" => $valuet,
+                        "nonce" => $nonc,
+                    );
+                    $u = new ModelUtilisateur($data);
+                    if ($u->save($data)) {
+                        $destinataire = $_GET['emailUser'];
+                        $sujet = 'Activer votre compte';
+                        $entete = 'From serviceclient@pineapple.com';
+                        $mail = 'Bienvenue sur PineApple,
+                        
+                        Pour activer votre compte, veuillez cliquez sur le lien-ci dessous ou 
+                        copier/coller dans votre navigateur internet
+
+                        http://http://webinfo.iutmontp.univ-montp2.fr/~bourdesj/eCommerce/index.php?controller=utilisateur&action=validate&loginUtilisateur='.rawurlencode($_GET['loginUtilisateur']).'&nonce='.rawurlencode($nonc).'
+
+
+                        Ceci est un mail automatique, Merci de ne pas y répondre';
+                        mail($destinataire, $sujet, $mail, $entete);
+                        require (File::build_path(array('view', 'view.php')));
+                    } else {
+                        $error_code = 'created : l\'utilisateur existe déja';
+                        $view = 'error';
+                        $pagetitle = 'Erreur';
+                        require (File::build_path(array('view', 'error.php')));                    
+                    }
+                } else {
+                    $type = 'Ajout';
+                    $verif = 'Votre email n\'est pas valide !';
+                    $view = 'update';
+                    $pagetitle = 'Ajout d\'un utilisateur';
+                    require (File::build_path(array('view', 'view.php')));
+                }
+                
             } else {
                 $type = 'Ajout';
                 $verif = 'Vos deux mots de passe ne sont pas identique !';
@@ -276,14 +336,6 @@ class ControllerUtilisateur {
                 $pagetitle = 'Utilisateur ajouté';
                 $mdpsecu = Security::chiffrer($_GET['passUtilisateur']);
 
-                //$vemail = filter_var($_GET['emailUser'] , FILTER_VALIDATE_EMAIL);
-                /*
-                if (!$vemail) {
-                    $error_code = 'created : email non validé';
-                    $view = 'error';
-                    $pagetitle = 'Erreur';
-                    require (File::build_path(array('view', 'error.php')));
-                } */
                 $data = array(
                     "loginUtilisateur" => $_GET['loginUtilisateur'],
                     "nomUtilisateur" => $_GET['nomUtilisateur'],
