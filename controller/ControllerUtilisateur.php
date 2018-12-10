@@ -32,7 +32,7 @@ class ControllerUtilisateur {
                     $unom = $u->get('nomUtilisateur');
                     $uadresseF = $u->get('adresseFacturationUtilisateur');
                     $uadresseL = $u->get('adresseLivraisonUtilisateur');
-                    $uidCB = $u->get('idCarteBleue');
+      
                     $uemail = $u->get('emailUser');
                     if ($uadresseF == NULL) {
                         $uadresseF = 'non renseigné';
@@ -40,9 +40,7 @@ class ControllerUtilisateur {
                     if ($uadresseL == NULL) {
                         $uadresseL = 'non renseigné';
                     }
-                    if ($uidCB == NULL) {
-                        $uidCB = 'non renseigné';
-                    }
+                
                     $view = 'detail';
                     $pagetitle = 'Informations sur l\'utilisateur';
                     require (File::build_path(array('view', 'view.php')));
@@ -178,6 +176,12 @@ class ControllerUtilisateur {
             if($verif) {
                 $u = ModelUtilisateur::select($_GET['loginUtilisateur']);
                 $_SESSION['loginUtilisateur'] = $_GET['loginUtilisateur'];
+                $_SESSION['nomUtilisateur'] = $u->get('nomUtilisateur');
+                $_SESSION['prenomUtilisateur'] = $u->get('prenomUtilisateur');
+                $_SESSION['adresseF'] = $u->get('adresseFacturationUtilisateur');
+                $_SESSION['adresseL'] = $u->get('adresseLivraisonUtilisateur');
+
+
                 if($u->get('typeUser') == 1) {
                     $_SESSION['admin'] = true;
                 }
@@ -192,7 +196,6 @@ class ControllerUtilisateur {
                 $uadresseF = $u->get('adresseFacturationUtilisateur');
                 $uadresseL = $u->get('adresseLivraisonUtilisateur');
                 $umdp = $u->get('passUtilisateur');
-                $uidCB = $u->get('idCarteBleue');
                 $uemail = $u->get('emailUser');
                 if ($uadresseF == NULL) {
                     $uadresseF = 'non renseigné';
@@ -323,6 +326,7 @@ class ControllerUtilisateur {
             require (File::build_path(array('view', 'error.php')));
         }
     }
+
 
     
 }

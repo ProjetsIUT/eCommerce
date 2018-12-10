@@ -89,6 +89,13 @@ ul {
 	margin:0px;
 }
 
+#ligne_commande{
+
+	margin:20px 0px;
+	
+
+}
+
 
 /*
 div.Produit ~ div.idetail img{
@@ -228,6 +235,12 @@ color:grey;
 color:grey;
 }
 
+.total{
+
+	float: right;
+	font-family: arial;
+
+}
 
 .submenu{ /*Sous Menus*/
 display:none;
@@ -371,7 +384,7 @@ h1{
 }
 
 h2 {
-	margin:50px 50px;
+	margin:10px 10px;
 	text-align:center;
 }
 
@@ -509,6 +522,7 @@ font-size:24px;
 	border-radius: 5px;
 	background-color:#2F4F8A;;
 	transition-duration:0.5s;
+	cursor:pointer;
 }
 
 .bouton_red {
@@ -962,6 +976,16 @@ footer>section {
 	margin-top:20px;
 	text-align:center;
 	
+}
+
+.div_cb{
+
+	margin-bottom:20px;
+	text-align: center;
+	background-color:cornflowerblue;
+	border-radius:10px;
+	padding:10px;
+
 }
 
 .bloc>div>h3 {

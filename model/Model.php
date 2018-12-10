@@ -28,6 +28,7 @@
             
         }
 
+
         public static function selectAll() {
             $table_name = 'ecommerce_'.static::$object;
             $name = static::$object;

@@ -10,7 +10,7 @@ class ModelAssociationCommande extends Model{
 
 	private $idCommande;
 	private $codeProduit;
-	private $quantité;
+	private $quantite;
 	private $prixTotalPourProduit;
 
  public function get($nom_attribut) {
@@ -36,11 +36,32 @@ class ModelAssociationCommande extends Model{
 	   
 	    $this->idCommande= $data["idCommande"];
 	    $this->codeProduit = $data["codeProduit"];
-	    $this->quantité=$data["quantité"];
+	    $this->quantite=$data["quantité"];
 	    $this->prixTotalPourProduit=$data["prixTotalPourProduit"];
 
 	  }
   }
+
+
+   public static function selectByOrder() {
+
+
+            $sql = "SELECT A.idCommande, codeProduit, quantite, prixTotalPourProduit FROM ecommerce_associationCommande A JOIN ecommerce_commande C ON A.idCommande = C.idCommande WHERE loginUtilisateur=:userId AND C.idCommande=:commandeId ";
+            // Préparation de la requête
+            $req_prep = Model::$pdo->prepare($sql); //permet de protéger la requete SQL
+           
+            $values = array(
+                "userId" => $_SESSION['loginUtilisateur'],
+                "commandeId" =>$_GET['codeCommande'],
+            );
+
+            $req_prep->execute($values);
+
+            $req_prep->setFetchMode(PDO::FETCH_CLASS, "ModelAssociationCommande");
+            $tab_obj = $req_prep->fetchAll();
+            return $tab_obj;
+    }
+
 
 }
 

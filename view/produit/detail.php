@@ -21,6 +21,7 @@ if(Session::is_admin()) {
             <input type="hidden" name="codeProduit" value= <?php echo '"' . htmlspecialchars($p->get("codeProduit")) . '"' ?>>
             <input type="hidden" name="controller" value="produit">
             <input type="hidden" name="action" value="ajoutPanier">
+            <input type="hidden" name="quantite" value='1'>
 
 
 

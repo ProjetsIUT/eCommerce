@@ -10,7 +10,6 @@ class ModelUtilisateur extends Model{
     private $adresseFacturationUtilisateur;
     private $adresseLivraisonUtilisateur;
     private $passUtilisateur;
-    private $idCarteBleue;
     private $emailUser;
     private $typeUser;
 
@@ -31,14 +30,12 @@ class ModelUtilisateur extends Model{
     // un constructeur
     public function __construct($data = array()) {
         if (!empty($data)) {
-            //$this->codeUtilisateur = $data['codeUtilisateur'];
             $this->loginUtilisateur = $data['loginUtilisateur'];
             $this->nomUtilisateur = $data['nomUtilisateur'];
             $this->prenomUtilisateur = $data['prenomUtilisateur'];
             $this->adresseFacturationUtilisateur = $data['adresseFacturationUtilisateur'];
             $this->adresseLivraisonUtilisateur = $data['adresseLivraisonUtilisateur'];
             $this->passUtilisateur = $data['passUtilisateur'];
-            //$this->idCarteBleue = $data['idCarteBleue'];
             $this->emailUser = $data['emailUser'];
             $this->typeUser = $data['typeUser'];
         }

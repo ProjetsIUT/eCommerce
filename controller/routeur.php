@@ -3,6 +3,7 @@
 require_once (File::build_path(array('controller', 'ControllerProduit.php')));
 require_once (File::build_path(array('controller', 'ControllerUtilisateur.php')));
 require_once (File::build_path(array('controller', 'ControllerCommande.php')));
+require_once (File::build_path(array('controller', 'ControllerCartesBleues.php')));
 $controller_default = 'produit';
 
 if(!isset($_GET['controller'])) {
