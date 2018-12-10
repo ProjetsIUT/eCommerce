@@ -39,7 +39,6 @@ class ControllerUtilisateur {
                     $unom = $u->get('nomUtilisateur');
                     $uadresseF = $u->get('adresseFacturationUtilisateur');
                     $uadresseL = $u->get('adresseLivraisonUtilisateur');
-      
                     $uemail = $u->get('emailUser');
                     if (Session::is_admin()) {
                         $utype = $u->get('typeUser');
@@ -120,23 +119,47 @@ class ControllerUtilisateur {
     }
     
     public static function create() {
-        $type = 'Ajout';
-        $view = 'update';
-        $pagetitle = 'Ajout d\'un utilisateur';
-        require (File::build_path(array('view', 'view.php')));
+        if(Session::is_admin() || !isset($_SESSION['loginUtilisateur'])) {
+            $type = 'Ajout';
+            $view = 'update';
+            $pagetitle = 'Ajout d\'un utilisateur';
+            require (File::build_path(array('view', 'view.php')));
+        }
+        else {
+            $error_code = 'create : vous ne pouvez pas créer un autre compte en étant connecté';
+            $view = 'error';
+            $pagetitle = 'Erreur';
+            require (File::build_path(array('view', 'error.php')));
+        }
     }
 
     public static function connect() {
-        $view = 'connect';
-        $pagetitle = 'Se connecter';
-        require (File::build_path(array('view', 'view.php')));
+        if(Session::is_admin() || !isset($_SESSION['loginUtilisateur'])) {
+            $view = 'connect';
+            $pagetitle = 'Se connecter';
+            require (File::build_path(array('view', 'view.php')));
+        }
+        else {
+            $error_code = 'connect : vous êtes déja connecté';
+            $view = 'error';
+            $pagetitle = 'Erreur';
+            require (File::build_path(array('view', 'error.php')));
+        }
     }
 
     public static function deconnect() {
-        session_unset(); 
-        session_destroy();
-        $redirection = 'index.php';
-        header('Location: '.$redirection);
+        if(isset($_SESSION['loginUtilisateur'])) {
+            session_unset(); 
+            session_destroy();
+            $redirection = 'index.php';
+            header('Location: '.$redirection);
+        }
+        else {
+            $error_code = 'deconnect : vous êtes déja deconnecté';
+            $view = 'error';
+            $pagetitle = 'Erreur';
+            require (File::build_path(array('view', 'error.php')));
+        }
     }
 
     public static function update() {
@@ -173,9 +196,10 @@ class ControllerUtilisateur {
                 require (File::build_path(array('view', 'view.php')));
             }
             else {
-                $view = 'connect';
-                $pagetitle = 'Connexion';
-                require (File::build_path(array('view', 'view.php')));
+                $error_code = 'update : vous n\'avez pas accès à ces données';
+                $view = 'error';
+                $pagetitle = 'Erreur';
+                require (File::build_path(array('view', 'error.php')));
             } 
         }
         else {
@@ -230,6 +254,9 @@ class ControllerUtilisateur {
                 if($verif) {
                     if($u->get('nonce') == NULL) {
                             $_SESSION['loginUtilisateur'] = $_GET['loginUtilisateur'];
+                            $_SESSION['prenomUtilisateur'] = $u->get('prenomUtilisateur');
+                            $_SESSION['nomUtilisateur'] = $u->get('nomUtilisateur');
+                            $_SESSION['adresseL'] = $u->get('adresseLivraisonUtilisateur');
                         if($u->get('typeUser') == 1) {
                             $_SESSION['admin'] = true;
                         }

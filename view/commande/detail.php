@@ -47,7 +47,7 @@
 	        	 <br> 
 	        	 <a>Prix unitaire: ' . htmlspecialchars($p->get('prixProduit')) . '€</a> 
 	        	 <br>
-	        	 <a>Quantité: ' . htmlspecialchars($tab_qté[$i]) .'
+	        	 <a>Quantité: ' . htmlspecialchars($tab_qte[$i]) .'
 
 	        	</div>
 	        
