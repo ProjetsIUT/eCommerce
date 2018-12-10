@@ -349,31 +349,38 @@ class ControllerUtilisateur {
 
     public static function updated() {
         if(isset($_GET['loginUtilisateur']) && isset($_GET['nomUtilisateur']) && isset($_GET['prenomUtilisateur']) && isset($_GET['adresseFacturationUtilisateur']) && isset($_GET['adresseLivraisonUtilisateur']) && isset($_GET['passUtilisateur']) && isset($_GET['emailUser'])) {
+            if (Session::is_user($_GET['loginUtilisateur']) || Session::is_admin()) {
+                if($_GET['passUtilisateur'] === $_GET['vpassUtilisateur']) {
+                    $view = 'updated';
+                    $pagetitle = 'Utilisateur ajouté';
+                    $mdpsecu = Security::chiffrer($_GET['passUtilisateur']);
 
-            if($_GET['passUtilisateur'] === $_GET['vpassUtilisateur']) {
-                $view = 'updated';
-                $pagetitle = 'Utilisateur ajouté';
-                $mdpsecu = Security::chiffrer($_GET['passUtilisateur']);
-
-                $data = array(
-                    "loginUtilisateur" => $_GET['loginUtilisateur'],
-                    "nomUtilisateur" => $_GET['nomUtilisateur'],
-                    "prenomUtilisateur" => $_GET['prenomUtilisateur'],
-                    "adresseFacturationUtilisateur" => $_GET['adresseFacturationUtilisateur'],
-                    "adresseLivraisonUtilisateur" => $_GET['adresseLivraisonUtilisateur'],
-                    "passUtilisateur" => $mdpsecu,
-                    "emailUser" => $_GET['emailUser'],
-                    "typeUser" => $_GET['typeUser'],
-                );
-                $u = new ModelUtilisateur($data);
-                $u->update($data);
-                require (File::build_path(array('view', 'view.php')));
-            } else {
-                $type = 'Ajout';
-                $verif = 'Vos deux mots de passe ne sont pas identique !';
-                $view = 'update';
-                $pagetitle = 'Ajout d\'un utilisateur';
-                require (File::build_path(array('view', 'view.php')));
+                    $data = array(
+                        "loginUtilisateur" => $_GET['loginUtilisateur'],
+                        "nomUtilisateur" => $_GET['nomUtilisateur'],
+                        "prenomUtilisateur" => $_GET['prenomUtilisateur'],
+                        "adresseFacturationUtilisateur" => $_GET['adresseFacturationUtilisateur'],
+                        "adresseLivraisonUtilisateur" => $_GET['adresseLivraisonUtilisateur'],
+                        "passUtilisateur" => $mdpsecu,
+                        "emailUser" => $_GET['emailUser'],
+                        "typeUser" => $_GET['typeUser'],
+                    );
+                    $u = new ModelUtilisateur($data);
+                    $u->update($data);
+                    require (File::build_path(array('view', 'view.php')));
+                } else {
+                    $type = 'Ajout';
+                    $verif = 'Vos deux mots de passe ne sont pas identique !';
+                    $view = 'update';
+                    $pagetitle = 'Ajout d\'un utilisateur';
+                    require (File::build_path(array('view', 'view.php')));
+                }
+            }
+            else {
+                $error_code = 'updated : Vous ne pouvez pas avoir accès à ces informations';
+                $view = 'error';
+                $pagetitle = 'Erreur';
+                require (File::build_path(array('view', 'error.php')));
             }
 
         }
