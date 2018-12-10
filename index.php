@@ -6,9 +6,7 @@ if (!isset($_COOKIE["produits_panier"])){
 
 
 	$tab = array();
-//	$t = array("22",1);
-//	array_push($tab, $t);
-	setcookie("produits_panier",serialize($tab),time()+30); //on dépose le cookie pour les produits du panier
+	setcookie("produits_panier",serialize($tab),time()+3600); //on dépose le cookie pour les produits du panier
 
 
 }

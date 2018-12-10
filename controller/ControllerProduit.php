@@ -24,7 +24,7 @@ class ControllerProduit {
                 else if ($p->get('stockProduit') == 1) {
                     $valueStock = 'Plus qu\'un seul produit en stock !';
                 }
-                else if ($p->get('stockProduit')==0){
+                else if ($p->get('stockProduit')<=0){
 
                     $valueStock = 'Produit en rupture de stock';
                 
@@ -192,24 +192,7 @@ class ControllerProduit {
         }
     }
 
-/*    public static function ajoutPanier(){
 
-        $tab = unserialize($_COOKIE["produits_panier"]);
-        $tab_produit = array() 
-
-        $code = $_GET['codeProduit'];
-
-        array_push($tab,$code);
-
-        setcookie("produits_panier",serialize($tab),time()+3600); //on dépose le cookie pour les produits du panier
-
-        $tab_p = ModelProduit::selectAll();
-        $view = 'list';
-        $pagetitle = 'Nos produits';
-        require (File::build_path(array('view', 'view.php')));
-
-        
-    }*/
 
     public static function ajoutPanier(){
 
@@ -217,6 +200,7 @@ class ControllerProduit {
         $tab_new = array();
         $tab_produit = array();
         $code = $_GET['codeProduit'];
+        $qté = $_GET['quantite'];
         $found=false;
 
         if(!empty($tab)){
@@ -228,7 +212,13 @@ class ControllerProduit {
                 if($code===$tab_p[0]){
 
                     array_push($tab_produit,$code);
-                    array_push($tab_produit,$tab_p[1]+1);
+                    if($tab_p[1]+$qté <= 0){
+
+
+                        self::retirerPanier();
+                        exit(0);
+                    }
+                    array_push($tab_produit,$tab_p[1]+$qté);
 
                     array_push($tab_new, $tab_produit);
                     $found=true;
@@ -250,15 +240,19 @@ class ControllerProduit {
                  array_push($tab_produit,1);
 
                  array_push($tab, $tab_produit);
-                 setcookie("produits_panier",serialize($tab),time()+30);
-                 self::readAll();
+                 setcookie("produits_panier",serialize($tab),time()+3600);
+                 header('Location: ./index.php?action=show_panier&controller=utilisateur');
+                 exit(0);
+           
 
 
                 }else{
 
 
-                  setcookie("produits_panier",serialize($tab_new),time()+30);
-                  self::readAll();
+                  setcookie("produits_panier",serialize($tab_new),time()+3600);
+                  header('Location: ./index.php?action=show_panier&controller=utilisateur');
+                  exit(0);
+           
 
 
                 }
@@ -271,9 +265,9 @@ class ControllerProduit {
 
             array_push($tab, $tab_produit);
 
-            setcookie("produits_panier",serialize($tab),time()+30); //on dépose le cookie pour les produits du panier
-
-            self::readAll();
+            setcookie("produits_panier",serialize($tab),time()+3600); //on dépose le cookie pour les produits du panier
+            header('Location: ./index.php?action=show_panier&controller=utilisateur');
+          
 
 
  
@@ -297,12 +291,34 @@ class ControllerProduit {
             }
         }
 
-        setcookie("produits_panier",serialize($new_tab),time()+30); //on dépose le cookie pour les produits du panier
+        setcookie("produits_panier",serialize($new_tab),time()+3600); //on dépose le cookie pour les produits du panier
 
         header('Location: ./index.php?controller=utilisateur&action=show_panier');
         exit();
     
     }
+
+    public static function majStock($produit,$qte){
+
+      $stock_produit=htmlspecialchars($produit->get("stockProduit"));
+      $new_stock = $stock_produit - $qte;
+
+      $data = array(
+                        "codeProduit" => htmlspecialchars($produit->get('codeProduit')),
+                        "nomProduit" => htmlspecialchars($produit->get('nomProduit')),
+                        "prixProduit" => htmlspecialchars($produit->get('prixProduit')),
+                        "descProduit" => htmlspecialchars($produit->get('descProduit')),
+                        "stockProduit" => $new_stock,
+      );
+
+       $produit->update($data);
+
+
+  }
+
+
+
+
 }
 
 ?>

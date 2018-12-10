@@ -43,7 +43,7 @@
 			// Si $controleur='voiture' et $view='list',
 			// alors $filepath="/chemin_du_site/view/voiture/list.php"
             echo '<p> Erreur de la fonction '.$error_code.' pour l\'objet '.self::$object.'
-                <br>Excusez-nous pour la gêne occasioné. <br>Vous allez être redirigez vers la page d\'accueil.</p>
+                <p>Redirection vers la page d\'accueil...</p>
             <meta http-equiv="refresh" content="5; URL=index.php" />';
 			?>
 			</main>

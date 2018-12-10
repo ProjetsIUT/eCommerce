@@ -4,10 +4,10 @@
 
 	<?php
 
-		$idCommande = $c ->get('idCommande');
-		$prixTotalCommande = $c ->get('prixTotalCommande');
-		$adresseLivraisonCommande = $c ->get('adresseLivraisonCommande');
-		$paiementFois= $c -> get('paiementFois');
+		$idCommande = htmlspecialchars($c ->get('idCommande'));
+		$prixTotalCommande = htmlspecialchars($c ->get('prixTotalCommande'));
+		$adresseLivraisonCommande = htmlspecialchars($c ->get('adresseLivraisonCommande'));
+		$paiementFois= htmlspecialchars($c -> get('paiementFois'));
 
 
 	?>
@@ -20,6 +20,8 @@
 	<br>
 	<a>Commande livrée au : <?php echo htmlspecialchars($adresseLivraisonCommande) ?></a>
 	<br>
+	<a>Commande payée en : <?php echo $paiementFois ?> fois</a>
+	<br>
 	<h3>Articles commandés:</h3>
 	
 	<div class=responsive>
@@ -27,20 +29,21 @@
 
 	<?php
 
-		$i=0;
 
+	    $i = 0;
 	    foreach ($tab_p as $p) {
 
-	        $img_nom = $p->get('nomProduit').'.png';
-	        $codeP = $p->get('codeProduit');
+	        $img_nom = htmlspecialchars($p->get('nomProduit')).'.png';
+	        $codeP = htmlspecialchars($p->get('codeProduit'));
+
 	        echo '
 
 	        <div class=Produit> 
 	        	<a> <img src="./Images/'.htmlspecialchars($img_nom).'" > </a>
 
-	        	<div class=desc>'
+	        	<div class=desc>
 
-	        	 .htmlspecialchars($p->get('nomProduit')).' 
+	        	 <a>'.htmlspecialchars($p->get('nomProduit')).'</a> 
 	        	 <br> 
 	        	 <a>Prix unitaire: ' . htmlspecialchars($p->get('prixProduit')) . '€</a> 
 	        	 <br>

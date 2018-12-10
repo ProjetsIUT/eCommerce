@@ -1,6 +1,6 @@
 <form method="get" action="index.php">
   <fieldset>
-    <legend><?php echo htmlspecialchars($type)?> d'un utilisateur</legend>
+    <legend><?php echo htmlspecialchars($type)?></legend>
     <p>
       
       <?php 
@@ -14,8 +14,15 @@
         <input type="text" placeholder="Login" name="loginUtilisateur" id="loginUtilisateur_id" required/>
         <input type="text" placeholder="Nom" name="nomUtilisateur" id="nomUtilisateur_id" required/>
         <input type="text" placeholder="Prenom" name="prenomUtilisateur" id="prenomUtilisateur_id" required/>
+        <br>
+        <label>Adresse de facturation:</label>
+        <br>
         <textarea name="adresseFacturationUtilisateur" id="adresseFacturationUtilisateur_id" > Adresse de facturation </textarea>
+        <br>
+        <label>Adresse de livraison:</label>
+        <br>
         <textarea name="adresseLivraisonUtilisateur" id="adresseLivraisonUtilisateur_id" > Adresse de livraison </textarea>
+        <br>
         <input type="password" placeholder="Mot de passe" name="passUtilisateur" id="passUtilisateur_id" required/>
         <input type="password" placeholder="Confirmer le mot de passe" name="vpassUtilisateur" id="vpassUtilisateur_id" required/>
         <input type="email" placeholder="example@gmail.com" name="emailUser" id="emailUser_id" />');
@@ -33,8 +40,15 @@
         <input type="text" value="'.htmlspecialchars($ulogin).'" name="loginUtilisateur" id="loginUtilisateur_id" readonly required/>
         <input type="text" value="'.htmlspecialchars($unom).'" name="nomUtilisateur" id="nomUtilisateur_id" required/>
         <input type="text" value="'.htmlspecialchars($uprenom).'" name="prenomUtilisateur" id="prenomUtilisateur_id" required/>
+        <br>
+        <label>Adresse de facturation:</label>
+        <br>
         <textarea name="adresseFacturationUtilisateur" id="adresseFacturationUtilisateur_id" > '.htmlspecialchars($uadresseF).' </textarea>
+        <br>
+        <label>Adresse de livraison:</label>
+        <br>
         <textarea name="adresseLivraisonUtilisateur" id="adresseLivraisonUtilisateur_id" > '.htmlspecialchars($uadresseL).' </textarea>
+        <br>
         <input type="password" placeholder="Mot de passe" name="passUtilisateur" id="passUtilisateur_id" required/>
         <input type="password" placeholder="Confirmer le mot de passe" name="vpassUtilisateur" id="vpassUtilisateur_id" required/>
         <input type="email" value="'.htmlspecialchars($uemail).'" name="emailUser" id="emailUser_id" />');
@@ -60,8 +74,15 @@
         <input type="text" value="'.htmlspecialchars($_GET['loginUtilisateur']).'" name="loginUtilisateur" id="loginUtilisateur_id" required/>
         <input type="text" value="'.htmlspecialchars($_GET['nomUtilisateur']).'" name="nomUtilisateur" id="nomUtilisateur_id" required/>
         <input type="text" value="'.htmlspecialchars($_GET['prenomUtilisateur']).'" name="prenomUtilisateur" id="prenomUtilisateur_id" required/>
-        <textarea name="adresseFacturationUtilisateur" id="adresseFacturationUtilisateur_id" > '.htmlspecialchars($_GET['adresseFacturationUtilisateur']).' </textarea>
+        <br>
+        <label>Adresse de facturation:</label>
+        <br>
+        <textarea name="adresseFacturationUtilisateur" id="adresseFacturationUtilisateur_id" > '.htmlspecialchars($_GET['adresseFacturationUtilisateur']).'</textarea>
+        <br>
+        <label>Adresse de livraison:</label>
+        <br>
         <textarea name="adresseLivraisonUtilisateur" id="adresseLivraisonUtilisateur_id" > '.htmlspecialchars($_GET['adresseLivraisonUtilisateur']).' </textarea>
+        <br>
         <input type="password" placeholder="Mot de passe" name="passUtilisateur" id="passUtilisateur_id" required/>
         <input type="password" placeholder="Confirmer le mot de passe" name="vpassUtilisateur" id="vpassUtilisateur_id" required/>
         <input type="email" value="'.htmlspecialchars($_GET['emailUser']).'" name="emailUser" id="emailUser_id" />');
@@ -87,8 +108,14 @@
         <input type="text" value="'.htmlspecialchars($_GET['loginUtilisateur']).'" name="loginUtilisateur" id="loginUtilisateur_id" required/>
         <input type="text" value="'.htmlspecialchars($_GET['nomUtilisateur']).'" name="nomUtilisateur" id="nomUtilisateur_id" required/>
         <input type="text" value="'.htmlspecialchars($_GET['prenomUtilisateur']).'" name="prenomUtilisateur" id="prenomUtilisateur_id" required/>
-        <textarea name="adresseFacturationUtilisateur" id="adresseFacturationUtilisateur_id" > '.htmlspecialchars($_GET['adresseFacturationUtilisateur']).' </textarea>
+        <br>
+        <label>Adresse de facturation:</label>
+        <br>
+        <textarea name="adresseFacturationUtilisateur" id="adresseFacturationUtilisateur_id" > '.htmlspecialchars($_GET['adresseFacturationUtilisateur']).'</textarea>
+        <label>Adresse de livraison:</label>
+        <br>
         <textarea name="adresseLivraisonUtilisateur" id="adresseLivraisonUtilisateur_id" > '.htmlspecialchars($_GET['adresseLivraisonUtilisateur']).' </textarea>
+        <br>
         <input type="password" placeholder="Mot de passe" name="passUtilisateur" id="passUtilisateur_id" required/>
         <input type="password" placeholder="Confirmer le mot de passe" name="vpassUtilisateur" id="vpassUtilisateur_id" required/>
         <input type="email" value="'.htmlspecialchars($_GET['emailUser']).'" name="emailUser" id="emailUser_id" />');
@@ -112,7 +139,7 @@
       ?>
     </p>
     <p>
-      <input type="submit" <?php echo 'value=" '.htmlspecialchars($type).' d\'utilisateur !"'; ?> />
+      <input class="submit_btn" type="submit"value="Enregistrer" />
     </p>
   </fieldset> 
 </form>

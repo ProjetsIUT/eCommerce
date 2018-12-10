@@ -7,48 +7,94 @@
 	
         <?php
 
-                $tab= unserialize($_COOKIE["produits_panier"]);
+              if(isset($_COOKIE["produits_panier"])){
 
-         
-               foreach ($tab as $tab_produit) {
+                   $tab= unserialize($_COOKIE["produits_panier"]); 
 
-                if($tab_produit!="null"){
+              }else{
 
-                $p=ModelProduit::select($tab_produit[0]);
-                $qté=$tab_produit[1];
+                $tab = array();
+              }
+
+           
+              if(!empty($tab)){
 
 
-                $img_nom = $p->get('nomProduit').'.png';
-                $codeP = $p->get('codeProduit');
-                echo '
-                <div class=Produit> 
-                    <a href="index.php?controller=produit&action=read&codeProduit='.rawurlencode($codeP).'">
-                        <img src="./Images/'.htmlspecialchars($img_nom).'" > 
-                    </a>
 
-                    <div class=desc>'.htmlspecialchars($p->get('nomProduit')).' 
-                     <br> 
-                     <a>Seulement  ' . htmlspecialchars($p->get('prixProduit')) . '€</a>
-                     <br>
-                     <a>Quantité:' . $qté . '   
-                     <br> 
+                   $montant_total=0;
 
-                     <br>   
-                     <a class="bouton_red" href="./index.php?controller=produit&action=retirerPanier&codeProduit=' . $p->get('codeProduit') . '">Retirer</a>
-                    </div>
+             
+                   foreach ($tab as $tab_produit) {
 
-                
-                </div>';
+                    if($tab_produit!="null"){
 
-            }
-            }
+                        $p=ModelProduit::select($tab_produit[0]);
+                    
+                        $qté=$tab_produit[1];
+                         $montant_total+=(htmlspecialchars($p->get('prixProduit')))*$qté;
+
+
+                        $img_nom = htmlspecialchars($p->get('nomProduit')).'.png';
+                        $codeP = htmlspecialchars($p->get('codeProduit'));
+                        echo '
+                        <div class=Produit> 
+                            <a href="index.php?controller=produit&action=read&codeProduit='.rawurlencode($codeP).'">
+                                <img src="./Images/'.htmlspecialchars($img_nom).'" > 
+                            </a>
+
+                            <div class=desc>'.htmlspecialchars($p->get('nomProduit')).' 
+                             <br> 
+                             <a>Seulement  ' . htmlspecialchars($p->get('prixProduit')) . '€</a>
+                             <br>
+                             <a>Quantité:' . $qté . '   
+                             <br>
+                             <br>
+                             <a class="bouton" href="./index.php?codeProduit=' .$codeP . '&controller=produit&action=ajoutPanier&quantite=-1">-</a>
+                             <a class="bouton" href="./index.php?codeProduit=' .$codeP . '&controller=produit&action=ajoutPanier&quantite=1">+</a>
+                       
+                            </div>
+
+                        
+                        </div>';
+
+                    }
+                }
+
+        }
 
         ?>
 
 
 	</div>
 
-	<a class="bouton_panier">Passer la commande</a>
+
+    <?php 
+
+        if(isset($montant_total)){
+
+            echo'
+
+            <strong class="total">Total: '. $montant_total . '€</strong>
+
+            <br>
+            <a class="bouton_panier" href="./index.php?controller=commande&action=passerCommande&montant='. $montant_total .'">Passer la commande</a>
+            ';
+
+
+        }else{
+
+            echo '
+
+                <div class="div_center">
+                <h2>Votre panier est vide !</h2>
+                <a class="bouton" href="./">Continuer vos achats sans plus attendre !</a> 
+                </div>
+
+            ';
+        } 
+
+    ?>
+
 
 
 

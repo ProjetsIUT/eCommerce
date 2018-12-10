@@ -39,7 +39,7 @@ class ControllerUtilisateur {
                     $unom = $u->get('nomUtilisateur');
                     $uadresseF = $u->get('adresseFacturationUtilisateur');
                     $uadresseL = $u->get('adresseLivraisonUtilisateur');
-                    $uidCB = $u->get('idCarteBleue');
+      
                     $uemail = $u->get('emailUser');
                     if (Session::is_admin()) {
                         $utype = $u->get('typeUser');
@@ -56,9 +56,7 @@ class ControllerUtilisateur {
                     if ($uadresseL == NULL) {
                         $uadresseL = 'non renseigné';
                     }
-                    if ($uidCB == NULL) {
-                        $uidCB = 'non renseigné';
-                    }
+                
                     $view = 'detail';
                     $pagetitle = 'Informations sur l\'utilisateur';
                     require (File::build_path(array('view', 'view.php')));
@@ -391,6 +389,7 @@ class ControllerUtilisateur {
             require (File::build_path(array('view', 'error.php')));
         }
     }
+
 
     
 }
