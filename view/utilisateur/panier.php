@@ -31,11 +31,12 @@
                         $p=ModelProduit::select($tab_produit[0]);
                     
                         $qté=$tab_produit[1];
-                         $montant_total+=(htmlspecialchars($p->get('prixProduit')))*$qté;
+                        $montant_total+=(htmlspecialchars($p->get('prixProduit')))*$qté;
 
-
-                        $img_nom = htmlspecialchars($p->get('nomProduit')).'.png';
                         $codeP = htmlspecialchars($p->get('codeProduit'));
+
+                        $img_nom = $codeP . '.png';
+                       
                         echo '
                         <div class=Produit> 
                             <a href="index.php?controller=produit&action=read&codeProduit='.rawurlencode($codeP).'">

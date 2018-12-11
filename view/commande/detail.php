@@ -33,8 +33,9 @@
 	    $i = 0;
 	    foreach ($tab_p as $p) {
 
-	        $img_nom = htmlspecialchars($p->get('nomProduit')).'.png';
+	    
 	        $codeP = htmlspecialchars($p->get('codeProduit'));
+	        $img_nom = $codeP .'.png';
 
 	        echo '
 

@@ -20,8 +20,9 @@ if(Session::is_admin()){
 
     foreach ($tab_p as $p) {
 
-        $img_nom = $p->get('nomProduit').'.png';
+        
         $codeP = $p->get('codeProduit');
+        $img_nom =$codeP . '.png';
         echo '
         <div class=Produit> 
             <a href="index.php?controller=produit&action=read&codeProduit='.rawurlencode($codeP).'">

@@ -32,7 +32,7 @@ class ControllerProduit {
                 else {
                     $valueStock = 'Plus que '.$p->get('stockProduit').' produits en stock !';
                 }
-                $img_nom = $p->get('nomProduit').'.png';
+                $img_nom = $p->get('codeProduit').'.png';
                 $view = 'detail';
                 $pagetitle = ''.$p->get('nomProduit').'';
                 require (File::build_path(array('view', 'view.php')));
