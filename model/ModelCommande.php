@@ -37,7 +37,7 @@ class ModelCommande extends Model{
   public function __construct($data = array()) {
 
 	  if (!empty($data)) {
-	    
+
 	    $this->idCommande= $data["idCommande"];
 	    $this->loginUtilisateur = $data["loginUtilisateur"];
 	    $this->prixTotalCommande=$data["prixTotalCommande"];

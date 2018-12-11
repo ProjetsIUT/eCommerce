@@ -42,11 +42,11 @@
 
 	<label>Code Carte Bleue:</label>
 	<br>
-	<input type="number" name="code" max="9999999999999999" required >
+	<input type="text" name="code" required >
 	<br>
 	<label>Date d'expiration (MM/AA): </label>
 	<br>
-	<input type="text" name="date" required maxlength="5" >
+	<input type="text" name="date"  required maxlength="5" >
 	<br>
 	<label>Cryptogramme:</label>
 	<br>

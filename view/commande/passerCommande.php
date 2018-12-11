@@ -38,10 +38,11 @@
 		 <select name="carte" required /> '	;
 
 						foreach($tab_cartes_bleues as $carte) {
- 
-						  $value = htmlspecialchars($carte->get('codeCarteBleue'));						
 
-						 echo' <option value="'.$value.'"' .'>'.$value.'</option>';
+ 
+						 	$value = htmlspecialchars($carte->get('codeCarteBleue'));	
+						
+							echo' <option value="'.$value .'">'.$value.'</option>';
 					
 						}
 
