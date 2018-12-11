@@ -628,6 +628,7 @@ form {
 	padding:15px 15px;	
 	font-family:verdana;
 
+
 }
 
 .submit_btn{
@@ -969,7 +970,7 @@ footer>section {
 
 	margin:0px;
 	text-align: left;
-	background-color: black;
+	background-color: #dcdcdc;
 	height: 330px;
 
 }

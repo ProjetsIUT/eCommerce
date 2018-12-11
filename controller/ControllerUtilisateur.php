@@ -335,7 +335,7 @@ class ControllerUtilisateur {
                         $entete = 'From serviceclient@pineapple.com';
                         $mail = 'Bienvenue sur PineApple,
                         
-                        Pour activer votre compte, veuillez cliquez sur le lien-ci dessous ou 
+                        Pour activer votre compte, veuillez cliquer sur le lien-ci dessous ou 
                         copier/coller dans votre navigateur internet
 
                         http://webinfo.iutmontp.univ-montp2.fr/~bourdesj/eCommerce/index.php?controller=utilisateur&action=validate&loginUtilisateur='.rawurlencode($_GET['loginUtilisateur']).'&nonce='.rawurlencode($nonc).'
@@ -354,7 +354,7 @@ class ControllerUtilisateur {
                 
             } else {
                 $type = 'Ajout';
-                $verif = 'Vos deux mots de passe ne sont pas identique !';
+                $verif = 'Vos deux mots de passe ne sont pas identiques !';
                 $view = 'update';
                 $pagetitle = 'Ajout d\'un utilisateur';
                 require (File::build_path(array('view', 'view.php')));
@@ -391,7 +391,7 @@ class ControllerUtilisateur {
                     require (File::build_path(array('view', 'view.php')));
                 } else {
                     $type = 'Ajout';
-                    $verif = 'Vos deux mots de passe ne sont pas identique !';
+                    $verif = 'Vos deux mots de passe ne sont pas identiques !';
                     $view = 'update';
                     $pagetitle = 'Ajout d\'un utilisateur';
                     require (File::build_path(array('view', 'view.php')));
