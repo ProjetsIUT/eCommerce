@@ -99,7 +99,7 @@
         
         }
 
-        public function update($data) {
+        public static function update($data) {
             $table_name = 'ecommerce_'.static::$object;
             $name = static::$object;
             $class_name = 'Model' . ucfirst($name);
@@ -149,7 +149,7 @@
         
           }
 
-          public function save($data) {
+          public static function save($data) {
             $table_name = 'ecommerce_'.static::$object;
             $name = static::$object;
             $class_name = 'Model' . ucfirst($name);

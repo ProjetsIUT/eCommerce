@@ -8,8 +8,7 @@ class ControllerCommande {
 	protected static $object = 'commande';
 
  public static function create(){
-
-
+        
       $id = mt_rand();
 
       $data=array('idCommande'=>$id,'loginUtilisateur'=>$_SESSION['loginUtilisateur'],'prixTotalCommande'=>$_GET['prixTotal'], 'adresseLivraisonCommande'=>$_GET['adresse'], 'paiementFois'=>$_GET['fois'], 'idCarteBleue'=>$_GET['carte']);
@@ -35,70 +34,66 @@ class ControllerCommande {
       }
 
 
-
-
   }
 
 
 	public static function readAll() {
 
+            $loginUser= $_SESSION['loginUtilisateur'];
+            $tab= ModelCommande::selectAll();
+            $tab_c = array();
     
-        $loginUser= $_SESSION['loginUtilisateur'];
-        $tab= ModelCommande::selectAll();
-        $tab_c = array();
+            foreach ($tab as $commande) {
 
-        foreach ($tab as $commande) {
+                   if($commande->get('loginUtilisateur')===$loginUser){
+    
+                       array_push($tab_c, $commande);
+    
+                   }
 
+            }
+    
+            $view = 'historique';
+            $pagetitle = 'Historique de vos commandes';
+            require (File::build_path(array('view', 'view.php')));
+    
 
-       		if(htmlspecialchars($commande->get('loginUtilisateur'))===$loginUser){
-
-       			array_push($tab_c, $commande);
-
-       		}
-
-       	
-        }
-
-        $view = 'historique';
-        $pagetitle = 'Historique de vos commandes';
-        require (File::build_path(array('view', 'view.php')));
-
+    
   }
 
 
     public static function read(){
 
+            if(isset($_GET['codeCommande'])) {
 
-        if(isset($_GET['codeCommande'])) {
-
-              $c=ModelCommande::select($_GET['codeCommande']);
-              $tab_associations = ModelAssociationCommande::selectByOrder();
-              $tab_p = array();
-              $tab_qte = array();
-
-              foreach ($tab_associations as $association) {
-
-                $p=ModelProduit::select(htmlspecialchars($association->get('codeProduit')));
-                array_push($tab_p, $p);
-                array_push($tab_qte,htmlspecialchars($association->get('quantite')));
-                  
-              }
-
-              $view = 'detail';
-              $pagetitle = 'Votre commande N°'.$_GET['codeCommande'];
-              require (File::build_path(array('view', 'view.php')));
-
-       }else{
-
-            $error_code = 'read : codeCommande vide';
-            $view = 'error';
-            $pagetitle = 'Erreur';
-            require (File::build_path(array('view', 'error.php')));
-       }
+                $c=ModelCommande::select($_GET['codeCommande']);
+                $tab_associations = ModelAssociationCommande::selectByOrder();
+                $tab_p = array();
+                $tab_qte = array();
+  
+                foreach ($tab_associations as $association) {
+  
+                  $p=ModelProduit::select(htmlspecialchars($association->get('codeProduit')));
+                  array_push($tab_p, $p);
+                  array_push($tab_qte,htmlspecialchars($association->get('quantite')));
+                    
+                }
+  
+                $view = 'detail';
+                $pagetitle = 'Votre commande N°'.$_GET['codeCommande'];
+                require (File::build_path(array('view', 'view.php')));
+  
+                }else{
+        
+                    $error_code = 'read : codeCommande vide';
+                    $view = 'error';
+                    $pagetitle = 'Erreur';
+                    require (File::build_path(array('view', 'error.php')));
+                }     
 
     }
 
-
+ 
     
     public static function passerCommande(){
 
@@ -110,11 +105,9 @@ class ControllerCommande {
     }
 
     public static function validerCommande(){
-
     
       self::create();
     
-
       $view="commandé";
       $pagetitle="Merci pour votre commande";
       require (File::build_path(array('view', 'view.php')));
@@ -122,7 +115,7 @@ class ControllerCommande {
       setcookie("produits_panier",0,time()-1); //Faire expirer le cookie
 
 
-  }
+   }
 
 
 

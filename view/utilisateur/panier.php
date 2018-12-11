@@ -16,7 +16,7 @@
                 $tab = array();
               }
 
-           
+              
               if(!empty($tab)){
 
 
@@ -46,11 +46,11 @@
                              <br> 
                              <a>Seulement  ' . htmlspecialchars($p->get('prixProduit')) . '€</a>
                              <br>
-                             <a>Quantité:' . $qté . '   
+                             <a>Quantité:' . htmlspecialchars($qté) . '   
                              <br>
                              <br>
-                             <a class="bouton" href="./index.php?codeProduit=' .$codeP . '&controller=produit&action=ajoutPanier&quantite=-1">-</a>
-                             <a class="bouton" href="./index.php?codeProduit=' .$codeP . '&controller=produit&action=ajoutPanier&quantite=1">+</a>
+                             <a class="bouton" href="./index.php?codeProduit=' . htmlspecialchars($codeP) . '&controller=produit&action=ajoutPanier&quantite=-1">-</a>
+                             <a class="bouton" href="./index.php?codeProduit=' . htmlspecialchars($codeP) . '&controller=produit&action=ajoutPanier&quantite=1">+</a>
                        
                             </div>
 
@@ -77,6 +77,7 @@
             <strong class="total">Total: '. $montant_total . '€</strong>
 
             <br>
+            <a class="bouton" href="./">Continuer vos achats sans plus attendre !</a>
             <a class="bouton_panier" href="./index.php?controller=commande&action=passerCommande&montant='. $montant_total .'">Passer la commande</a>
             ';
 

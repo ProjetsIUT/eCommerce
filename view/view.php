@@ -22,17 +22,19 @@
 						<div><a class=txt_sub href="index.php">Accueil</a></div>
 						<br>
 						<div><a class=txt_sub href="index.php?action=readAll&controller=produit">Produits</a></div>
-						<div><a class=txt_sub href="index.php?action=readAll&controller=utilisateur">Utilisateurs</a></div>
+						<div><a class=txt_sub href="index.php?action=show_panier&controller=utilisateur">Panier</a></div>
 						<?php
 						if(Session::is_admin()) {
-							echo '<div><a class=txt_sub href="index.php?action=readAll&controller=utilisateur">Utilisateurs</a></div>';
+							echo '<div><a class=txt_sub href="index.php?action=readAll&controller=utilisateur">Utilisateurs</a></div>
+							<div><a class=txt_sub href="index.php?action=readAll&controller=commande">Historique des commandes</a></div>';
 						}
 						else if (isset($_SESSION['loginUtilisateur'])){
-							echo '<div><a class=txt_sub href="index.php?action=read&controller=utilisateur&loginUtilisateur='.$_SESSION['loginUtilisateur'].'">Mon Compte</a></div>';
+							echo '<div><a class=txt_sub href="index.php?action=read&controller=utilisateur&loginUtilisateur='.$_SESSION['loginUtilisateur'].'">Mon Compte</a></div>
+							<div><a class=txt_sub href="index.php?action=readAll&controller=commande">Historique des commandes</a></div>';
 						}
 
                     	if(isset($_SESSION['loginUtilisateur'])) {
-                        	echo ('<div><a class=txt_sub href="index.php?controller=utilisateur&action=deconnect">Se déconnecter</a></div>');
+							echo ('<div><a class=txt_sub href="index.php?controller=utilisateur&action=deconnect">Se déconnecter</a></div>');
                     	}
                     	else {
 							echo ('<div><a class=txt_sub href="index.php?action=create&controller=utilisateur">S\'inscrire</a></div>
@@ -44,33 +46,43 @@
 			
 
 				<div class=menu>
-					<a href="index.php"><img src="./Images/logoananas.png" alt="Ca fonctionne pas nulos" id="logo"></a>			
+					<a href="index.php"><img src="./Images/logoananas.png" alt="Ca fonctionne pas nulos" id="logo"></a>		
+
+					<?php 
+
+
+					if(Session::is_admin()) {
+
+						echo '<div class=title_menu><a class=txt_menu_admin >Mode Admin</a></div>';
+						
+
+					}
+
+						?>
+
 					<div class=title_menu><a class=txt_menu href="index.php?action=readAll&controller=produit">Produits</a></div>
 					<div class=title_menu><a class=txt_menu href="index.php?action=show_panier&controller=utilisateur">Panier</a></div>
 					<?php
 
-
-                    if(isset($_SESSION['loginUtilisateur'])){
-					 	echo'<div class=title_menu><a class=txt_menu href="index.php?action=readAll&controller=commande">Historique des commandes</a></div>';
-					}
 					
 					if(Session::is_admin()) {
-						echo '<div class=title_menu><a class=txt_menu href="index.php?action=readAll&controller=utilisateur">Gestion utilisateurs</a></div>';
-					}
-					else if(isset($_SESSION['loginUtilisateur'])){
-						echo '<div class=title_menu><a class=txt_menu href="index.php?action=read&controller=utilisateur&loginUtilisateur='.$_SESSION['loginUtilisateur'].'">Mon Compte</a></div>';
-					}
 
-					if(isset($_SESSION['loginUtilisateur'])) {
-						echo ('<div class=title_menu><a class=txt_menu href="index.php?controller=utilisateur&action=deconnect">Se déconnecter</a></div>');
+						echo '<div class=title_menu><a class=txt_menu href="index.php?action=readAll&controller=utilisateur">Gestion utilisateurs</a></div>';
+
 					}
-					else {
+					
+					if(isset($_SESSION['loginUtilisateur'])){
+						echo '<div class=title_menu><a class=txt_menu href="index.php?action=read&controller=utilisateur&loginUtilisateur='.$_SESSION['loginUtilisateur'].'">Mon Compte</a></div>
+						<div class=title_menu><a class=txt_menu href="index.php?action=readAll&controller=commande">Historique des commandes</a></div>';
+				
+						echo ('<div class=title_menu><a class=txt_menu href="index.php?controller=utilisateur&action=deconnect">Se déconnecter</a></div>');
+					}else {
 						echo ('<div class=title_menu><a class=txt_menu href="index.php?action=create&controller=utilisateur">S\'inscrire</a></div>
 						<div class=title_menu><a class=txt_menu href="index.php?action=connect&controller=utilisateur">Se connecter</a></div>');
 					}
 					?>
 				</div>
-			$
+			
 			</nav>
 		</header>
     <body>

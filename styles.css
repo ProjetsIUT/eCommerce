@@ -197,11 +197,11 @@ div.desc {
 
 
 .title_menu{ /*Titre des menus*/
-display:inline;
-position:relative;
-font-size:20px;
-min-width:115px;
-padding:0px 40px;
+	display:inline;
+	position:relative;
+	font-size:20px;
+	min-width:115px;
+	padding:0px 40px;
 }
 
 
@@ -212,12 +212,19 @@ text-decoration:none;
 font-size: 17px;
 }
 
+.txt_menu_admin{
+	color:#efff00;
+	line-height:2.5em; /*Centrer verticalment*/
+	text-decoration:none;
+	font-size: 17px;
+}
+
 .txt_sub{ /*Texte des sous-menus*/
-padding:0px 10px;
-text-decoration:none;
-color:#ecf0f1;
-text-decoration:none;
-font-size: 16px;
+	padding:0px 10px;
+	text-decoration:none;
+	color:#ecf0f1;
+	text-decoration:none;
+	font-size: 16px;
 }
 
 @media(max-width:1200px){ /*Agrandissement du texte des sous-menus*/ 
@@ -639,6 +646,12 @@ form {
 
 }
 
+.img_desc{
+
+	max-width: 250px;
+
+}
+
 .submit_btn:hover{
 	background-color:#2F50D5;
 }
@@ -770,7 +783,7 @@ text-align:center;
 
 
 .produit4 {
-	margin-top:30px;/index.php?controller=produit&action=create
+	margin-top:30px;
 	width:100%;
 	height:861px;
 	background-image:url("../Images/bg3.png");
@@ -791,7 +804,7 @@ text-align:center;
 
 #pinewatch2 {
 	color:white;
-	height:1150px;/index.php?controller=produit&action=create
+	height:1150px;
 	background-image:url("../Images/bg4.jpg");
 	padding-top:60px;
 	
@@ -956,7 +969,7 @@ footer>section {
 
 	margin:0px;
 	text-align: left;
-	background-color: #0000001a;
+	background-color: black;
 	height: 330px;
 
 }
@@ -1007,8 +1020,7 @@ footer>section {
 .metier {
 	margin:20px 40px 40px 40px;
 	padding:40px 40px 40px 40px;
-	background-color:#F4F6F7
-	;
+	background-color:#F4F6F7;
 	width:50%;
 	border-radius:10px;
 }
@@ -1021,7 +1033,7 @@ margin:auto;
 }
 .metier>ul>li {
 	list-style-type:none;
-	background-color:none;
+	
 }
 .metier>ul>li>ul {
 	display:none;

@@ -50,7 +50,7 @@ if(Session::is_admin()) {
 
        <h1><?php echo htmlspecialchars($p->get('nomProduit')) ?></h1> 
 
-       <?php echo '<img src="./Images/'.$img_nom.'"' ;?>
+       <?php echo '<img class="img_desc" src="./Images/'.$img_nom.'"' ;?>
 
        <br>
         
