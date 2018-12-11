@@ -20,13 +20,9 @@ class ControllerUtilisateur {
     }
 
     public static function show_panier(){
-
-
-        $tab_p = 
         $view = 'panier';
         $pagetitle = 'Mon panier';
         require (File::build_path(array('view', 'view.php')));
-
     }
     
     public static function read() {

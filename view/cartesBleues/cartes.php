@@ -10,7 +10,7 @@
 
 		echo '
 			<div class="div_cb">
-				<h2>Carte N°'. $i .'</h2>
+				<h2>Carte N°'. htmlspecialchars($i) .'</h2>
 				<a>Code carte bleue:'. htmlspecialchars($carte->get('codeCarteBleue')) .'</a>
 				<br>
 				<a>Date d\'expiration:'.htmlspecialchars($carte->get('dateExp')) . '</a>

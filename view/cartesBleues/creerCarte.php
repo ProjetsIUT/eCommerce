@@ -9,9 +9,7 @@
 
 		if(Session::is_admin()){
 
-			$tab_user=ModelUtilisateur::selectAll();
-
-			echo '
+			echo ' 
 
 				<label> Login utilisateur : </label>
 
@@ -36,7 +34,7 @@
 
 		}else{
 
-			echo '<input type="hidden" name="loginUtilisateur" value="' . $_SESSION['loginUtilisateur'] .' ">' ;
+			echo '<input type="hidden" name="loginUtilisateur" value="' . htmlspecialchars($_SESSION['loginUtilisateur']) .' ">' ;
 
 		}
 
