@@ -46,11 +46,11 @@
                              <br> 
                              <a>Seulement  ' . htmlspecialchars($p->get('prixProduit')) . '€</a>
                              <br>
-                             <a>Quantité:' . $qté . '   
+                             <a>Quantité:' . htmlspecialchars($qté) . '   
                              <br>
                              <br>
-                             <a class="bouton" href="./index.php?codeProduit=' .$codeP . '&controller=produit&action=ajoutPanier&quantite=-1">-</a>
-                             <a class="bouton" href="./index.php?codeProduit=' .$codeP . '&controller=produit&action=ajoutPanier&quantite=1">+</a>
+                             <a class="bouton" href="./index.php?codeProduit=' . htmlspecialchars($codeP) . '&controller=produit&action=ajoutPanier&quantite=-1">-</a>
+                             <a class="bouton" href="./index.php?codeProduit=' . htmlspecialchars($codeP) . '&controller=produit&action=ajoutPanier&quantite=1">+</a>
                        
                             </div>
 
