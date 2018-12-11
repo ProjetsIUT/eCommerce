@@ -197,11 +197,11 @@ div.desc {
 
 
 .title_menu{ /*Titre des menus*/
-display:inline;
-position:relative;
-font-size:20px;
-min-width:115px;
-padding:0px 40px;
+	display:inline;
+	position:relative;
+	font-size:20px;
+	min-width:115px;
+	padding:0px 40px;
 }
 
 
@@ -212,12 +212,19 @@ text-decoration:none;
 font-size: 17px;
 }
 
+.txt_menu_admin{
+	color:#efff00;
+	line-height:2.5em; /*Centrer verticalment*/
+	text-decoration:none;
+	font-size: 17px;
+}
+
 .txt_sub{ /*Texte des sous-menus*/
-padding:0px 10px;
-text-decoration:none;
-color:#ecf0f1;
-text-decoration:none;
-font-size: 16px;
+	padding:0px 10px;
+	text-decoration:none;
+	color:#ecf0f1;
+	text-decoration:none;
+	font-size: 16px;
 }
 
 @media(max-width:1200px){ /*Agrandissement du texte des sous-menus*/ 
@@ -636,6 +643,12 @@ form {
 
 
 
+
+}
+
+.img_desc{
+
+	max-width: 250px;
 
 }
 
