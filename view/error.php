@@ -17,7 +17,6 @@
 
 		<!--Pour l'en-tête de page-->
 		<header>
-		<header>
 			<nav> <!--Menu-->
 				<div class=menu_burger>
 					<a> <img src="./Images/logoananas.png" alt="Ca fonctionne pas nulos" id="logobg"></a>
