@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
+	<head>
 	<!--Hors de page-->
     	<link rel="icon" href="Images/logoananas.ico" />
 		<meta charset="utf-8">
@@ -52,13 +53,11 @@
 					<?php
 					if(Session::is_admin()) {
 						echo '<div class=title_menu><a class=txt_menu href="index.php?action=readAll&controller=utilisateur">Utilisateurs</a></div>
-						<div class=title_menu><a class=txt_menu href="index.php?action=readAll&controller=commande">Historique des commandes</a></div>
-';
+						<div class=title_menu><a class=txt_menu href="index.php?action=readAll&controller=commande">Historique des commandes</a></div>';
 					}
 					else if(isset($_SESSION['loginUtilisateur'])){
 						echo '<div class=title_menu><a class=txt_menu href="index.php?action=read&controller=utilisateur&loginUtilisateur='.$_SESSION['loginUtilisateur'].'">Mon Compte</a></div>
-						<div class=title_menu><a class=txt_menu href="index.php?action=readAll&controller=commande">Historique des commandes</a></div>
-';
+						<div class=title_menu><a class=txt_menu href="index.php?action=readAll&controller=commande">Historique des commandes</a></div>';
 					}
 
 					if(isset($_SESSION['loginUtilisateur'])) {
@@ -73,7 +72,7 @@
 			
 			</nav>
 		</header>
-    <body>
+    
 		<main>
 			<?php
 			// Si $controleur='voiture' et $view='list',
@@ -81,8 +80,8 @@
 			$filepath = File::build_path(array("view", self::$object, "$view.php"));
 			require $filepath;
 			?>
-			</main>
-    </body>
+		</main>
+    
 		<footer>
 			<div class="FootBot">
 				<div class="FootBotC1">
