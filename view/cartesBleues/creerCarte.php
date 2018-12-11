@@ -44,15 +44,15 @@
 
 	<label>Code Carte Bleue:</label>
 	<br>
-	<input type="text" name="code" required>
+	<input type="number" name="code" max="9999999999999999" required >
 	<br>
-	<label>Date d'expiration:</label>
+	<label>Date d'expiration (MM/AA): </label>
 	<br>
-	<input type="text" name="date" required>
+	<input type="text" name="date" required maxlength="5" >
 	<br>
 	<label>Cryptogramme:</label>
 	<br>
-	<input type="text" name="cryptogramme" required>
+	<input type="number" name="cryptogramme" max="999" required >
 	<br>
 	<label>Nom du titulaire:</label>
 	<br>
