@@ -20,11 +20,7 @@ if(Session::is_admin()){
 
     foreach ($tab_p as $p) {
 
-<<<<<<< HEAD
-        
-=======
-        $img_nom = $p->get('codeProduit').'.png';
->>>>>>> 918d1ce0fa7d05283aa1056630f355a30b7f0f16
+
         $codeP = $p->get('codeProduit');
         $img_nom =$codeP . '.png';
         echo '
@@ -39,6 +35,7 @@ if(Session::is_admin()){
             </div>
         
         </div>';
+        
     }
 
  ?>
