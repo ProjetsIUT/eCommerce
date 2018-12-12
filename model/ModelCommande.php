@@ -44,6 +44,7 @@ class ModelCommande extends Model{
 	    $this->adresseLivraisonCommande=$data["adresseLivraisonCommande"];
 	    $this->paiementFois=$data["paiementFois"];
 	    $this->idCarteBleue=$data["idCarteBleue"];
+      $this->dateCommande = date("Y-m-d H:i:s");
 
 	  }
   }

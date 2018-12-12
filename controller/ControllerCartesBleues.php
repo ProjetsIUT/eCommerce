@@ -56,11 +56,22 @@ class ControllerCartesBleues {
 	public static function created(){
 
 
-			$data = array('codeCarteBleue'=>$_GET['code'],'loginUtilisateur'=>$_GET['loginUtilisateur'], 'dateExp'=>$_GET['date'],'cryptogramme'=>$_GET['cryptogramme'],'nomTitulaire'=>$_GET['nom']);
+			if(Session::is_user($_GET['loginUtilisateur']) || Session::is_admin() ){
 
-			$c=new ModelCartesBleues();
-			$c->save($data);
-			self::readAll();
+				$data = array('codeCarteBleue'=>$_GET['code'],'loginUtilisateur'=>$_GET['loginUtilisateur'], 'dateExp'=>$_GET['date'],'cryptogramme'=>$_GET['cryptogramme'],'nomTitulaire'=>$_GET['nom']);
+
+				$c=new ModelCartesBleues();
+				$c->save($data);
+				self::readAll();
+
+			}else{
+
+					$view="error";
+					$pagetitle = "Erreur";
+					$error_code = "Create: permission refusée";
+					require (File::build_path(array('view', 'error.php')));
+
+			}
 
 	}
 

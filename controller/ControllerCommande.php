@@ -8,10 +8,11 @@ class ControllerCommande {
 	protected static $object = 'commande';
 
  public static function create(){
+
         
       $id = mt_rand();
 
-      $data=array('idCommande'=>$id,'loginUtilisateur'=>$_SESSION['loginUtilisateur'],'prixTotalCommande'=>$_GET['prixTotal'], 'adresseLivraisonCommande'=>$_GET['adresse'], 'paiementFois'=>$_GET['fois'], 'idCarteBleue'=>$_GET['carte']);
+      $data=array('idCommande'=>$id,'loginUtilisateur'=>$_SESSION['loginUtilisateur'],'prixTotalCommande'=>$_GET['prixTotal'], 'adresseLivraisonCommande'=>$_GET['adresse'], 'paiementFois'=>$_GET['fois'], 'idCarteBleue'=>$_GET['carte'], 'dateCommande'=> date("Y-m-d H:i:s"));
       $c=new ModelCommande();
 
       $c->save($data);

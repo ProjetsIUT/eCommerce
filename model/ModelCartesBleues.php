@@ -4,7 +4,7 @@ require_once (File::build_path(array('model','Model.php')));
 
 class ModelCartesBleues extends Model{
 
-	protected static $primary='idCarteBleue';
+	protected static $primary='codeCarteBleue';
     protected static $object = 'cartesBleues';
 
     private $codeCarteBleue;

@@ -34,7 +34,7 @@
 
 		}else{
 
-			echo '<input type="hidden" name="loginUtilisateur" value="' . htmlspecialchars($_SESSION['loginUtilisateur']) .' ">' ;
+			echo '<input type="hidden" name="loginUtilisateur" value="' . htmlspecialchars($_SESSION['loginUtilisateur']) .'">' ;
 
 		}
 
