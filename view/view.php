@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
+	<head>
 	<!--Hors de page-->
     	<link rel="icon" href="Images/logoananas.ico" />
 		<meta charset="utf-8">
@@ -85,7 +86,7 @@
 			
 			</nav>
 		</header>
-    <body>
+    
 		<main>
 			<?php
 			// Si $controleur='voiture' et $view='list',
@@ -93,8 +94,8 @@
 			$filepath = File::build_path(array("view", self::$object, "$view.php"));
 			require $filepath;
 			?>
-			</main>
-    </body>
+		</main>
+    
 		<footer>
 			<div class="FootBot">
 				<div class="FootBotC1">

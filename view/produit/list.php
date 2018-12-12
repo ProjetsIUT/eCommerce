@@ -20,13 +20,17 @@ if(Session::is_admin()){
 
     foreach ($tab_p as $p) {
 
+<<<<<<< HEAD
         
+=======
+        $img_nom = $p->get('codeProduit').'.png';
+>>>>>>> 918d1ce0fa7d05283aa1056630f355a30b7f0f16
         $codeP = $p->get('codeProduit');
         $img_nom =$codeP . '.png';
         echo '
         <div class=Produit> 
             <a href="index.php?controller=produit&action=read&codeProduit='.rawurlencode($codeP).'">
-                <img src="./Images/'.htmlspecialchars($img_nom).'" > 
+                <img src="./Images/'.htmlspecialchars($img_nom).'" alt="Ca fonctionne pas nulos"> 
             </a>
 
             <div class=desc>'.htmlspecialchars($p->get('nomProduit')).' 
