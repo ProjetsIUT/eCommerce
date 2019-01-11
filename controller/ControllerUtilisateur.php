@@ -86,7 +86,6 @@ class ControllerUtilisateur {
                     $u = ModelUtilisateur::delete($_GET['loginUtilisateur']);
                     $view = 'deleted';
                     $pagetitle = 'Suppression d\'un utilisateur';
-                    $tab_u = ModelUtilisateur::selectAll();
                     if(Session::is_user($_GET['loginUtilisateur'])) {
                         self::deconnect();
                     }
@@ -205,7 +204,7 @@ class ControllerUtilisateur {
             require (File::build_path(array('view', 'error.php')));
         }
     }
-
+ 
     public static function validate() {
         $u = ModelUtilisateur::select($_GET['loginUtilisateur']);
         $nr = $_GET['nonce'];
